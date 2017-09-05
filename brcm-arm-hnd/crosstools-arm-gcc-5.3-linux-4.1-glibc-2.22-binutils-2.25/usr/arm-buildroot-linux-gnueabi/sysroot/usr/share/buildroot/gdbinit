@@ -1,0 +1,1 @@
+set sysroot /opt/toolchains/crosstools-arm-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/arm-buildroot-linux-gnueabi/sysroot

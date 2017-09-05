@@ -1,0 +1,78 @@
+.TH ORDCHR 3am "Jan 15 2013" "Free Software Foundation" "GNU Awk Extension Modules"
+.SH NAME
+ordchr \- convert characters to strings and vice versa
+.SH SYNOPSIS
+.ft CW
+@load "ordchr"
+.sp
+number = ord("A")
+.br
+string = chr(65)
+.ft R
+.SH DESCRIPTION
+The
+.I ordchr
+extension adds two functions named
+.BR ord() .
+and
+.BR chr() ,
+as follows.
+.TP
+.B ord()
+This function takes a string argument, and returns the
+numeric value of the first character in the string.
+.TP
+.B chr()
+This function takes a numeric argument and returns a string
+whose first character is that represented by the number.
+.PP
+These functions are inspired by the Pascal language functions
+of the same name.
+... .SH NOTES
+... .SH BUGS
+.SH EXAMPLE
+.ft CW
+.nf
+@load "ordchr"
+\&...
+printf("The numeric value of 'A' is %d\en", ord("A"))
+printf("The string value of 65 is %s\en", chr(65))
+.fi
+.ft R
+.SH "SEE ALSO"
+.IR "GAWK: Effective AWK Programming" ,
+.IR filefuncs (3am),
+.IR fnmatch (3am),
+.IR fork (3am),
+.IR inplace (3am),
+.IR readdir (3am),
+.IR readfile (3am),
+.IR revoutput (3am),
+.IR rwarray (3am),
+.IR time (3am).
+.SH AUTHOR
+Arnold Robbins,
+.BR arnold@skeeve.com .
+.SH COPYING PERMISSIONS
+Copyright \(co 2012, 2013,
+Free Software Foundation, Inc.
+.PP
+Permission is granted to make and distribute verbatim copies of
+this manual page provided the copyright notice and this permission
+notice are preserved on all copies.
+.ig
+Permission is granted to process this file through troff and print the
+results, provided the printed document carries copying permission
+notice identical to this one except for the removal of this paragraph
+(this paragraph not being relevant to the printed manual page).
+..
+.PP
+Permission is granted to copy and distribute modified versions of this
+manual page under the conditions for verbatim copying, provided that
+the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+.PP
+Permission is granted to copy and distribute translations of this
+manual page into another language, under the above conditions for
+modified versions, except that this permission notice may be stated in
+a translation approved by the Foundation.

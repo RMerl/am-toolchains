@@ -1,0 +1,89 @@
+.TH TIME 3am "Jan 15 2013" "Free Software Foundation" "GNU Awk Extension Modules"
+.SH NAME
+time \- time functions for gawk
+.SH SYNOPSIS
+.ft CW
+@load "time"
+.sp
+time = gettimeofday()
+.br
+ret = sleep(amount)
+.ft R
+.SH DESCRIPTION
+The
+.I time
+extension adds two functions named
+.B gettimeofday()
+and
+.BR sleep() ,
+as follows.
+.TP
+.B gettimeofday()
+This function returns the number of seconds since the Epoch
+as a floating-point value. It should have subsecond precision.
+It returns \-1 upon error and sets
+.B ERRNO
+to indicate the problem.
+.TP
+.BI sleep( seconds )
+This function attempts to sleep for the given amount of seconds, which
+may include a fractional portion.
+If
+.I seconds
+is negative, or the attempt to sleep fails,
+then it returns \-1 and sets
+.BR ERRNO .
+Otherwise, the function should return 0 after sleeping
+for the indicated amount of time.
+... .SH NOTES
+... .SH BUGS
+.SH EXAMPLE
+.ft CW
+.nf
+@load "time"
+\&...
+printf "It is now %g seconds since the Epoch\en", gettimeofday()
+printf "Pausing for a while... " ; sleep(2.5) ; print "done"
+.fi
+.ft R
+.SH "SEE ALSO"
+.IR "GAWK: Effective AWK Programming" ,
+.IR filefuncs (3am),
+.IR fnmatch (3am),
+.IR fork (3am),
+.IR inplace (3am),
+.IR ordchr (3am),
+.IR readdir (3am),
+.IR readfile (3am),
+.IR revoutput (3am),
+.IR rwarray (3am).
+.PP
+.IR gettimeofday (2),
+.IR nanosleep (2),
+.IR select (2).
+.SH AUTHOR
+Arnold Robbins,
+.BR arnold@skeeve.com .
+.SH COPYING PERMISSIONS
+Copyright \(co 2012, 2013,
+Free Software Foundation, Inc.
+.PP
+Permission is granted to make and distribute verbatim copies of
+this manual page provided the copyright notice and this permission
+notice are preserved on all copies.
+.ig
+Permission is granted to process this file through troff and print the
+results, provided the printed document carries copying permission
+notice identical to this one except for the removal of this paragraph
+(this paragraph not being relevant to the printed manual page).
+..
+.PP
+Permission is granted to copy and distribute modified versions of this
+manual page under the conditions for verbatim copying, provided that
+the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+.PP
+Permission is granted to copy and distribute translations of this
+manual page into another language, under the above conditions for
+modified versions, except that this permission notice may be stated in
+a translation approved by the Foundation.
