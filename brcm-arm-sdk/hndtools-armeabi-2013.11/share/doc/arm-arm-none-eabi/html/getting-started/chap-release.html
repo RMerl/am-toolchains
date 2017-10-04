@@ -1,0 +1,199 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Appendix A. Sourcery CodeBench Lite Release Notes</title><link rel="stylesheet" type="text/css" href="cs.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.0"><meta name="description" content=" This appendix contains information about changes in this release of Sourcery CodeBench Lite for ARM EABI. You should read through these notes to learn about new features and bug fixes."><link rel="home" href="index.html" title="Sourcery CodeBench Lite"><link rel="up" href="index.html" title="Sourcery CodeBench Lite"><link rel="prev" href="ch06s02.html" title="6.2. Manuals for GNU Toolchain Components"><link rel="next" href="chap-license.html" title="Appendix B. Sourcery CodeBench Lite Licenses"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Appendix A. Sourcery CodeBench Lite Release Notes</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch06s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="chap-license.html">Next</a></td></tr></table><hr></div><div class="appendix"><div class="titlepage"><div><div><h1 class="title"><a name="chap-release"></a>Appendix A. Sourcery CodeBench Lite Release Notes</h1></div><div><div class="abstract"><p class="title"><b></b></p><p>
+     This appendix contains information about changes in this
+     release of Sourcery CodeBench Lite for ARM EABI.  You should read
+     through these notes to learn about new features and bug fixes.
+    </p></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl class="toc"><dt><span class="section"><a href="chap-release.html#sec-release-notes">A.1. Changes in Sourcery CodeBench Lite for ARM EABI</a></span></dt></dl></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec-release-notes"></a>A.1. Changes in Sourcery CodeBench Lite for ARM EABI</h2></div></div></div><p>
+      This section documents Sourcery CodeBench Lite changes for each released revision.
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="idm46915333138064"></a>A.1.1. Changes in Sourcery CodeBench Lite 2013.11-24</h3></div></div></div><p><b>GCC <code class="option">-fremove-local-statics</code> option. </b>
+          GCC no longer supports the <code class="option">-fremove-local-statics</code>
+	  command-line option.  The optimizations formerly controlled by
+	  this option are now carried out automatically by other
+	  optimization passes.
+        </p><p><b>GCC version 4.8.1. </b>
+	  Sourcery CodeBench Lite for ARM EABI is now based on GCC
+	  version 4.8.1.  For more information about changes from GCC
+	  version 4.7 that was included in previous releases, see
+	  <code class="uri">http://gcc.gnu.org/gcc-4.8/changes.html</code>.
+	</p><p><b>Incorrect optimization fix. </b>
+          A bug in GCC that caused it to generate wrong code for some
+          conditionally-executed statements has been fixed. 
+        </p><p><b>Binutils update. </b>
+          The binutils package has been updated to version 2.23.52.20130912
+	  from the FSF trunk.  This update includes numerous bug fixes.
+        </p><p><b>Improved support for STMicroelectronics STM32F1xx devices. </b>
+          Peripheral register browsing information for STMicroelectronics
+	  STM32F100xx, STM32F101xx, STM32F102xx, STM32F103xx, STM32F105xx,
+	  and STM32F107xx devices have been updated to the latest released
+	  information from ARM.
+        </p><p><b>Altera Cyclone V support. </b>
+          Sourcery CodeBench Lite now includes support for the Altera Cyclone V
+	  development board.
+        </p><p><b>Improved support for STMicroelectronics STM32F4xxxx devices. </b>
+	  CS3 now provides peripheral register browsing information to the
+	  debugger for STMicroelectronics STM324F40x, STM32F41x, STM32F427x,
+	  and STM32F437x devices.This allows the user to view peripheral
+	  register values during program debugging.
+        </p><p><b>Stellaris reset bug fix. </b>
+          A bug in the CS3 reset sequence for the Stellaris EKC-LM3S9D90
+          and EKC-LM3S9D92 platforms that caused ROM to be mapped to address
+          <code class="literal">0x0</code> after reset has been fixed.
+        </p><p><b>Changed the CS3 API for passing arguments to <code class="function">main</code>. </b>
+          CS3 now requires that the function that initializes arguments
+          passed to <code class="function">main</code> be named
+          <code class="function">__cs3_init_args</code>.
+          See <a class="xref" href="sec-cs3-startup.html#sec-cs3-c-initialization" title="5.2.3. The C Initialization Phase">Section 5.2.3, &#8220;The C Initialization Phase&#8221;</a> for details.
+        </p><p><b>Newlib crash fix. </b>
+          A bug that caused Newlib to sometimes crash when used
+          with a C++ program that has more than 31 static objects
+          has been fixed.
+        </p><p><b>Newlib update. </b>
+          The Newlib package has been updated to version 2.0.0, with
+          additions from the community CVS trunk as of 2013-07-06.
+          This update provides various C99/POSIX cleanups
+          along with other bug fixes and enhancements.
+        </p><p><b>GDB update. </b>
+	  The version of GDB has been updated to 7.6.50.20130726-cvs.
+	  This update adds numerous bug fixes and features.  Refer
+	  to <code class="uri">http://www.gnu.org/software/gdb/news</code> for
+	  more information.
+        </p><p><b>Improved GDB diagnostic. </b>
+          GDB now issues an error message when an invalid option
+          is passed to the <code class="command">add-symbol-file</code> command.
+        </p><p><b>GDB support for removing symbols. </b>
+          GDB now supports the <code class="command">remove-symbol-file</code> command.
+          Refer to the GDB manual for full documentation.
+        </p><p><b>New GDB command. </b>
+          GDB now supports the <code class="command">remove-symbol-file</code>
+	  command.
+        </p><p><b>Compile caching on Windows hosts. </b>
+          Compile caching is now available on both Linux and Windows
+	  hosts. 
+        </p><p><b><code class="literal">cs-rm -f</code> bug fix. </b>
+          A bug that caused <code class="literal">cs-rm -f</code> on
+          Windows hosts to incorrectly issue an error when
+          passed a glob pattern that matched nothing has been
+          fixed.
+        </p><p><b>New installer. </b>
+         The installer has changed. Please refer to 
+         <a class="xref" href="sec-installing.html" title="2.4. Installing Sourcery CodeBench Lite">Section 2.4, &#8220;Installing Sourcery CodeBench Lite&#8221;</a> for more details.
+         Previous versions of Sourcery CodeBench Lite cannot be updated. 
+         You must uninstall the previous version or choose 
+         a different directory during installation.
+        </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="idm46915333037520"></a>A.1.2. Changes in Sourcery CodeBench Lite 2013.05-23</h3></div></div></div><p><b>GCC version 4.7.3. </b>
+	   Sourcery CodeBench Lite for ARM EABI is now based on GCC
+	   version 4.7.3.  This update incorporates numerous bug fixes.
+	   For more information, see
+	   <code class="uri">http://gcc.gnu.org/gcc-4.7/changes.html</code>.
+	</p><p><b>Installer warnings fixed. </b>
+          A bug that caused Gtk warnings relating to
+          <code class="filename">libappmenu.so</code> when running the installer
+          on 64-bit Ubuntu GNU/Linux hosts has been fixed.
+        </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="idm46915333020704"></a>A.1.3. Changes in Sourcery CodeBench Lite 2013.05-4</h3></div></div></div><p><b>C++ fix for ARMv6-M. </b>
+          A bug that prevented C++ multiple inheritance from working in
+          position-independent code compiled for ARMv6-M has been fixed.
+        </p><p><b>Multilib selection bug fix. </b>
+          A compiler bug that caused the wrong multilib
+          to be chosen when compiling with <code class="option">-mthumb
+          -mcpu=cortex-m4 -mfloat-abi=softfp</code> has
+          been fixed.
+        </p><p><b>Pointer comparison bug fixed. </b>
+	  A bug in GCC that caused it to incorrectly optimize away a pointer
+	  comparison has been fixed.
+        </p><p><b>Incorrect optimization bug fix. </b>
+          A compiler bug has been fixed that caused incorrect code to be
+	  generated for some comparisons unless optimization was suppressed
+	  with <code class="option">-fno-forward-propagate</code>.
+        </p><p><b>Performance regression fixed. </b> A bug that introduced unnecessary instructions to
+	  zero-extend unsigned <code class="type">char</code> or <code class="type">short</code> values
+	  has been fixed.
+	</p><p><b>Linker raw binary input crash fix. </b>
+          A bug that caused the linker to crash when linking binary
+          inputs (<code class="option">--format=binary</code>) while using
+          <code class="option">--gc-sections</code> has been fixed.
+        </p><p><b>Linker assertion failure fix. </b>
+          A linker bug has been fixed that caused an assertion failure
+          when linking unoptimized code using thread-local storage.
+        </p><p><b><code class="literal">ldralt</code> assembly bug fix. </b>
+          A bug that caused the assembly of <code class="literal">ldralt</code>
+          instructions to sometimes produce the error message
+          <code class="literal">selected processor does not support ARM mode</code>
+          has been fixed.
+        </p><p><b>Binutils update. </b>
+	  The binutils package has been updated to version
+	  2.23.52.20130219 from the FSF trunk.  This update includes
+	  numerous bug fixes.
+        </p><p><b>GDB hang fix. </b>
+          A bug that caused GDB to sometimes hang when setting a
+          breakpoint has been fixed.
+        </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="idm46915332953280"></a>A.1.4. Changes in Sourcery CodeBench Lite 2012.09-63</h3></div></div></div><p><b>Code size optimization improvement. </b>
+          When compiling with <code class="option">-Os</code> or <code class="option">-O2</code>
+          and higher GCC no longer enables the <code class="option">-funroll-loops</code>
+          option by default.  This change reduces the size of optimized code
+          produced by Sourcery CodeBench and brings its behavior back into conformance
+          with other GCC distributions.
+          For more information about the tradeoffs between optimizing for
+          size versus speed please see the
+          <a class="ulink" href="https://support.codesourcery.com/GNUToolchain/kbentry77" target="_top">
+            Sourcery CodeBench Knowledge Base
+          </a>.
+        </p><p><b>Loop optimization bug fix. </b>
+          A compiler bug that caused some forms
+          of loop to be mis-optimized when using the
+          <code class="option">-fpromote-loop-indices</code> option
+	  <span class="phrase">(enabled by default when optimizing for
+          speed)</span> has been fixed.
+        </p><p><b>Wrong-code bug fix. </b>
+	  A bug in GCC's scheduler has been fixed that sometimes caused
+          incorrect code to be generated.
+        </p><p><b>GDB simulator removed. </b>
+          The built-in ARM processor simulator has been removed from the
+          debugger. The stand-alone <code class="command">arm-none-eabi-run</code>
+          executable has also been removed.
+        </p><p><b>Updated system requirements. </b>
+          The host operating system requirements for Sourcery CodeBench Lite have 
+          been updated. The minimum versions of GNU/Linux now supported 
+          are Red Hat Enterprise Linux 5, SuSE Enterprise Linux 10, 
+          Fedora Core 6, Ubuntu 8.04, and Debian 5, or later versions 
+          of these distributions running on 32-bit or 64-bit Intel or 
+          AMD CPUs.
+        </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="idm46915332926192"></a>A.1.5. Changes in Sourcery CodeBench Lite 2012.09-17</h3></div></div></div><p><b>GCC version 4.7.2. </b>
+	   Sourcery CodeBench Lite for ARM EABI is now based on GCC
+	   version 4.7.2. For more information about changes from GCC
+	   version 4.6 that was included in previous releases, see
+	   <code class="uri">http://gcc.gnu.org/gcc-4.7/changes.html</code>.
+	</p><p><b>
+          Select correct multilib for <code class="option">-mcpu=cortex-a15</code>
+        . </b>
+          A GCC bug has been fixed that caused an incorrect multilib to
+          be selected when compiling with <code class="option">-mcpu=cortex-a15</code>.
+        </p><p><b>Incorrect warnings for naked functions fixed. </b>
+          A bug in the C++ compiler has been fixed that caused it to
+	  incorrectly warn about missing return statements in functions
+	  with the <code class="code">naked</code> attribute, which can only include
+	  inline assembly statements.
+        </p><p><b>Linker script symbols. </b>
+          The linker now supports a new <code class="code">HIDDEN</code> keyword to define
+          symbols with object scope.  Refer to the linker manual for details.
+        </p><p><b>Binutils version 2.23. </b>
+          Sourcery CodeBench Lite for ARM EABI is now based on binutils
+          version 2.23.
+        </p><p><b>Fix for interrupts on Cortex-M3. </b>
+          A bug in CS3 has been fixed that caused errors while linking RAM-profile
+          applications using interrupts for Cortex-M3 targets.
+        </p><p><b>Support for Xilinx ZC702 Evaluation Kit. </b>
+          Sourcery CodeBench Lite now includes support for creating and debugging
+          of applications for the Xilinx Zynq-7000 EPP ZC702
+          Evaluation Kit.
+        </p><p><b>GDB update. </b>
+	  The included version of GDB has been updated to
+	  7.4.50.20120716.  This update adds numerous bug fixes and
+	  features.  Refer to <code class="uri">http://www.gnu.org/software/gdb/news</code>
+	  for more information.
+        </p><p><b>Removal of the Sourcery CodeBench Debug Sprite. </b>
+          The Sourcery CodeBench Debug Sprite has been removed.
+        </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="idm46915332834640"></a>A.1.6. Changes in Older Releases</h3></div></div></div><p>
+        For information about changes in older releases of
+	Sourcery CodeBench Lite for ARM EABI, 
+	please refer to the Getting Started guide packaged with those
+	releases.
+      </p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch06s02.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="chap-license.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">6.2. Manuals for GNU Toolchain Components </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Appendix B. Sourcery CodeBench Lite Licenses</td></tr></table></div></body></html>

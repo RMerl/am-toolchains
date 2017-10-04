@@ -1,0 +1,34 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>2.7. Customer Experience Improvement Program</title><link rel="stylesheet" type="text/css" href="cs.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.0"><link rel="home" href="index.html" title="Sourcery CodeBench Lite"><link rel="up" href="chap-installation.html" title="Chapter 2. Installation and Configuration"><link rel="prev" href="sec-setting-up-environment.html" title="2.6. Setting up the Environment"><link rel="next" href="sec-uninstalling.html" title="2.8. Uninstalling Sourcery CodeBench Lite"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">2.7. Customer Experience Improvement Program</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="sec-setting-up-environment.html">Prev</a> </td><th width="60%" align="center">Chapter 2. Installation and Configuration</th><td width="20%" align="right"> <a accesskey="n" href="sec-uninstalling.html">Next</a></td></tr></table><hr></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec-ceip"></a>2.7. Customer Experience Improvement Program</h2></div></div></div><p>
+    Opting into the Customer Experience Improvement Program (CEIP) permits
+    Mentor Graphics to collect anonymous information about how you use Sourcery CodeBench Lite.
+    For more information, please see the following web pages:
+    </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+	<a class="ulink" href="http://go.mentor.com/scbceip" target="_top">CEIP Details</a>.
+	</p></li><li class="listitem"><p>
+	<a class="ulink" href="http://go.mentor.com/mentpp" target="_top">Privacy Policy</a>.
+	</p></li></ul></div><p>
+    You can opt in or out of the CEIP in any of the following ways.
+    </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+	Check the box in the graphical installer.
+	</p><div class="informalfigure"><div class="mediaobject" align="center"><img src="images/CEIP-installer.png" align="middle"><div class="caption"><p><b>Installer CEIP page. </b></p></div></div></div><p>
+	This affects your personal opt-in settings only, and does not
+	affect those of other users.  If you have multiple instances of
+	Sourcery CodeBench Lite installed, this setting applies to all of them.
+	
+	</p></li><li class="listitem"><p>
+	Set the configuration via the command line.
+	</p><p>
+	To opt in:
+	</p><pre class="screen">&gt; arm-none-eabi-cs -O cloud_mode=online</pre><p>
+	Or, to opt out:
+	</p><pre class="screen">&gt; arm-none-eabi-cs -O cloud_mode=offline</pre><p>
+	This affects your personal opt-in settings for all installed instances
+	of Sourcery CodeBench Lite.
+	
+	</p><p>
+	These commands are equivalent to editing <code class="filename"><code class="envar">$HOME</code>/.cs.conf</code>.
+	It's also possible to edit this setting system-wide in
+	<code class="filename">/opt/codesourcery/etc/cs.conf</code>, or per cache in
+	<code class="filename"><em class="replaceable"><code>cache_dir</code></em>/cs.conf</code>. For
+	more information, see <code class="command">man cs</code>.
+	</p></li></ul></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="sec-setting-up-environment.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="chap-installation.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="sec-uninstalling.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">2.6. Setting up the Environment </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> 2.8. Uninstalling Sourcery CodeBench Lite</td></tr></table></div></body></html>

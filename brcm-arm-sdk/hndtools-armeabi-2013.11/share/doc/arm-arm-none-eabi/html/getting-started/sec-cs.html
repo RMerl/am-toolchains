@@ -1,0 +1,34 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>4.4. Using the Compiler Cache</title><link rel="stylesheet" type="text/css" href="cs.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.0"><link rel="home" href="index.html" title="Sourcery CodeBench Lite"><link rel="up" href="chap-building.html" title="Chapter 4. Using Sourcery CodeBench from the Command Line"><link rel="prev" href="sec-remote-debugging.html" title="4.3. Running Applications from GDB"><link rel="next" href="chap-cs3.html" title="Chapter 5. CS3&#8482;: The CodeSourcery Common Startup Code Sequence"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">4.4. Using the Compiler Cache</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="sec-remote-debugging.html">Prev</a> </td><th width="60%" align="center">Chapter 4. Using Sourcery CodeBench from the Command Line</th><td width="20%" align="right"> <a accesskey="n" href="chap-cs3.html">Next</a></td></tr></table><hr></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec-cs"></a>4.4. Using the Compiler Cache</h2></div></div></div><p>
+  Compiling source code can be quite slow, and frequently recompiling that
+  code can be extremely inefficient. Sourcery CodeBench Lite includes a tool named
+  <code class="command">arm-none-eabi-cs</code> that solves this problem via
+  <span class="emphasis"><em>caching</em></span>.
+  </p><p>
+  The caching tool intercepts compiler invocations, generates a unique
+  signature from the source files, command-line parameters, and other
+  environmental information, and serves the object file and warning messages
+  directly from the cache. If the object is not currently cached then
+  the real compiler is called, and the cache updated.
+  </p><p>
+  The first time you build with caching enabled you can expect the build
+  to take 10-30% <span class="emphasis"><em>longer</em></span>. The second time you build it
+  might be 80% <span class="emphasis"><em>faster</em></span>. The memory and CPU usage savings
+  may also mean it is possible to use higher levels of build parallelism
+  (e.g. <code class="command">make -j</code>) and gain even more performance.
+  </p><p>
+  <code class="command">arm-none-eabi-cs</code> is based on the well-known open-source
+  tool <span class="emphasis"><em>ccache</em></span>.  Refer to <code class="command">man cs</code> for
+  more information.
+  </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="idm46915333651664"></a>4.4.1. Invoking <code class="command">arm-none-eabi-cs</code></h3></div></div></div><p>
+    There are two ways you can run the caching tool with command-line builds.
+    </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+	Explicitly invoke <code class="command">arm-none-eabi-cs</code>. For example,
+	like this:
+	</p><pre class="screen">&gt; arm-none-eabi-cs arm-none-eabi-gcc -c hello.c</pre><p>
+	or like this:
+	</p><pre class="screen">&gt; make CC="arm-none-eabi-cs arm-none-eabi-gcc"</pre></li><li class="listitem"><p>
+	Add <code class="filename"><em class="replaceable"><code>installdir</code></em>/bin/cache</code>
+	to the head of your <code class="envar">PATH</code>, and run your normal compile
+	command:
+	</p><pre class="screen">&gt; export PATH=<em class="replaceable"><code>installdir</code></em>/bin/cache:<em class="replaceable"><code>installdir</code></em>/bin:$PATH
+&gt; arm-none-eabi-gcc -c hello.c</pre></li></ul></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="sec-remote-debugging.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="chap-building.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="chap-cs3.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">4.3. Running Applications from GDB </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 5. CS3&#8482;: The CodeSourcery Common Startup Code Sequence</td></tr></table></div></body></html>

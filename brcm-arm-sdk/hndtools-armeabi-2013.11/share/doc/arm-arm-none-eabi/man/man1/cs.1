@@ -1,0 +1,1549 @@
+'\" t
+.\"     Title: cs
+.\"    Author: [see the "Author" section]
+.\" Generator: DocBook XSL Stylesheets v1.76.1 <http://docbook.sf.net/>
+.\"      Date: 11/22/2013
+.\"    Manual: cs Manual
+.\"    Source: cs 1.2.1+dirty
+.\"  Language: English
+.\"
+.TH "CS" "1" "11/22/2013" "cs 1\&.2\&.1+dirty" "cs Manual"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+cs \- a fast C/C++ compiler cache integrated with Sourcery CodeBench\&.
+.SH "SYNOPSIS"
+.sp
+.nf
+\fBcs\fR [\fIoptions\fR]
+\fBcs\fR \fIcompiler\fR [\fIcompiler options\fR]
+\fIcompiler\fR [\fIcompiler options\fR]                   (via symbolic link)
+.fi
+.SH "DESCRIPTION"
+.sp
+cs is based on "ccache", still available from http://ccache\&.samba\&.org\&.
+.sp
+It speeds up recompilation by caching the result of previous compilations and detecting when the same compilation is being done again\&. Supported languages are C, C++, Objective\-C and Objective\-C++\&.
+.sp
+It can also capture usage information to allow the user to participate in the CodeBench Product Improvement Program, anonymously\&. This feature is strictly optional\&.
+.sp
+cs has been carefully written to always produce exactly the same compiler output that you would get without the cache\&. The only way you should be able to tell that you are using cs is the speed\&. Currently known exceptions to this goal are listed under BUGS\&. If you ever discover an undocumented case where cs changes the output of your compiler, please let us know\&.
+.SS "Features"
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Keeps statistics on hits/misses\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Automatic cache size management\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Can cache compilations that generate warnings\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Easy installation\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Low overhead\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Optionally uses hard links where possible to avoid copies\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Optionally compresses files in the cache to reduce disk space\&.
+.RE
+.SS "Limitations"
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Only knows how to cache the compilation of a single C/C++/Objective\-C/Objective\-C++ file\&. Other types of compilations (multi\-file compilation, linking, etc) will silently fall back to running the real compiler\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Only works with GCC and compilers that behave similar enough\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Some compiler flags are not supported\&. If such a flag is detected, cs will silently fall back to running the real compiler\&.
+.RE
+.SH "RUN MODES"
+.sp
+There are two ways to use cs\&. You can either prefix your compilation commands with \fBcs\fR or you can let cs masquerade as the compiler by using a symbolic link (named as the compiler) to cs\&. The first method is most convenient if you just want to try out cs or wish to use it for some specific projects\&. The second method is most useful for when you wish to use cs for all your compilations\&.
+.sp
+To use the first method, just make sure that \fBcs\fR is in your \fBPATH\fR\&.
+.sp
+To use the symlinks method, CodeBench has been set up like this:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+bin/
+  cs
+  gcc
+  cache/
+    gcc \-> \&.\&./cs
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+This will work as long as the directory with symlinks comes before the path to the compiler (in \fIbin\fR)\&.
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+PATH=/path/to/bin/cache:/path/to/bin:$PATH
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+After installing you may wish to run \(lqwhich gcc\(rq to make sure that the correct link is being used\&.
+.if n \{\
+.sp
+.\}
+.RS 4
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+.ps +1
+\fBWarning\fR
+.ps -1
+.br
+.sp
+The technique of letting cs masquerade as the compiler works well, but currently doesn\(cqt interact well with other tools that do the same thing\&. See USING CS WITH OTHER COMPILER WRAPPERS\&.
+.sp .5v
+.RE
+.if n \{\
+.sp
+.\}
+.RS 4
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+.ps +1
+\fBWarning\fR
+.ps -1
+.br
+.sp
+Do not use a hard link, use a symbolic link\&. A hard link will cause \(lqinteresting\(rq problems\&.
+.sp .5v
+.RE
+.SH "OPTIONS"
+.sp
+These options only apply when you invoke cs as \(lqcs\(rq\&. When invoked as a compiler (via a symlink as described in the previous section), the normal compiler options apply and you should refer to the compiler\(cqs documentation\&.
+.PP
+\fB\-c, \-\-cleanup\fR
+.RS 4
+Clean up the cache by removing old cached files until the specified file number and cache size limits are not exceeded\&. This also recalculates the cache file count and size totals\&. Normally, there is no need to initiate cleanup manually as cs keeps the cache below the specified limits at runtime and keeps statistics up to date on each compilation\&. Forcing a cleanup is mostly useful if you manually modify the cache contents or believe that the cache size statistics may be inaccurate\&.
+.RE
+.PP
+\fB\-C, \-\-clear\fR
+.RS 4
+Clear the entire cache, removing all cached files, but keeping the configuration file\&.
+.RE
+.PP
+\fB\-F, \-\-max\-files\fR=\fIN\fR
+.RS 4
+Set the maximum number of files allowed in the cache\&. Use 0 for no limit\&. The value is stored in a configuration file in the cache directory and applies to all future compilations\&.
+.RE
+.PP
+\fB\-h, \-\-help\fR
+.RS 4
+Print an options summary page\&.
+.RE
+.PP
+\fB\-M, \-\-max\-size\fR=\fISIZE\fR
+.RS 4
+Set the maximum size of the files stored in the cache\&.
+\fISIZE\fR
+should be a number followed by an optional suffix: k, M, G, T (decimal), Ki, Mi, Gi or Ti (binary)\&. The default suffix is G\&. Use 0 for no limit\&. The value is stored in a configuration file in the cache directory and applies to all future compilations\&.
+.RE
+.PP
+\fB\-o, \-\-set\-config\fR=\fIKEY=VALUE\fR
+.RS 4
+Set configuration
+\fIKEY\fR
+to
+\fIVALUE\fR
+in
+\fI<cache_dir>/cs\&.conf\fR\&. See
+CONFIGURATION
+for more information\&.
+.RE
+.PP
+\fB\-O, \-\-set\-home\-config\fR=\fIKEY=VALUE\fR
+.RS 4
+Set configuration
+\fIKEY\fR
+to
+\fIVALUE\fR
+in
+\fI~/\&.cs\&.conf\fR\&. See
+CONFIGURATION
+for more information\&.
+.RE
+.PP
+\fB\-p, \-\-print\-config\fR
+.RS 4
+Print current configuration options and from where they originate (environment variable, configuration file or compile\-time default)\&.
+.RE
+.PP
+\fB\-s, \-\-show\-stats\fR
+.RS 4
+Print the current statistics summary for the cache\&.
+.RE
+.PP
+\fB\-V, \-\-version\fR
+.RS 4
+Print version and copyright information\&.
+.RE
+.PP
+\fB\-z, \-\-zero\-stats\fR
+.RS 4
+Zero the cache statistics (but not the configuration options)\&.
+.RE
+.SH "EXTRA OPTIONS"
+.sp
+When run as a compiler, cs usually just takes the same command line options as the compiler you are using\&. The only exception to this is the option \fB\-\-cs\-skip\fR\&. That option can be used to tell cs to avoid interpreting the next option in any way and to pass it along to the compiler as\-is\&.
+.sp
+The reason this can be important is that cs does need to parse the command line and determine what is an input filename and what is a compiler option, as it needs the input filename to determine the name of the resulting object file (among other things)\&. The heuristic cs uses when parsing the command line is that any argument that exists as a file is treated as an input file name\&. By using \fB\-\-cs\-skip\fR you can force an option to not be treated as an input file name and instead be passed along to the compiler as a command line option\&.
+.sp
+Another case where \fB\-\-cs\-skip\fR can be useful is if cs interprets an option specially but shouldn\(cqt, since the option has another meaning for your compiler than what cs thinks\&.
+.SH "CONFIGURATION"
+.sp
+cs\(cqs default behavior can be overridden by configuration file settings, which in turn can be overridden by environment variables with names starting with \fBCS_\fR\&. cs normally reads configuration from two files: first a system\-level configuration file and secondly a cache\-specific configuration file\&. The priority of configuration settings is as follows (where 1 is highest):
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 1.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  1." 4.2
+.\}
+Environment variables\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 2.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  2." 4.2
+.\}
+The cache\-specific configuration file
+\fB<csdir>/cs\&.conf\fR
+(typically
+\fB$HOME/\&.cscache/cs\&.conf\fR)\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 3.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  3." 4.2
+.\}
+The user\-specific configuration file
+\fB$HOME/\&.cs\&.conf\fR\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 4.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  4." 4.2
+.\}
+The system\-wide configuration file
+\fB/usr/local/etc/cs\&.conf\fR\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 5.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  5." 4.2
+.\}
+Compile\-time defaults\&.
+.RE
+.sp
+As a special case, if the environment variable \fBCS_CONFIGPATH\fR is set, cs reads configuration from the specified path instead of the default paths\&.
+.SS "Configuration file syntax"
+.sp
+Configuration files are in a simple \(lqkey = value\(rq format, one setting per line\&. Lines starting with a hash sign are comments\&. Blank lines are ignored, as is whitespace surrounding keys and values\&. Example:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+# Set maximum cache size to 10 GB:
+max_size = 10G
+.fi
+.if n \{\
+.RE
+.\}
+.SS "Boolean values"
+.sp
+Some settings are boolean values (i\&.e\&. truth values)\&. In a configuration file, such values must be set to the string \fBtrue\fR or \fBfalse\fR\&. For the corresponding environment variables, the semantics are a bit different: a set environment variable means \(lqtrue\(rq regardless of the value (even if set to the empty string), and an unset environment variable means \(lqfalse\(rq\&. Each boolean environment variable also has a negated form starting with \fBCS_NO\fR\&. For example, \fBCS_COMPRESS\fR can be set to force compression and \fBCS_NOCOMPRESS\fR can be set to force no compression\&.
+.SS "Configuration settings"
+.sp
+Below is a list of available configuration settings\&. The corresponding environment variable name is indicated in parentheses after each configuration setting key\&. Boolean options are indicated with \(lq[boolean]\(rq
+.PP
+\fBbase_dir\fR (\fBCS_BASEDIR\fR)
+.RS 4
+This setting should be an absolute path to a directory\&. cs then rewrites absolute paths into relative paths before computing the hash that identifies the compilation, but only for paths under the specified directory\&. If set to the empty string (which is the default), no rewriting is done\&. See also the discussion under
+COMPILING IN DIFFERENT DIRECTORIES\&.
+.RE
+.PP
+\fBcache_dir\fR (\fBCS_CACHE_DIR\fR)
+.RS 4
+This setting specifies where cs will keep its cached compiler outputs\&. It will only take effect if set in the system\-wide configuration file, the home directory configuration file ($HOME/\&.cs\&.conf) or as an environment variable\&. The default is
+\fB$HOME/\&.cscache\fR\&.
+.RE
+.PP
+\fBcache_dir_levels\fR (\fBCS_NLEVELS\fR)
+.RS 4
+This setting allows you to choose the number of directory levels in the cache directory\&. The default is 2\&. The minimum is 1 and the maximum is 8\&.
+.RE
+.PP
+\fBcloud_mode\fR (\fBCS_CLOUD_MODE\fR)
+.RS 4
+This setting controls whether cs sends usage information back to the
+\fIcloud\fR\&. There may be other features controlled by this setting in future\&. Possible settings are
+\fIoffline\fR
+and
+\fIonline\fR\&. The default is
+\fIoffline\fR, but you may have chosen to use
+\fIonline\fR
+at install time\&.
+.RE
+.PP
+\fBcompiler\fR (\fBCS_CC\fR)
+.RS 4
+This setting can be used to force the name of the compiler to use\&. If set to the empty string (which is the default), cs works it out from the command line\&.
+.RE
+.PP
+\fBcompiler_check\fR (\fBCS_COMPILERCHECK\fR)
+.RS 4
+The setting can be used to control how cs detects the toolchain you are using\&. It is necessary to differentiate between toolchains because a different compiler, for instance, will produce a different output for the same input source, and the cache must not confuse them\&.
+.sp
+Unlike ccache (in which only the top\-level
+\fIgcc\fR
+is ever scanned), cs scans and hashes
+\fBall\fR
+the significant files in a toolchain\&. This is important because cs must be able to uniquely identify a toolchain across many users\*(Aq installations, whereas ccache need only track one installation\&.
+.sp
+However, since this detailed scan is a relatively slow process, cs only does it once, when it first encounters a new compiler\&. The results are cached, and the mtime and size of the top\-level
+\fIgcc\fR
+is used to identify the cached hashes on subsequent invocations\&.
+.sp
+Therefore, if you upgrade part of your toolchain without updating the top\-level
+\fIgcc\fR
+you should either wipe your cache (cs \-C), or set CS_COMPILERCHECK=content for at least one compile (one should be sufficient to reset the cached toolchain hashes)\&.
+.sp
+Also unlike ccache, files cached in
+\fIcontent\fR
+mode are compatible with files cached in
+\fImtime\fR
+mode (they have the same hash)\&. Files cached in
+\fInone\fR
+mode and
+\fI<command string>\fR
+mode remain incompatible with all other modes (their hashes are different)\&.
+.PP
+\fBcontent\fR
+.RS 4
+Hash the content of all the compiler binaries\&. This makes cs very slightly slower compared to the
+\fBmtime\fR
+setting, but makes it cope better with compiler upgrades during a build bootstrapping process\&.
+.RE
+.PP
+\fBmtime\fR
+.RS 4
+Detect the toolchain using the compiler\(cqs mtime and size, which is fast\&. This is the default\&.
+.RE
+.PP
+\fBnone\fR
+.RS 4
+Don\(cqt hash anything\&. This may be good for situations where you can safely use the cached results even though the compiler\(cqs mtime or size has changed (e\&.g\&. if the compiler is built as part of your build system and the compiler\(cqs source has not changed, or if the compiler only has changes that don\(cqt affect code generation)\&. You should only use the
+\fBnone\fR
+setting if you know what you are doing\&.
+.RE
+.PP
+\fIa command string\fR
+.RS 4
+Hash the standard output and standard error output of the specified command\&. The string will be split on whitespace to find out the command and arguments to run\&. No other interpretation of the command string will be done, except that the special word
+\fB%compiler%\fR
+will be replaced with the path to the compiler\&. Several commands can be specified with semicolon as separator\&. Examples:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+%compiler% \-v
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+%compiler% \-dumpmachine; %compiler% \-dumpversion
+.RE
+.sp
+You should make sure that the specified command is as fast as possible since it will be run once for each cs invocation\&.
+.sp
+Identifying the compiler using a command is useful if you want to avoid cache misses when the compiler has been rebuilt but not changed\&.
+.sp
+Another case is when the compiler (as seen by cs) actually isn\(cqt the real compiler but another compiler wrapper \(em in that case, the default
+\fBmtime\fR
+method will hash the mtime and size of the other compiler wrapper, which means that cs won\(cqt be able to detect a compiler upgrade\&. Using a suitable command to identify the compiler is thus safer, but it\(cqs also slower, so you should consider continue using the
+\fBmtime\fR
+method in combination with the
+\fBprefix_command\fR
+setting if possible\&. See
+USING CS WITH OTHER COMPILER WRAPPERS\&.
+.RE
+.RE
+.PP
+\fBcompression\fR (\fBCS_COMPRESS\fR) [boolean]
+.RS 4
+If true, cs will compress object files and other compiler output it puts in the cache\&. However, this setting has no effect on how files are retrieved from the cache; compressed and uncompressed results will still be usable regardless of this setting\&. The default is false\&.
+.RE
+.PP
+\fBcompression_level\fR (\fBCS_COMPRESSLEVEL\fR)
+.RS 4
+This setting determines the level at which cs will compress object files\&. It only has effect if
+\fBcompression\fR
+is enabled\&. The value defaults to 6, and must be no lower than 1 (fastest, worst compression) and no higher than 9 (slowest, best compression)\&.
+.RE
+.PP
+\fBcpp_extension\fR (\fBCS_EXTENSION\fR)
+.RS 4
+This setting can be used to force a certain extension for the intermediate preprocessed file\&. The default is to automatically determine the extension to use for intermediate preprocessor files based on the type of file being compiled, but that sometimes doesn\(cqt work\&. For example, when using the \(lqaCC\(rq compiler on HP\-UX, set the cpp extension to
+\fBi\fR\&.
+.RE
+.PP
+\fBdirect_mode\fR (\fBCS_DIRECT\fR) [boolean]
+.RS 4
+If true, the direct mode will be used\&. The default is true\&. See
+THE DIRECT MODE\&.
+.RE
+.PP
+\fBdisable\fR (\fBCS_DISABLE\fR) [boolean]
+.RS 4
+When true, cs will just call the real compiler, bypassing the cache completely\&. The default is false\&.
+.RE
+.PP
+\fBextra_files_to_hash\fR (\fBCS_EXTRAFILES\fR)
+.RS 4
+This setting is a list of paths to files that cs will include in the the hash sum that idetifies the build\&. The list separator is semicolon on Windows systems and colon on other systems\&.
+.RE
+.PP
+\fBhard_link\fR (\fBCS_HARDLINK\fR) [boolean]
+.RS 4
+If true, cs will attempt to use hard links from the cache directory when creating the compiler output rather than using a file copy\&. Using hard links may be slightly faster in some situations, but can confuse programs like \(lqmake\(rq that rely on modification times\&. Another thing to keep in mind is that if the resulting object file is modified in any way, this corrupts the cached object file as well\&. Hard links are never made for compressed cache files\&. This means that you should not enable compression if you want to use hard links\&. The default is false\&.
+.RE
+.PP
+\fBhash_dir\fR (\fBCS_HASHDIR\fR) [boolean]
+.RS 4
+If true, cs will include the current working directory in the hash that is used to distinguish two compilations\&. This prevents a problem with the storage of the current working directory in the debug info of a object file, which can lead cs to give a cached object file that has the working directory in the debug info set incorrectly\&. This option is off by default as the incorrect setting of this debug info rarely causes problems\&. If you strike problems with GDB not using the correct directory then enable this option\&.
+.RE
+.PP
+\fBlog_file\fR (\fBCS_LOGFILE\fR)
+.RS 4
+If set to a file path, cs will write information on what it is doing to the specified file\&. This is useful for tracking down problems\&.
+.RE
+.PP
+\fBstats\fR (\fBCS_STATS\fR) [boolean]
+.RS 4
+If true, cs will update the statistics counters on each compilation\&. The default is true\&.
+.RE
+.PP
+\fBpath\fR (\fBCS_PATH\fR)
+.RS 4
+If set, cs will search directories in this list when looking for the real compiler\&. The list separator is semicolon on Windows systems and colon on other systems\&. If not set, cs will look for the first executable matching the compiler name in the normal
+\fBPATH\fR
+that isn\(cqt a symbolic link to cs itself\&.
+.RE
+.PP
+\fBprefix_command\fR (\fBCS_PREFIX\fR)
+.RS 4
+This option adds a list of prefixes (separated by space) to the command line that cs uses when invoking the compiler\&. See also
+USING CS WITH OTHER COMPILER WRAPPERS\&.
+.RE
+.PP
+\fBread_only\fR (\fBCS_READONLY\fR) [boolean]
+.RS 4
+If true, cs will attempt to use existing cached object files, but it will not to try to add anything new to the cache\&. If you are using this because your cs directory is read\-only, then you need to set
+\fBtemporary_dir\fR
+as otherwise cs will fail to create temporary files\&.
+.RE
+.PP
+\fBrecache\fR (\fBCS_RECACHE\fR) [boolean]
+.RS 4
+If true, cs will not use any previously stored result\&. New results will still be cached, possibly overwriting any pre\-existing results\&.
+.RE
+.PP
+\fBrun_second_cpp\fR (\fBCS_CPP2\fR) [boolean]
+.RS 4
+If true, cs will not use the optimisation of avoiding the second call to the preprocessor by compiling the preprocessed output that was used for finding the hash in the case of a cache miss\&. This is primarily a debugging option, although it is possible that some unusual compilers will have problems with compiling the preprocessed output, in which case this option could allow cs to be used anyway\&.
+.RE
+.PP
+\fBsloppiness\fR (\fBCS_SLOPPINESS\fR)
+.RS 4
+By default, cs tries to give as few false cache hits as possible\&. However, in certain situations it\(cqs possible that you know things that cs can\(cqt take for granted\&. This setting makes it possible to tell cs to relax some checks in order to increase the hit rate\&. The value should be a comma\-separated string with options\&. Available options are:
+.PP
+\fBfile_macro\fR
+.RS 4
+Ignore
+\fB__FILE__\fR
+being present in the source\&.
+.RE
+.PP
+\fBinclude_file_mtime\fR
+.RS 4
+By default, cs will not cache a file if it includes a header whose mtime is too new\&. This option disables that check\&.
+.RE
+.PP
+\fBtime_macros\fR
+.RS 4
+Ignore
+\fB__DATE__\fR
+and
+\fB__TIME__\fR
+being present in the source code\&.
+.RE
+.sp
+See the discussion under
+TROUBLESHOOTING
+for more information\&.
+.RE
+.PP
+\fBtemporary_dir\fR (\fBCS_TEMPDIR\fR)
+.RS 4
+This setting specifies where cs will put temporary files\&. The default is
+\fB<cache_dir>/tmp\fR\&.
+.RE
+.PP
+\fBumask\fR (\fBCS_UMASK\fR)
+.RS 4
+This setting specifies the umask for cs and all child processes (such as the compiler)\&. This is mostly useful when you wish to share your cache with other users\&. Note that this also affects the file permissions set on the object files created from your compilations\&.
+.RE
+.PP
+\fBunify\fR (\fBCS_UNIFY\fR) [boolean]
+.RS 4
+If true, cs will use a C/C++ unifier when hashing the preprocessor output if the
+\fB\-g\fR
+option is not used\&. The unifier is slower than a normal hash, so setting this environment variable loses a little bit of speed, but it means that cs can take advantage of not recompiling when the changes to the source code consist of reformatting only\&. Note that enabling the unifier changes the hash, so cached compilations produced when the unifier is enabled cannot be reused when the unifier is disabled, and vice versa\&. Enabling the unifier may result in incorrect line number information in compiler warning messages and expansions of the
+\fB__LINE__\fR
+macro\&. Also note that enabling the unifier implies turning off the direct mode\&.
+.RE
+.SH "CACHE SIZE MANAGEMENT"
+.sp
+By default, cs has a five gigabyte limit on the total size of files in the cache and no maximum number of files\&. You can set different limits using the \fB\-M\fR/\fB\-\-max\-size\fR and \fB\-F\fR/\fB\-\-max\-files\fR options\&. Use \fBcs \-s/\-\-show\-stats\fR to see the cache size and the currently configured limits (in addition to other various statistics)\&.
+.SH "CACHE COMPRESSION"
+.sp
+cs can optionally compress all files it puts into the cache using the compression library zlib\&. While this may involve a tiny performance slowdown, it increases the number of files that fit in the cache\&. You can turn on compression with the \fBcompression\fR configuration setting and you can also tweak the compression level with \fBcompression_level\fR\&.
+.SH "HOW CS WORKS"
+.sp
+The basic idea is to detect when you are compiling exactly the same code a second time and reuse the previously produced output\&. The detection is done by hashing different kinds of information that should be unique for the compilation and then using the hash sum to identify the cached output\&. cs uses MD4, a very fast cryptographic hash algorithm, for the hashing\&. (MD4 is nowadays too weak to be useful in cryptographic contexts, but it should be safe enough to be used to identify recompilations\&.) On a cache hit, cs is able to supply all of the correct compiler outputs (including all warnings, dependency file, etc) from the cache\&.
+.sp
+cs has two ways of doing the detection:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+the
+\fBdirect mode\fR, where cs hashes the source code and include files directly
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+the
+\fBpreprocessor mode\fR, where cs runs the preprocessor on the source code and hashes the result
+.RE
+.sp
+The direct mode is generally faster since running the preprocessor has some overhead\&.
+.SS "Common hashed information"
+.sp
+For both modes, the following information is included in the hash:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+the extension used by the compiler for a file with preprocessor output (normally
+\fB\&.i\fR
+for C code and
+\fB\&.ii\fR
+for C++ code)
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+the result of the
+\fBcompiler_check\fR
+custom command, if one is set
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+the name of the compiler
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+the current directory (if the
+\fBhash_dir\fR
+setting is enabled)
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+contents of files specified by the
+\fBextra_files_to_hash\fR
+setting (if any)
+.RE
+.sp
+Unlike ccache, the toolchain identity is not included directly in the hashed data\&. Instead the toolchain hash is appended to the compile hash\&.
+.SS "The direct mode"
+.sp
+In the direct mode, the hash is formed of the common information and:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+the input source file
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+the command line options
+.RE
+.sp
+Based on the hash, a data structure called \(lqmanifest\(rq is looked up in the cache\&. The manifest contains:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+references to cached compilation results (object file, dependency file, etc) that were produced by previous compilations that matched the hash
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+paths to the include files that were read at the time the compilation results were stored in the cache
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+hash sums of the include files at the time the compilation results were stored in the cache
+.RE
+.sp
+The current contents of the include files are then hashed and compared to the information in the manifest\&. If there is a match, cs knows the result of the compilation\&. If there is no match, cs falls back to running the preprocessor\&. The output from the preprocessor is parsed to find the include files that were read\&. The paths and hash sums of those include files are then stored in the manifest along with information about the produced compilation result\&.
+.sp
+There is a catch with the direct mode: header files that were used by the compiler are recorded, but header files that were \fBnot\fR used, but would have been used if they existed, are not\&. So, when ccache checks if a result can be taken from the cache, it currently can\(cqt check if the existence of a new header file should invalidate the result\&. This is why the direct mode is off by default\&. In practice, the direct mode is safe to use in the absolute majority of cases\&.
+.sp
+The direct mode will be disabled if any of the following holds:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+the configuration setting
+\fBdirect_mode\fR
+is false
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+a modification time of one of the include files is too new (needed to avoid a race condition)
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+the unifier is enabled (the configuration setting
+\fBunify\fR
+is true)
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+a compiler option not supported by the direct mode is used:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+a
+\fB\-Wp,\fR\fB\fIX\fR\fR
+compiler option other than
+\fB\-Wp,\-MD,\fR\fB\fIpath\fR\fR
+and
+\fB\-Wp,\-MMD,\fR\fB\fIpath\fR\fR
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fB\-Xpreprocessor\fR
+.RE
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+the string \(lq__TIME__\(rq is present outside comments and string literals in the source code
+.RE
+.SS "The preprocessor mode"
+.sp
+In the preprocessor mode, the hash is formed of the common information and:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+the preprocessor output from running the compiler with
+\fB\-E\fR
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+the command line options except options that affect include files (\fB\-I\fR,
+\fB\-include\fR,
+\fB\-D\fR, etc; the theory is that these options will change the preprocessor output if they have any effect at all)
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+any standard error output generated by the preprocessor
+.RE
+.sp
+Based on the hash, the cached compilation result can be looked up directly in the cache\&.
+.SH "COMPILING IN DIFFERENT DIRECTORIES"
+.sp
+Some information included in the hash that identifies a unique compilation may contain absolute paths:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+The preprocessed source code may contain absolute paths to include files if the compiler option
+\fB\-g\fR
+is used or if absolute paths are given to
+\fB\-I\fR
+and similar compiler options\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Paths specified by compiler options (such as
+\fB\-I\fR,
+\fB\-MF\fR, etc) may be absolute\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+The source code file path may be absolute, and that path may substituted for
+\fB__FILE__\fR
+macros in the source code or included in warnings emitted to standard error by the preprocessor\&.
+.RE
+.sp
+This means that if you compile the same code in different locations, you can\(cqt share compilation results between the different build directories since you get cache misses because of the absolute build directory paths that are part of the hash\&. To mitigate this problem, you can specify a \(lqbase directory\(rq in the configuration setting \fBbase_dir\fR to an absolute path to the directory\&. cs will then rewrite absolute paths that are under the base directory (i\&.e\&., paths that have the base directory as a prefix) to relative paths when constructing the hash\&. A typical path to use as the base directory is your home directory or another directory that is a parent of your build directories\&. (Don\(cqt use / as the base directory since that will make cs also rewrite paths to system header files, which doesn\(cqt gain anything\&.)
+.sp
+The drawbacks of using a base directory are:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+If you specify an absolute path to the source code file,
+\fB__FILE__\fR
+macros will be expanded to a relative path instead\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+If you specify an absolute path to the source code file and compile with
+\fB\-g\fR, the source code path stored in the object file may point to the wrong directory, which may prevent debuggers like GDB from finding the source code\&. Sometimes, a work\-around is to change the directory explicitly with the \(lqcd\(rq command in GDB\&.
+.RE
+.SH "PRECOMPILED HEADERS"
+.sp
+cs has support for GCC\(cqs precompiled headers\&. However, you have to do some things to make it work properly:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+You must set
+\fBsloppiness\fR
+to
+\fBtime_macros\fR\&. The reason is that cs can\(cqt tell whether
+\fB__TIME__\fR
+or
+\fB__DATE__\fR
+is used when using a precompiled header\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+You must either:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+use the
+\fB\-include\fR
+compiler option to include the precompiled header (i\&.e\&., don\(cqt use
+\fB#include\fR
+in the source code to include the header); or
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+(for the Clang compiler) use the
+\fB\-include\-pch\fR
+compiler option to include the PCH file generated from the precompiled header; or
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+add the
+\fB\-fpch\-preprocess\fR
+compiler option when compiling\&.
+.RE
+.sp
+If you don\(cqt do this, either the non\-precompiled version of the header file will be used (if available) or cs will fall back to running the real compiler and increase the statistics counter \(lqpreprocessor error\(rq (if the non\-precompiled header file is not available)\&.
+.RE
+.SH "SHARING A LOCAL CACHE"
+.sp
+A group of developers can increase the cache hit rate by sharing a local cache directory\&. To share a cache without unpleasant side effects, the following conditions should to be met:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Use the same cache directory\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Make sure that the configuration setting
+\fBhard_link\fR
+is false (which is the default)\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Make sure that all users are in the same group\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Set the configuration setting
+\fBumask\fR
+to 002\&. This ensures that cached files are accessible to everyone in the group\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Make sure that all users have write permission in the entire cache directory (and that you trust all users of the shared cache)\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Make sure that the setgid bit is set on all directories in the cache\&. This tells the filesystem to inherit group ownership for new directories\&. The command \(lqfind $CS_CACHE_DIR \-type d | xargs chmod g+s\(rq might be useful for this\&.
+.RE
+.sp
+The reason to avoid the hard link mode is that the hard links cause unwanted side effects, as all links to a cached file share the file\(cqs modification timestamp\&. This results in false dependencies to be triggered by timestamp\-based build systems whenever another user links to an existing file\&. Typically, users will see that their libraries and binaries are relinked without reason\&.
+.sp
+You may also want to make sure that a base directory is set appropriately, as discussed in a previous section\&.
+.SH "SHARING A CACHE ON NFS"
+.sp
+It is possible to put the cache directory on an NFS filesystem (or similar filesystems), but keep in mind that:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Having the cache on NFS may slow down compilation\&. Make sure to do some benchmarking to see if it\(cqs worth it\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+cs hasn\(cqt been tested very thoroughly on NFS\&.
+.RE
+.sp
+A tip is to set \fBtemporary_dir\fR to a directory on the local host to avoid NFS traffic for temporary files\&.
+.SH "USAGE DATA COLLECTION AND PRIVACY"
+.sp
+cs uploads all command lines, error messages, and some machine information into the cloud\&.
+.sp
+For more information, see here:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Improvement Program:
+http://go\&.mentor\&.com/scbceip
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Privacy Policy:
+http://go\&.mentor\&.com/mentpp
+.RE
+.SH "USING CS WITH OTHER COMPILER WRAPPERS"
+.sp
+It is not recommended that you combine cs with other compiler wrappers, however, the best way to do so is via \fBCS_PREFIX\fR\&.
+.SH "USING CS ALONGSIDE CCACHE"
+.sp
+cs and ccache cache directories are \fBnot\fR compatible\&.
+.sp
+However, cs does not use the same default location so the two tools should be able to co\-exist peacefully\&.
+.SH "BUGS"
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+cs doesn\(cqt handle the GNU Assembler\(cqs
+\fB\&.incbin\fR
+directive correctly\&. This directive can be embedded in the source code inside an
+\fB\fIasm\fR\fR
+statement in order to include a file verbatim in the object file\&. If the included file is modified, cs doesn\(cqt pick up the change since the inclusion isn\(cqt done by the preprocessor\&. A workaround of this problem is to set
+\fBextra_files_to_hash\fR
+to the path of the included file\&.
+.RE
+.SH "TROUBLESHOOTING"
+.SS "General"
+.sp
+A general tip for getting information about what cs is doing is to enable debug logging by setting \fBlog_file\fR\&. The log contains executed commands, important decisions that cs makes, read and written files, etc\&. Another way of keeping track of what is happening is to check the output of \fBcs \-s\fR\&.
+.SS "Performance"
+.sp
+cs has been written to perform well out of the box, but sometimes you may have to do some adjustments of how you use the compiler and cs in order to improve performance\&.
+.sp
+Since cs works best when I/O is fast, put the cache directory on a fast storage device if possible\&. Having lots of free memory so that files in the cache directory stay in the disk cache is also preferrable\&.
+.sp
+A good way of monitoring how well cs works is to run \fBcs \-s\fR before and after your build and then compare the statistics counters\&. Here are some common problems and what may be done to increase the hit rate:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+If \(lqcache hit (preprocessed)\(rq has been incremented instead of \(lqcache hit (direct)\(rq, cs has fallen back to preprocessor mode, which is generally slower\&. Some possible reasons are:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+The source code has been modified in such a way that the preprocessor output is not affected\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Compiler arguments that are hashed in the direct mode but not in the preprocessor mode have changed (\fB\-I\fR,
+\fB\-include\fR,
+\fB\-D\fR, etc) and they didn\(cqt affect the preprocessor output\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+The compiler option
+\fB\-Xpreprocessor\fR
+or
+\fB\-Wp,\fR\fB\fIX\fR\fR
+(except
+\fB\-Wp,\-MD,\fR\fB\fIpath\fR\fR
+and
+\fBWp,\-MMD,\fR\fB\fIpath\fR\fR) is used\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+This was the first compilation with a new value of the base directory setting\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+A modification time of one of the include files is too new (created the same second as the compilation is being done)\&. This check is made to avoid a race condition\&. To fix this, create the include file earlier in the build process, if possible, or set
+\fBsloppiness\fR
+to
+\fBinclude_file_mtime\fR
+if you are willing to take the risk\&. (The race condition consists of these events: the preprocessor is run; an include file is modified by someone; the new include file is hashed by cs; the real compiler is run on the preprocessor\(cqs output, which contains data from the old header file; the wrong object file is stored in the cache\&.)
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+The
+\fB__TIME__\fR
+preprocessor macro is (potentially) being used\&. cs turns off direct mode if \(lq__TIME__\(rq is present in the source code outside comments and string literals\&. This is done as a safety measure since the string indicates that a
+\fB__TIME__\fR
+macro
+\fImay\fR
+affect the output\&. (To be sure, cs would have to run the preprocessor, but the sole point of the direct mode is to avoid that\&.) If you know that
+\fB__TIME__\fR
+isn\(cqt used in practise, or don\(cqt care if cs produces objects where
+\fB__TIME__\fR
+is expanded to something in the past, you can set
+\fBsloppiness\fR
+to
+\fBtime_macros\fR\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+The
+\fB__DATE__\fR
+preprocessor macro is (potentially) being used and the date has changed\&. This is similar to how
+\fB__TIME__\fR
+is handled\&. If \(lq__DATE__\(rq is present in the source code outside comments and string literals, cs hashes the current date in order to be able to produce the correct object file if the
+\fB__DATE__\fR
+macro affects the output\&. If you know that
+\fB__DATE__\fR
+isn\(cqt used in practise, or don\(cqt care if cs produces objects where
+\fB__DATE__\fR
+is expanded to something in the past, you can set
+\fBsloppiness\fR
+to
+\fBtime_macros\fR\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+The
+\fB__FILE__\fR
+preprocessor macro is (potentially) being used and the file path has changed\&. If \(lq__FILE__\(rq is present in the source code outside comments and string literals, cs hashes the current input file path in order to be able to produce the correct object file if the
+\fB__FILE__\fR
+macro affects the output\&. If you know that
+\fB__FILE__\fR
+isn\(cqt used in practise, or don\(cqt care if cs produces objects where
+\fB__FILE__\fR
+is expanded to the wrong path, you can set
+\fBsloppiness\fR
+to
+\fBfile_macro\fR\&.
+.RE
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+If \(lqcache miss\(rq has been incremented even though the same code has been compiled and cached before, cs has either detected that something has changed anyway or a cleanup has been performed (either explicitly or implicitly when a cache limit has been reached)\&. Some perhaps unobvious things that may result in a cache miss are usage of
+\fB__TIME__\fR
+or
+\fB__DATE__\fR
+macros, or use of automatically generated code that contains a timestamp, build counter or other volatile information\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+If \(lqmultiple source files\(rq has been incremented, it\(cqs an indication that the compiler has been invoked on several source code files at once\&. cs doesn\(cqt support that\&. Compile the source code files separately if possible\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+If \(lqunsupported compiler option\(rq has been incremented, enable debug logging and check which option was rejected\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+If \(lqpreprocessor error\(rq has been incremented, one possible reason is that precompiled headers are being used\&. See
+PRECOMPILED HEADERS
+for how to remedy this\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+If \(lqcan\(cqt use precompiled header\(rq has been incremented, see
+PRECOMPILED HEADERS\&.
+.RE
+.sp
+Errors when compiling with cs
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+If compilation doesn\*(Aqt work with cs, but it works without it, one possible
+reason is that the compiler can\*(Aqt compile preprocessed output correctly\&. A
+workaround that may work is to enable *run_second_cpp**\&. This will make cache
+misses slower, though, so it is better to find and fix the root cause\&.
+
+
+Corrupt object files
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+It should be noted that cs is susceptible to general storage problems\&. If a bad object file sneaks into the cache for some reason, it will of course stay bad\&. Some possible reasons for erroneous object files are bad hardware (disk drive, disk controller, memory, etc), buggy drivers or file systems, a bad \fBprefix_command\fR or compiler wrapper\&. If this happens, the easiest way of fixing it is this:
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 1.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  1." 4.2
+.\}
+Build so that the bad object file ends up in the build tree\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 2.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  2." 4.2
+.\}
+Remove the bad object file from the build tree\&.
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 3.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  3." 4.2
+.\}
+Rebuild with
+\fBCS_RECACHE\fR
+set\&.
+.RE
+.sp
+An alternative is to clear the whole cache with \fBcs \-C\fR if you don\(cqt mind losing other cached results\&.
+.sp
+There are no reported issues about cs producing broken object files reproducibly\&. That doesn\(cqt mean it can\(cqt happen, so if you find a repeatable case, please report it\&.
+.SH "MORE INFORMATION"
+.sp
+Credits, mailing list information, bug reporting instructions, source code, etc, can be found at: http://www\&.mentor\&.com/embedded\-software/sourcery\-tools\&.
+.SH "AUTHOR"
+.sp
+cs is based on ccache, originally written by Andrew Tridgell and more recently developed and maintained by Joel Rosdahl\&. See AUTHORS\&.txt or AUTHORS\&.html and http://ccache\&.samba\&.org/credits\&.html for a list of contributors\&.
+.sp
+The new CodeBench features are by Mentor Graphics\&.
