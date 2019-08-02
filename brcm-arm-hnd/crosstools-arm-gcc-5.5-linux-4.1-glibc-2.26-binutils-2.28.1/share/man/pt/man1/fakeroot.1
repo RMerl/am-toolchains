@@ -1,0 +1,241 @@
+.de  CW
+.sp
+.nf
+.ft CW
+..
+.\" Process this file with
+.\" groff -man -Tascii foo.1
+.\"
+.\" "verbatim" environment (from strace.1)
+.de  CE
+.ft
+.fi
+.sp
+..
+.\"
+.\"*******************************************************************
+.\"
+.\" This file was generated with po4a. Translate the source file.
+.\"
+.\"*******************************************************************
+.TH fakeroot 1 "5 October 2014" "Projecto Debian" "Manual Debian"
+.\" Manpage by J.H.M. Dassen <jdassen@debian.org>
+.\" and Clint Adams <clint@debian.org>
+.SH NOME
+fakeroot \- corre um comando num ambiente onde falsifica privilégios de root
+para manipulação de ficheiro
+.SH SINOPSE
+\fBfakeroot\fP \fB[\-l|\-\-lib\fP \fIbiblioteca]\fP \fB[\-\-faked\fP
+\fIbinário\-falsificado\fP\fB]\fP \fB[\-i\fP \fIload\-file\fP\fB]\fP \fB[\-s\fP \fIsave\-file\fP\fB]\fP
+\fB[\-u|\-\-unknown\-is\-real ]\fP \fB[\-b|\-\-fd\-base ]\fP \fB[\-h|\-\-help ]\fP
+\fB[\-v|\-\-version ]\fP \fB[\-\-]\fP \fB[comando]\fP
+.SH DESCRIÇÃO
+\fBfakeroot\fP corre um comando num ambiente onde aparenta ter privilégios de
+root para manipulação de ficheiro. Isto é útil para permitir aos
+utilizadores criar arquivos (tar, ar, .deb etc.) com ficheiros dentro com
+permissões/posse de root. Sem o \fBfakeroot\fP seria preciso ter privilégios de
+root para criar os ficheiros constituintes dos arquivos com as permissões e
+posse actuais, e depois empacotá\-los, ou seria preciso construir os arquivos
+directamente, sem usar o arquivador.
+
+\fBfakeroot\fP works by replacing the file manipulation library functions
+(chmod(2), stat(2) etc.) by ones that simulate the effect the real library
+functions would have had, had the user really been root. These wrapper
+functions are in a shared library \fB/usr/lib/*/libfakeroot\-*.so\fP or similar
+location on your platform.  The shared object is loaded through the
+\fBLD_PRELOAD\fP mechanism of the dynamic loader. (See \fBld.so\fP(8))
+
+Se você pretende compilar pacotes com o \fBfakeroot\fP, por favor tente
+primeiro compilar o pacote fakeroot: a fase "debian/rules build" tem alguns
+testes (testar principalmente por bugs em antigas versões do fakeroot). Se
+esses testes falharem (por exemplo porque você tem certos programas da libc5
+no seu sistema), os outros pacotes que compile com o fakeroot irão muito
+provavelmente falhar também, mas possivelmente de maneiras muito mais
+subtis.
+
+Note também que, é melhor não fazer a compilação dos próprios binários sob o
+fakeroot. Especialmente o configure e "amigos" não gostam quando o sistema
+subitamente comporta\-se de modo diferente do que eles esperam, (ou, eles
+aleatoriamente desconfiguram algumas variáveis de ambiente, algumas das
+quais o fakeroot precisa).
+
+.SH OPÇÕES
+.TP 
+\fB\-l\fP \fIbiblioteca\fP, \fB\-\-lib\fP \fIbiblioteca\fP
+Especifica uma biblioteca wrapper alternativa.
+.TP 
+\fB\-\-faked\fP\fI\ binário\fP
+Especifica um binário alternativo para usar como falsificado.
+.TP 
+\fB[\-\-]\fP\fI\ comando\fP
+Qualquer comando que deseje corre como fakeroot. Use \(oq\-\-\(cq se no
+comando você tem outras opções que podem confundir a análise de opções do
+fakeroot.
+.TP 
+\fB\-s\fP\fI\ save\-file\fP
+Guarda o ambiente do fakeroot para o save\-file ao sair. Este ficheiro pode
+ser usado para restaurar o ambiente mais tarde usando \-i. No entanto, este
+ficheiro irá ter fugas e o fakeroot irá comportar\-se com modos estranhos a
+menos que você deixe os ficheiros que foram "mexidos" dentro do fakeroot,
+isolados e inalterados quando fora do ambiente. Mesmo assim, isto pode ser
+útil. Por exemplo, pode ser usado com o rsync(1) para salvaguardar e
+restaurar árvores de directórios inteiras com informações de utilizador,
+grupo e dispositivo sem a necessidade de ser root. Veja
+\fI/usr/share/doc/fakeroot/README.saving\fP para mais detalhes.
+.TP 
+\fB\-i\fP\fI\ load\-file\fP
+Carrega um ambiente do fakeroot previamente guardado usando \-s a partir de
+load\-file. Note que isto não salva implicitamente o ficheiro, use \-s também
+para esse comportamento. E seguro usar o mesmo ficheiro para ambos \-i e \-s
+numa única invocação do \fBfakeroot\fP.
+.TP 
+\fB\-u\fP, \fB\-\-unknown\-is\-real\fP
+Usa a posse real dos ficheiros anteriormente desconhecida para o fakeroot em
+vez de fingir que eles são posse de root:root.
+.TP 
+\fB\-b\fP\fI\ fd\fP
+Especifica a base fd (modo TCP apenas). O fd é o número descritor de
+ficheiro mínimo usado para ligações TCP; isto pode ser importante para
+evitar conflitos com os descritores de ficheiro usados pelos programas que
+correm sob o fakeroot.
+.TP 
+\fB\-h\fP
+Mostra a ajuda.
+.TP 
+\fB\-v\fP
+Mostra a versão.
+
+.SH EXEMPLOS
+Aqui está uma sessão exemplo com o \fBfakeroot\fP. Note que dentro do ambiente
+de root falso a manipulação de ficheiro que requer privilégios de root tem
+sucesso, mas na realidade não está a acontecer.
+.CW
+$  whoami
+joost
+$ fakeroot /bin/bash
+#  whoami
+root
+# mknod hda3 b 3 1
+# ls \-ld hda3
+brw\-r\-\-r\-\-   1 root     root       3,   1 Jul  2 22:58 hda3
+# chown joost:root hda3
+# ls \-ld hda3
+brw\-r\-\-r\-\-   1 joost    root       3,   1 Jul  2 22:58 hda3
+# ls \-ld /
+drwxr\-xr\-x  20 root     root         1024 Jun 17 21:50 /
+# chown joost:users /
+# chmod a+w /
+# ls \-ld /
+drwxrwxrwx  20 joost    users        1024 Jun 17 21:50 /
+# exit
+$ ls \-ld /
+drwxr\-xr\-x  20 root     root         1024 Jun 17 21:50 //
+$ ls \-ld hda3
+\-rw\-r\-\-r\-\-   1 joost    users           0 Jul  2 22:58 hda3
+.CE
+Apenas os efeitos que o utilizador \fBjoost\fP podia fazer aconteceram de
+verdade.
+
+\fBfakeroot\fP foi especificamente escrito para permitir aos utilizadores
+criarem pacotes Debian GNU/Linux (no formato \fBdeb(5)\fP) sem lhes dar
+privilégios de root. Isto pode ser feito por comandos como
+\fBdpkg\-buildpackage \-rfakeroot\fP ou \fBdebuild \-rfakeroot\fP (na realidade,
+\-rfakeroot é predefinição no debuild nos dias que correm, por isso você não
+precisa desse argumento).
+.SH "ASPECTOS DE SEGURANÇA"
+\fBfakeroot\fP é um programa regular, não\-setuid. Não aumenta os privilégios do
+utilizador nem baixa a segurança do sistema.
+.SH FICHEIROS
+\fI/usr/lib/*/libfakeroot\-*.so\fP The shared library containing the wrapper
+functions.
+.SH AMBIENTE
+.IP \fBFAKEROOTKEY\fP
+A chave usada para comunicar com o daemon do fakeroot. Qualquer programa
+arrancado com o \fBLD_PRELOAD\fP correcto e um \fBFAKEROOTKEY\fP de um daemon em
+execução irá ligar\-se automaticamente a esse daemon, e terá a mesma visão
+"falsa" das permissões/propriedades do sistema de ficheiros. (assumindo que
+o daemon e o programa que se liga foram arrancados pelo mesmo utilizador).
+.IP \fBLD_LIBRARY_PATH\fP
+.IP \fBLD_PRELOAD\fP
+Fakeroot é implementado ao envolver chamadas do sistema. Isto é conseguido
+ao definir LD_LIBRARY_PATH=/usr/lib/fakeroot e
+LD_PRELOAD=libfakeroot.so.0. Essa biblioteca é carregada antes da biblioteca
+C do sistema, e assim a maioria das funções da biblioteca são interceptadas
+por ela. Você precisa de definir ou \fBLD_LIBRARY_PATH\fP ou \fBLD_PRELOAD\fP de
+dentro de um ambiente fakeroot, deverá ser definido em relação aos caminhos
+fornecidos, como em \fBLD_LIBRARY_PATH=$LD_LIBRARY_PATH:/foo/bar/\fP
+
+.SH LIMITAÇÕES
+.IP "\fBVersões de biblioteca\fP"
+Cada comando executado dentro do \fBfakeroot\fP precisa de ser ligado por link
+à mesma versão de biblioteca C do próprio \fBfakeroot\fP.
+.IP \fBopen()/create()\fP
+O fakeroot não envolve o open(), create(), etc. Então, se o utilizador
+\fBjoost\fP também o fizer
+.CW
+touch foo
+fakeroot
+ls \-al foo
+.CE
+ou do outro modo contrário,
+.CW
+fakeroot
+touch foo
+ls \-al foo
+.CE
+No primeiro caso o fakeroot não tem maneira de saber isso, o dono de foo
+deverá realmente ser \fBjoost\fP enquanto no segundo caso deveria ter sido
+\fBroot\fP. Para o empacotamento de Debian, a predefinição de dar a todos os
+ficheiros "desconhecidos" uid=gid=0, está sempre OK. A maneira real para
+contornar isto é envolver \fBopen()\fP e \fBcreate()\fP, mas isso cria outros
+problemas, como demonstrado pelo pacote libtricks. Este pacote envolvia
+muitas mais funções, e tentava fazer muito mais do que o \fBfakeroot
+\&.\fP. Aconteceu que uma actualização menor da libc (de um caso em que a função
+\fBstat()\fP não usava \fBopen()\fP para um com uma função \fBstat()\fP que usava (em
+alguns casos) \fBopen()\fP), veio a causar falhas de segmentação inexplicáveis
+(isto é, o \fBstat()\fP da libc6 chamava o \fBopen()\fP envolvido, o qual iria
+então chamar a \fBstat()\fP da libc6, etc.). Corrigir isto não foi lá muito
+fácil, mas após corrigido, foi apenas uma questão de tempo antes de outra
+função passar a usar open(), e esqueçam de tentar portá\-lo para outro
+sistema operativo diferente. Assim Eu decidi manter o número de funções
+envolvidas pelo fakeroot o mais pequeno possível, para limitar a
+possibilidade de \(oqcolisões\(cq.
+.IP "\fBconfigure do GNU (e outros programas como tal)\fP"
+O fakeroot, efectivamente, está a alterar o modo como o sistema se
+comporta. Programas que sondam o sistema como o configure do GNU podem ficar
+confusos por isto (ou se não ficarem, podem "stressar" o fakeroot tanto que
+o próprio fakeroot possa ficar confuso). Portanto, é aconselhável não correr
+o "configure" de dentro do fakeroot. Como o configure deverá ser chamado na
+meta "debian/rules build", correr "dpkg\-buildpackage \-rfakeroot" actualmente
+toma conta disto.
+.SH BUGS
+Não envolve open(). Isto não e mau por si próprio, mas se um programa fizer
+open("file", O_WRONLY, 000), escrever no ficheiro "file" e o fechar, e
+depois tentar abri\-lo para ler o ficheiro, então essa abertura vai falhar,
+pois o modo do ficheiro será 000. O bug é tal que se o root fizer o mesmo,
+open() irá ter sucesso, pois as permissões não são verificadas para o
+root. Eu escolhi não envolver open(), pois open() é usado por muitas outras
+funções na libc (mesmo aquelas que já estão envolvidas), assim criando
+ciclos viciosos (ou possíveis ciclos futuros, quando a implementação de
+várias funções da libc mudarem ligeiramente).
+.SH COPIAR
+\fBfakeroot\fP é distribuído sob a  GNU General Public License.  (GPL 2.0 ou
+superior).
+.SH AUTORES
+.TP 
+joost witteveen
+<\fIjoostje@debian.org\fP>
+.TP 
+Clint Adams
+<\fIclint@debian.org\fP>
+.TP 
+Timo Savola
+.SH TRADUTOR
+Américo Monteiro <a_monteiro@gmx.com>
+.SH "PÁGINA DE MANUAL"
+a maioria por J.H.M. Dassen <jdassen@debian.org> Bastantes
+modificações/adições por joost e Clint.
+.SH "VEJA TAMBÉM"
+\fBfaked\fP(1)  \fBdpkg\-buildpackage\fP(1), \fBdebuild\fP(1)
+\fB/usr/share/doc/fakeroot/DEBUG\fP
+
