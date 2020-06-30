@@ -30,4 +30,4 @@ Assuming you have cloned the firmware repository under ~/asuswrt-merlin.ng/ :
 
 	sudo ln -s ~/am-toolchains/brcm-arm-sdk/hndtools-arm-linux-2.6.36-uclibc-4.5.3 /opt/brcm-arm
 	ln -s ~/am-toolchains/brcm-arm-sdk  ~/asuswrt-merlin.ng/release/src-rt-6.x.4708/toolchains
-	echo "PATH=$PATH:/opt/brcm-arm/bin" >> ~/.profile
+	echo "PATH=\$PATH:/opt/brcm-arm/bin" >> ~/.profile
