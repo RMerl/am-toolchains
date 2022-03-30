@@ -1,0 +1,7 @@
+/* Generated automatically. */
+static const char configuration_arguments[] = "./configure --prefix=/home/defjovi/temp3/toolchain/crosstools-aarch64-gcc-9.2-linux-4.19-glibc-2.30-binutils-2.32 --sysconfdir=/home/defjovi/temp3/toolchain/crosstools-aarch64-gcc-9.2-linux-4.19-glibc-2.30-binutils-2.32/etc --enable-static --target=aarch64-buildroot-linux-gnu --with-sysroot=/home/defjovi/temp3/toolchain/crosstools-aarch64-gcc-9.2-linux-4.19-glibc-2.30-binutils-2.32/aarch64-buildroot-linux-gnu/sysroot --enable-__cxa_atexit --with-gnu-ld --disable-libssp --disable-multilib --disable-decimal-float --with-gmp=/home/defjovi/temp3/toolchain/crosstools-aarch64-gcc-9.2-linux-4.19-glibc-2.30-binutils-2.32 --with-mpc=/home/defjovi/temp3/toolchain/crosstools-aarch64-gcc-9.2-linux-4.19-glibc-2.30-binutils-2.32 --with-mpfr=/home/defjovi/temp3/toolchain/crosstools-aarch64-gcc-9.2-linux-4.19-glibc-2.30-binutils-2.32 --with-pkgversion='Buildroot 2019.11.1' --with-bugurl=http://bugs.buildroot.net/ --disable-libquadmath --enable-tls --enable-threads --with-isl=/home/defjovi/temp3/toolchain/crosstools-aarch64-gcc-9.2-linux-4.19-glibc-2.30-binutils-2.32 --with-abi=lp64 --with-cpu=cortex-a53 --enable-languages=c,c++ --with-build-time-tools=/home/defjovi/temp3/toolchain/crosstools-aarch64-gcc-9.2-linux-4.19-glibc-2.30-binutils-2.32/aarch64-buildroot-linux-gnu/bin --enable-shared --disable-libgomp";
+static const char thread_model[] = "posix";
+
+static const struct {
+  const char *name, *value;
+} configure_default_options[] = { { "abi", "lp64" }, { "cpu", "cortex-a53" } };

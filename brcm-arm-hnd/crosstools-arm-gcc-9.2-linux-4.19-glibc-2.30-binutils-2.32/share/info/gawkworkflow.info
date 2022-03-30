@@ -1,0 +1,1980 @@
+This is gawkworkflow.info, produced by makeinfo version 6.5 from
+gawkworkflow.texi.
+
+Copyright (C) 2017, 2018, 2019 Free Software Foundation, Inc.
+
+
+   This is Edition 0.72 of 'Participating in 'gawk' Development'.
+
+   Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with the
+Invariant Sections being "GNU General Public License", with the
+Front-Cover Texts being "A GNU Manual", and with the Back-Cover Texts as
+in (a) below.  A copy of the license is included in the section entitled
+"GNU Free Documentation License".
+
+  a. The FSF's Back-Cover Text is: "You have the freedom to copy and
+     modify this GNU manual."
+INFO-DIR-SECTION Text creation and manipulation
+START-INFO-DIR-ENTRY
+* Gawk Work Flow: (gawkworkflow).                 Participating in 'gawk' development.
+END-INFO-DIR-ENTRY
+
+INFO-DIR-SECTION Individual utilities
+START-INFO-DIR-ENTRY
+* Gawk Work Flow: (gawkworkflow)Overview.         Participating in 'gawk' development.
+END-INFO-DIR-ENTRY
+
+
+File: gawkworkflow.info,  Node: Top,  Next: Preface,  Up: (dir)
+
+General Introduction
+********************
+
+This file describes how to participate in software development for GNU
+Awk ('gawk') (http://www.gnu.org/software/gawk).
+
+   Copyright (C) 2017, 2018, 2019 Free Software Foundation, Inc.
+
+
+   This is Edition 0.72 of 'Participating in 'gawk' Development'.
+
+   Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with the
+Invariant Sections being "GNU General Public License", with the
+Front-Cover Texts being "A GNU Manual", and with the Back-Cover Texts as
+in (a) below.  A copy of the license is included in the section entitled
+"GNU Free Documentation License".
+
+  a. The FSF's Back-Cover Text is: "You have the freedom to copy and
+     modify this GNU manual."
+
+* Menu:
+
+* Preface::                           Some introductory remarks.
+* Contributing::                      How to contribute to 'gawk'
+                                      development.
+* Using Git::                         Getting started with Git.
+* Configuring git::                   Configuring Git.
+* Development without commit access:: How to work without commit access.
+* Development with commit access::    How to work with commit access.
+* General practices::                 How things should usually be done.
+* Repo Maintenance::                  Tips for keeping your repo clean.
+* Development Stuff::                 Things you need to know to be a
+                                      'gawk' developer.
+* Cheat Sheet::                       Git command summary.
+* Resources::                         Some further resources.
+* TODO::                              Stuff still to do.
+* Index::                             The index.
+
+* This Manual::                     How to use this manual.
+* Conventions::                     Typographical Conventions.
+* Acknowledgments::                 Acknowledgments.
+* Reviewers::                       A note to reviewers.
+* Push Pull::                       The push/pull software development model.
+* Repo Copies::                     What it means to have a copy of a repo.
+* Local Branches::                  How to best use local branches.
+* Branches are state::              Branches represent development state.
+* Repo State::                      The different branch types in the repo.
+* Local State::                     Managing local branches.
+* Remotes::                         What a "remote" is.
+* Cloning::                         Cloning the repo the first time.
+* Switching Branches::              Moving from one branch to another.
+* Starting A New Branch::           Starting a new branch for development.
+* Undoing a change::                Throwing away changes.
+* Updating::                        Keeping in sync with the upstream repo.
+* Rebasing::                        Rebasing A Local Branch.
+* Merge Conflicts::                 Dealing With Merge Conflicts.
+* Submitting Changes::              How to submit your changes.
+* Removing Branches::               Getting rid of unneeded branches.
+* Points to remember::              Things you need to keep in mind.
+* Initial setup::                   Getting started with commit access.
+* ssh clone::                       Cloning using an 'ssh://' URL.
+* Developing patches::              Developing patches.
+* Developing new features::         Developing new features.
+* Developing fixes::                Developing fixes.
+* Coding style::                    Where to read up on the coding style.
+* Doing paperwork::                 Legal stuff in order to contribute.
+* Tools::                           Tools to have on your system for
+                                    development.
+* GNU Tools::                       The GNU Autotools.
+* Compilers::                       A discussion of compilers that can be
+                                    used.
+* Debugging::                       Compiling for debugging.
+
+
+File: gawkworkflow.info,  Node: Preface,  Next: Contributing,  Prev: Top,  Up: Top
+
+Preface
+*******
+
+This Info file describes how to participate in development of GNU Awk
+('gawk').  GNU Awk is a Free Software project belonging to the Free
+Software Foundation's GNU project.
+
+   The Info file focuses on participation in the project (that is, how
+to work most effectively if you wish to contribute to it) and also
+describes how to make use of the Git (http://git-scm.org) distributed
+source code management system for 'gawk' development.
+
+   You should be comfortable working with traditional UNIX-style tools
+and with the C language and standard library facilities.
+
+* Menu:
+
+* This Manual::                 How to use this manual.
+* Conventions::                 Typographical Conventions.
+* Acknowledgments::             Acknowledgments.
+* Reviewers::                   A note to reviewers.
+
+
+File: gawkworkflow.info,  Node: This Manual,  Next: Conventions,  Up: Preface
+
+Using This Book
+===============
+
+This Info file has the following chapters and appendices:
+
+   * *note Contributing:: describes how to start contributing to the
+     'gawk' project.
+
+   * *note Using Git:: introduces the Git distributed source code
+     management system.
+
+   * *note Configuring git:: describes some initial set-up you need to
+     do before using Git seriously.
+
+   * *note Development without commit access:: gets into the meat of the
+     development workflow, describing how to work if you don't have
+     commit access to the Savannah repository.
+
+   * *note Development with commit access:: continues the discussion,
+     covering what's different when you can commit directly to the
+     Savannah repository.
+
+   * *note General practices:: describes general development practices
+     used by the 'gawk' development team.
+
+   * *note Repo Maintenance:: presents several different things you need
+     to know about to keep your repo in good shape.
+
+   * *note Development Stuff:: describes some important points you
+     should be familiar with in order to participate in 'gawk'
+     development and presents some tools that may make your work easier.
+
+   * *note Cheat Sheet:: provides a short "cheat sheet" summarizing all
+     the Git commands referenced in this Info file.
+
+   * *note Resources:: provides a few pointers to Internet resources for
+     learning more about Git.
+
+
+File: gawkworkflow.info,  Node: Conventions,  Next: Acknowledgments,  Prev: This Manual,  Up: Preface
+
+Typographical Conventions
+=========================
+
+This Info file is written in Texinfo
+(http://www.gnu.org/software/texinfo/), the GNU documentation formatting
+language.  A single Texinfo source file is used to produce both the
+printed and online versions of the documentation.  This minor node
+briefly documents the typographical conventions used in Texinfo.
+
+   Examples you would type at the command line are preceded by the
+common shell primary and secondary prompts, '$' and '>'.  Input that you
+type is shown 'like this'.  Output from the command is preceded by the
+glyph "-|".  This typically represents the command's standard output.
+Error messages and other output on the command's standard error are
+preceded by the glyph "error->".  For example:
+
+     $ echo hi on stdout
+     -| hi on stdout
+     $ echo hello on stderr 1>&2
+     error-> hello on stderr
+
+   Characters that you type at the keyboard look 'like this'.  In
+particular, there are special characters called "control characters."
+These are characters that you type by holding down both the 'CONTROL'
+key and another key, at the same time.  For example, a 'Ctrl-d' is typed
+by first pressing and holding the 'CONTROL' key, next pressing the 'd'
+key, and finally releasing both keys.
+
+     NOTE: Notes of interest look like this.
+
+     CAUTION: Cautionary or warning notes look like this.
+
+
+File: gawkworkflow.info,  Node: Acknowledgments,  Next: Reviewers,  Prev: Conventions,  Up: Preface
+
+Acknowledgments
+===============
+
+Thanks to Ju"rgen Kahrs for his initial efforts to write a document like
+this.  Although his prose has not survived, his material was helpful in
+preparing this Info file.
+
+   Thanks to Yehezkel Bernat for reviewing this document and in general
+for his good intentions.
+
+   *FIXME:* YOUR NAME HERE...
+
+
+File: gawkworkflow.info,  Node: Reviewers,  Prev: Acknowledgments,  Up: Preface
+
+Notes to Reviewers
+==================
+
+Please let me know if anything is missing, or unclear.  Real errors with
+respect Git commands and usage are very important as well.
+
+   Spelling errors and typo fixes welcome, but not as important.
+
+
+File: gawkworkflow.info,  Node: Contributing,  Next: Using Git,  Prev: Preface,  Up: Top
+
+1 How to Start Contributing
+***************************
+
+'gawk' development is distributed.  It's done using electronic mail
+(email) and via branches in the Git repo(1) on Savannah
+(http://savannah.gnu.org), the GNU project's source code management
+site.
+
+   In this major node we use some Git terminology.  If you're not at all
+familiar with Git, then skim this major node and come back after reading
+the rest of the Info file.
+
+   'gawk' is similar to many other Free Software projects.  To begin
+contributing, simply start!  Take a look at the 'TODO' file in the
+distribution, see if there is something of interest to you, and ask on
+the <bug-gawk@gnu.org> mailing list if anyone else is working on it.  If
+not, then go for it!  (*Note Development Stuff:: for a discussion of
+some of the technical things you'll need to do.  Here we describe the
+process in general.)
+
+   Your contribution can be almost anything that is relevant for 'gawk',
+such as code fixes, documentation fixes, and/or new features.
+
+     NOTE: If possible, new features should be done using 'gawk''s
+     extension mechanism.  If you want to add a user-visible language
+     change to the 'gawk' core, you're going to have to convince the
+     maintainer and other developers that it's really worthwile to do
+     so.
+
+     Changes that improve performance or portability, or that fix bugs,
+     or that enable more things in extensions, will require less
+     convincing, of course.
+
+   As you complete a task, submit patches for review to the
+<bug-gawk@gnu.org> mailing list, where you'll be given feedback about
+your work.  Once your changes are acceptable, the maintainer will commit
+them to the Git repository.
+
+   Over time, as the maintainer and development team gain confidence in
+your ability to contribute, you may be asked to join the private 'gawk'
+developers' mailing list, and/or be granted commit access to the Git
+repository on Savannah.  This has happened to more than one person who
+just "came out of the woodwork."
+
+   Until that happens, or if you don't want to join the list, you should
+continue to work with private branches and submission of patches to the
+mailing list.
+
+   Once you have commit access, if you want to make a major change or
+add a major feature, where the patch(es) would be very large, it has
+become the practice to create a separate branch, based off of 'master',
+to host the feature.  This way the maintainer can review it, and you can
+continue to improve it, until it's ready for integration into 'master'.
+
+     NOTE: Because of the GNU project's requirements for signed
+     paperwork for contributions, the 'gawk' project will *not* work
+     with pull requests from GitHub (http://github.com) or any other
+     Git-based software hosting service.  You must submit patches to the
+     mailing list, and be willing to sign paperwork for large patches.
+
+   The <bug-gawk@gnu.org> mailing list is not private.  Anyone may send
+mail to it, and anyone may subscribe to it.  To subscribe, go to the
+list's web page (https://lists.gnu.org/mailman/listinfo/bug-gawk) and
+follow the instructions there.  If you plan to be involved long-term
+with 'gawk' development, then you probably should subscribe to the list.
+
+   ---------- Footnotes ----------
+
+   (1) Short for "repository".
+
+
+File: gawkworkflow.info,  Node: Using Git,  Next: Configuring git,  Prev: Contributing,  Up: Top
+
+2 Using Git
+***********
+
+This chapter provides an introduction to using Git.  Our point is _not_
+to rave about how wonderful Git is, nor to go into painful detail about
+how it works.  Rather we want to give you enough background to
+understand how to use Git effectively for bug fix and feature
+development and to interact ("play nicely") with the development team.
+
+* Menu:
+
+* Push Pull::                   The push/pull software development model.
+* Repo Copies::                 What it means to have a copy of a repo.
+* Local Branches::              How to best use local branches.
+* Branches are state::          Branches represent development state.
+
+
+File: gawkworkflow.info,  Node: Push Pull,  Next: Repo Copies,  Up: Using Git
+
+2.1 The "Push/Pull" Model of Software Development
+=================================================
+
+Git is a powerful, distributed source code management system.  However,
+the way it's used for 'gawk' development purposely does not take
+advantage of all its features.
+
+   Instead, the model is rather simple, and in many ways much like more
+traditional distributed systems such as the Concurrent Versions System
+(http://www.nongnu.org/cvs) (CVS) or Subversion
+(http://subversion.apache.org) (SVN).
+
+   The central idea can be termed "push/pull."  You _pull_ updates down
+from the central repository to your local copy, and if you have commit
+rights, you _push_ your changes or updates up to the central repository.
+
+   Where Git does stand out is in its management of multiple branches of
+development.  Git makes it very easy to set up a separate branch for use
+in fixing a bug or developing a feature.  You can then easily keep that
+branch up to date with respect to the main development branch(es), and
+eventually merge the changes from your branch into the main branch.
+
+   Almost always Git does these merges for you without problem.  When
+there is a problem (a "merge conflict"), usually it is very easy for you
+to "resolve" them and then complete the merge.  We talk about this in
+more detail later (*note Merge Conflicts::).
+
+
+File: gawkworkflow.info,  Node: Repo Copies,  Next: Local Branches,  Prev: Push Pull,  Up: Using Git
+
+2.2 How Git Stores Branches and Their Copies
+============================================
+
+So how does Git work?(1)
+
+   A repository consists of a collection of "branches".  Each branch
+represents the history of a collection of files and directories (a file
+"tree").  Each combined set of changes to this collection (files and
+directories added or deleted, and/or file contents changed) is termed a
+"commit".
+
+   When you first create a local copy of a remote repository ("clone the
+repo"), Git copies all of the original repository's branches to your
+local system.  The original remote repository is referred to as being
+"upstream", and your local repo is "downstream" from it.  Git
+distinguishes branches from the upstream repo by prefixing their names
+with 'origin/'.  Let's draw some pictures.  *note Figure 2.1:
+savannah-repo. represents the state of the repo on Savannah:
+
+     +======================+
+     |       Branches       |
+     +======================+
+     | master               |
+     +----------------------+
+     | gawk-4.1-stable      |
+     +----------------------+
+     | gawk-4.0-stable      |
+     +----------------------+
+     | feature/fix-comments |
+     +----------------------+
+     | ...                  |
+     +----------------------+
+
+Figure 2.1: The Savannah 'gawk' Repository
+
+   After you clone the repo, on your local system you will have a single
+branch named 'master' that's visible when you use 'git branch' to see
+your branches.
+
+     $ git clone http://git.savannah.gnu.org/r/gawk.git  Clone the repo
+     $ cd gawk                                           Change to local copy
+     $ git branch                                        See branch information
+     -| * master
+
+The current branch is always indicated with a leading asterisk ('*').
+
+   Pictorially, the local repo looks like *note Figure 2.2: your-repo.
+(you can ignore the 'T' column for the moment):
+
+     +===+======================++=============================+
+     | T |    Local Branches    ||      Remote Branches        |
+     +===+======================++=============================+
+     | X | master               || origin/master               |
+     +---+----------------------++-----------------------------+
+     |   |                      || origin/gawk-4.1-stable      |
+     +---+----------------------++-----------------------------+
+     |   |                      || origin/gawk-4.0-stable      |
+     +---+----------------------++-----------------------------+
+     |   |                      || origin/feature/fix-comments |
+     +---+----------------------++-----------------------------+
+     |   |                      || ...                         |
+     +---+----------------------++-----------------------------+
+
+Figure 2.2: Your Local 'gawk' Repository
+
+Note that what is simply 'gawk-4.1-stable' in the upstream repo is now
+referred to as 'origin/gawk-4.1-stable'.  The 'origin/' branches are a
+snapshot of the state of the upstream repo.  This is how Git allows you
+to see what changes you've made with respect to the upstream repo,
+without having to actually communicate with the upstream repo over the
+Internet.  (When files are identical, Git is smart enough to not have
+two separate physical copies on your local disk.)
+
+   If you're working on a simple bug fix or change, you can do so
+directly in your local 'master' branch.  You can then commit your
+changes, and if you have access rights, push them upstream to the
+Savannah repo.  (However, there is a process to follow.  Please read the
+rest of this Info file.)
+
+   ---------- Footnotes ----------
+
+   (1) The following description is greatly simplified.
+
+
+File: gawkworkflow.info,  Node: Local Branches,  Next: Branches are state,  Prev: Repo Copies,  Up: Using Git
+
+2.3 Local Branches
+==================
+
+Let's talk about local branches in more detail.  (The terminology used
+here is my own, not official Git jargon.)  There are two kinds of local
+branches:
+
+"Tracking Branches"
+     Tracking branches track branches from the upstream repository.  You
+     first create a tracking branch simply by checking out a branch from
+     the upstream.  You use the branch name without the leading
+     'origin/' prefix.  For example, 'git checkout gawk-4.1-stable'.
+
+     You can then work on this branch, making commitments to it as you
+     wish.  Once things are ready to move upstream, you simply use 'git
+     push', and your changes will be pushed up to the main repo.(1)
+
+     You should *never* checkout a branch using the 'origin/' prefix.
+     Things will get very confused.  Always work on local tracking
+     branches.
+
+"Purely Local Branches"
+     A "purely local branch" exists only on your system.  You may be
+     developing some large new feature, or fixing a very difficult bug,
+     or have a change for which paperwork has not yet been completed.
+
+     In such a case, you would keep your changes on a local branch, and
+     periodically synchronize it with 'master' (or whichever upstream
+     branch you started from).
+
+   This may seem somewhat abstract so far.  We demonstrate with commands
+and branches in *note Development without commit access::, later in this
+Info file.
+
+   Let's say you have checked out a copy of 'gawk-4.1-stable' and have
+created a purely local branch named 'better-random'.  Then our picture
+now looks like *note Figure 2.3: your-repo-2, where the 'T' column
+indicates a tracking branch.
+
+     +===+======================++=============================+
+     | T |   Local Branches     ||      Remote Branches        |
+     +===+======================++=============================+
+     | X | master               || origin/master               |
+     +---+----------------------++-----------------------------+
+     | X | gawk-4.1-stable      || origin/gawk-4.1-stable      |
+     +---+----------------------++-----------------------------+
+     |   |                      || origin/gawk-4.0-stable      |
+     +---+----------------------++-----------------------------+
+     |   |                      || origin/feature/fix-comments |
+     +---+----------------------++-----------------------------+
+     |   |                      || ...                         |
+     +---+----------------------++-----------------------------+
+     |   | better-random        ||                             |
+     +---+----------------------++-----------------------------+
+
+Figure 2.3: Your Local 'gawk' Repository With a Purely Local Branch
+
+   ---------- Footnotes ----------
+
+   (1) Assuming you have permission to do so, of course.
+
+
+File: gawkworkflow.info,  Node: Branches are state,  Prev: Local Branches,  Up: Using Git
+
+2.4 Branches Represent Development State
+========================================
+
+Branches represent development state.  At any given time, when you
+checkout a particular branch (or create a new one), you have a copy of
+the 'gawk' source tree that you should be able to build and test.
+
+   The following minor nodes describe the different branches in the
+'gawk' repository and what they are for, as well as how to use your own
+branches.
+
+* Menu:
+
+* Repo State::                  The different branch types in the repo.
+* Local State::                 Managing local branches.
+* Remotes::                     What a "remote" is.
+
+
+File: gawkworkflow.info,  Node: Repo State,  Next: Local State,  Up: Branches are state
+
+2.4.1 Branches in the Savannah Repository
+-----------------------------------------
+
+There are several kinds of branches in the Savannah repository.
+
+"Dead Branches"
+     Branches with the prefix 'dead-branches/' (such as
+     'dead-branches/const') hold code that was never merged into the
+     main code base.  For example, a feature which was started, but
+     later deemed to be unwise to add.  These branches keep the code
+     available, but they are not updated.
+
+"Stable Branches"
+     These branches are used for bug fixes to released versions of
+     'gawk'.  Sometimes new development (i.e., user-visible changes)
+     also occurs on these branches, although in a perfect world they
+     would be used only for bug fixes.
+
+     These branches have names like 'gawk-4.1-stable',
+     'gawk-4.0-stable', and so on.  Once a release has been made from
+     'master', the previous stable branch is not updated.  For example,
+     once 'gawk' 4.1.0 was released, no more work was done on
+     'gawk-4.0-stable'.
+
+"The Main Branch"
+     This is the 'master' branch.  Here is where most new feature
+     development takes place, and releases of new major versions are
+     based off of this branch.
+
+     Feature branches are typically based off this branch as well, and
+     when the feature is deemed complete, merged back into it.
+
+"Feature Branches"
+     Often, a proposed new feature or code improvement is quite
+     involved.  It may take some time to perfect, or the 'gawk'
+     development team may not be convinced that the feature should be
+     kept.
+
+     For this purpose, the team uses branches prefixed with 'feature/'.
+     This prefix is used even for code that simply improves the
+     internals and does not make a user-visible change.
+
+     Having large changes on separate branches makes it easier for
+     members of the team to review the code, and also makes it easier to
+     keep the changes up-to-date with respect to 'master', since Git
+     excels at merging commits from one branch to another.
+
+
+File: gawkworkflow.info,  Node: Local State,  Next: Remotes,  Prev: Repo State,  Up: Branches are state
+
+2.4.2 Branches in Your Local Repository
+---------------------------------------
+
+Purely local branches are where you do your own development.  You may
+use purely local branches because you don't have commit rights to the
+Savannah repo.  You may also use them if you are doing some work that
+isn't ready for sharing with the rest of the team, or cannot be
+committed for some other reason.
+
+   For example, for around a nine-month period, the maintainer kept a
+purely local branch for some contributed changes for which paperwork had
+not yet been completed.
+
+
+File: gawkworkflow.info,  Node: Remotes,  Prev: Local State,  Up: Branches are state
+
+2.4.3 A Closer Look at Branch Naming
+------------------------------------
+
+Earlier, we said that Git maintains copies of the branches in the
+upstream repo, as well as manages your local branches.  You can see all
+these branches with 'git branch -a':
+
+     $ git branch -a
+     -|   gawk-4.1-stable
+     -| * master
+     -|   remotes/origin/HEAD -> origin/master
+     -|   remotes/origin/dead-branches/async-events
+     -|   ...
+     -|   remotes/origin/feature/api-mpfr
+     -|   remotes/origin/feature/array-iface
+     -|   remotes/origin/feature/fix-comments
+     -|   ...
+
+   You'll note that what we've referred to as 'origin/' branches appear
+in the output with an additional prefix: 'remotes/'.  Up to this point,
+we've treated Git as if it allowed only a single upstream repository.
+But in fact, you can configure it to use more than one.  All the known
+upstream repositories are grouped under the 'remotes/' prefix, with
+'remotes/origin' being the one from which you initially cloned your
+local repository.
+
+   The ability to work with multiple upstream repositories is an
+advanced one; 'gawk' development does not make use of it.  The intent of
+this node is to explain the output from 'git branch -a', nothing more.
+
+
+File: gawkworkflow.info,  Node: Configuring git,  Next: Development without commit access,  Prev: Using Git,  Up: Top
+
+3 Configuring Global Settings For Git
+*************************************
+
+Before starting to use Git, you should configure it with some important
+settings that won't change as you use Git.  You may configure options
+both globally, and on a per-repository basis.  Here, we discuss only
+global configuration settings.
+
+   You can configure Git using either 'git config', or by editing the
+relevant files with your favorite text editor.(1)
+
+   The first things to set are your email address and your real name:
+
+     $ git config --global user.name "J.P. Developer"     Set full name
+     $ git config --global user.email jpdev@example.com   Set email address
+
+   Setting these two items are an absolute requirement.  *Note*: No
+aliases are allowed.  If you can't supply your real name, you cannot
+contribute to the project.  Other options that the 'gawk' maintainer
+recommends that you use are:
+
+     $ git config --global push.default simple    Only push current branch
+     $ git config --global pager.status true      Use pager for output of git status
+
+   The global settings are stored in the '.gitconfig' file in your home
+directory.  The file looks like this:
+
+     [user]
+             name = J.P. Developer
+             email = jpdev@example.com
+     [push]
+             default = simple
+     [pager]
+             status = true
+
+   The 'push.default=simple' setting ensures that older versions of Git
+only push the current branch up to the Savannah repo.  This is the
+safest way to operate, and is the default in current Git versions.
+
+   There may be other settings in your configuration file as well.  Use
+'git config' to see your settings:
+
+     $ git config --list
+     -| user.name=J.P. Developer
+     -| user.email=jpdev@example.com
+     -| push.default=simple
+
+   Here are the 'gawk' maintainer's settings:
+
+     $ git config --global --list
+     -| user.name=Arnold D. Robbins
+     -| user.email=arnold@...
+     -| credential.helper=cache --timeout=3600
+     -| push.default=simple
+     -| color.ui=false
+     -| core.autocrlf=input
+     -| pager.status=true
+     -| log.decorate=auto
+
+   Additional, per-project ("local") settings are stored in each repo's
+'.git/config' file.
+
+   ---------- Footnotes ----------
+
+   (1) You are required to use either Vim or Emacs, other text editors
+are not allowed.  Of course, reasonable developers wouldn't want to use
+any other editor anyway.
+
+
+File: gawkworkflow.info,  Node: Development without commit access,  Next: Development with commit access,  Prev: Configuring git,  Up: Top
+
+4 Development Without Commit Access
+***********************************
+
+In this chapter we present step-by-step recipes for checking out and
+working with a local copy of the Savannah Git repo for 'gawk'.  The
+presentation is for when you do not have commit access to the Git repo,
+and so you cannot push your changes directly.
+
+* Menu:
+
+* Cloning::                     Cloning the repo the first time.
+* Switching Branches::          Moving from one branch to another.
+* Starting A New Branch::       Starting a new branch for development.
+* Undoing a change::            Throwing away changes.
+* Updating::                    Keeping in sync with the upstream repo.
+* Submitting Changes::          How to submit your changes.
+* Removing Branches::           Getting rid of unneeded branches.
+* Points to remember::          Things you need to keep in mind.
+
+
+File: gawkworkflow.info,  Node: Cloning,  Next: Switching Branches,  Up: Development without commit access
+
+4.1 Cloning The Repo
+====================
+
+Clone the Savannah repo using 'git clone'.  You may do so using either
+the native Git protocol, or using HTTP if you must go through a gateway
+or firewall that won't pass the Git protocol.
+
+   To choose which method, you supply a "URL" for the repo when you
+clone it, as follows.
+
+   * Clone via the Git native protocol:
+
+          $ git clone git://git.savannah.gnu.org/gawk.git     Clone the repo
+          -| ...
+          $ cd gawk                                           Start working
+
+     This will be faster, but not all firewalls pass the Git protocol on
+     through.
+
+   * Clone via the HTTP protocol:
+
+          $ git clone http://git.savannah.gnu.org/r/gawk.git  Clone the repo
+          -| ...
+          $ cd gawk                                           Start working
+
+   _You only need to clone the repo once._  From then on, you update its
+contents using other Git commands.  For example, after coming back from
+your vacation in the Bahamas:
+
+     $ cd gawk               Move to the repo
+     $ make distclean        A good idea before updating
+     -| ...
+     $ git pull              Update it
+
+   To build, you should generally follow this recipe:
+
+     $ ./bootstrap.sh && ./configure && make -j && make check
+
+     NOTE: Unless you have installed all the tools described in *note
+     GNU Tools::, you _must_ run './bootstrap.sh' every time you clone a
+     repo, do a 'git pull' or checkout a different branch.  (In the
+     latter case, do 'make distclean' first.)  Otherwise things will get
+     messy very quickly.  The 'bootstrap.sh' script ensures that all of
+     the file time stamps are up to date so that it's not necessary to
+     run the various configuration tools.
+
+
+File: gawkworkflow.info,  Node: Switching Branches,  Next: Starting A New Branch,  Prev: Cloning,  Up: Development without commit access
+
+4.2 Switching Branches
+======================
+
+So far, we've been working in the default 'master' branch.  Let's check
+what's happening in the 'gawk-4.1-stable' branch:
+
+     $ make distclean                                          Clean up
+     $ git checkout gawk-4.1-stable                            Checkout a different branch
+     -| ...
+     $ git pull                                                Get up to date
+     -| ...
+     $ ./bootstrap.sh && ./configure && make -j && make check  Start working
+
+
+File: gawkworkflow.info,  Node: Starting A New Branch,  Next: Undoing a change,  Prev: Switching Branches,  Up: Development without commit access
+
+4.3 Starting A New Branch
+=========================
+
+Let's say you want to work on a new feature.  For example, you might
+decide to add Python syntax support.(1)  You should create a new branch
+on which to work.  First, switch back to 'master':
+
+     $ make distclean
+     $ git checkout master
+
+   Now, create a new branch.  The easiest way to do that is with the
+'-b' option to 'git checkout':
+
+     $ git checkout -b feature/python
+     -| ...
+
+   You now do massive amounts of work in order to add Python syntax
+support.  As you do each defined chunk of work, you update the
+'ChangeLog' file with your changes before "committing" them to the repo.
+
+   Let's say you've added a new file 'python.c' and updated several
+others.  Use 'git status' to see what's changed:
+
+     $ git status
+     -| ...
+
+   Before committing the current set of changes, you can use 'git diff'
+to view the changes.  You may also use 'git difftool'(2) to run an
+external 'diff' command, such as 'meld' on GNU/Linux:
+
+     $ git diff                           Regular built-in tool
+     $ git difftool --tool=meld           GUI diff tool
+
+   When you're happy with the changes, use 'git add' to tell Git which
+of the changed and/or new files you wish to have ready to be committed:
+
+     $ git add ...
+
+   Use 'git status' to see that your changes are scheduled for
+committing:
+
+     $ git status
+     -|
+
+   Now you can commit your changes to your branch:
+
+     $ git commit
+
+Running 'git commit' causes Git to invoke an editor (typically from the
+'$EDITOR' environment variable) in which you can compose a commit
+message.  Please supply a short message summarizing the commit.  This
+message will be visible via 'git log'.
+
+   ---------- Footnotes ----------
+
+   (1) Just joking.  Please don't attempt this for real.
+
+   (2) Don't run 'git difftool' in the background; it works
+interactively.
+
+
+File: gawkworkflow.info,  Node: Undoing a change,  Next: Updating,  Prev: Starting A New Branch,  Up: Development without commit access
+
+4.4 Undoing A Change
+====================
+
+Should you need to undo a change that you have not yet committed (so
+that you can start over), you can do so on per-file basis by simply
+checking out the file again:
+
+     git checkout awkgram.y      Undo changes to awkgram.y. There is no output
+
+   To start over completely, use 'git reset --hard'.  Note that this
+will _throw away_ all your changes, with no chance for recovery, so be
+sure you really want to do it.
+
+
+File: gawkworkflow.info,  Node: Updating,  Next: Submitting Changes,  Prev: Undoing a change,  Up: Development without commit access
+
+4.5 Updating and Merging
+========================
+
+As you work on your branch, you will occasionally want to bring it up to
+date with respect to 'master'.  This minor node discusses updating local
+branches and handling merge conflicts.
+
+* Menu:
+
+* Rebasing::                    Rebasing A Local Branch.
+* Merge Conflicts::             Dealing With Merge Conflicts.
+
+
+File: gawkworkflow.info,  Node: Rebasing,  Next: Merge Conflicts,  Up: Updating
+
+4.5.1 Rebasing A Local Branch
+-----------------------------
+
+For purely local branches, bringing your branch up to date is called
+"rebasing", which causes the branch to look _as if_ you had started from
+the latest version of 'master'.  The steps are as follows:
+
+     $ git checkout master                Checkout master
+     $ git pull                           Update it
+     $ git checkout feature/python        Move back to new, purely local branch
+     $ git rebase master                  "Start over" from current master
+
+
+File: gawkworkflow.info,  Node: Merge Conflicts,  Prev: Rebasing,  Up: Updating
+
+4.5.2 Dealing With Merge Conflicts
+----------------------------------
+
+Sometimes, when merging from 'master' into your branch, or from a branch
+into 'master', there will be "merge conflicts".  These are one or more
+areas within a file where there are conflicting sets of changes, and Git
+could not do the merge for you.  In this case, the conflicted area will
+be delimited by the traditional conflict markers, '<<<', '===' and
+'>>>'.
+
+   Your mission is then to edit the file and "resolve" the conflict by
+fixing the order of additions (such as in a 'ChangeLog' file), or fixing
+the code to take new changes into account.
+
+   Once you have done so, you tell Git that everything is OK using 'git
+add' and 'git commit':
+
+     $ git checkout feature/python        Move back to new, purely local branch
+     $ git rebase master                  "Start over" from current master
+     -| ... Kaboom! Conflict. FIXME: Show real output here
+     $ gvim main.c                        Edit the file and fix the problem
+     $ git add main.c                     Tell Git everything is OK now ...
+     $ git commit                         ... and it's settled
+     $ git rebase --continue              Continue the rebase
+
+   The 'git rebase --continue' then continues the process of rebasing
+the current branch that we started in *note Rebasing::.  It's not
+necessary if you are using 'git merge' (*note Points to remember::).
+
+
+File: gawkworkflow.info,  Node: Submitting Changes,  Next: Removing Branches,  Prev: Updating,  Up: Development without commit access
+
+4.6 Submitting Your Changes
+===========================
+
+So now your feature is complete.  You've added test cases for it to the
+test suite(1), you have 'ChangeLog' entries that describe all the
+changes(2), you have documented the new feature(3), and everything works
+great.  You're ready to submit the changes for review, and with any
+luck, inclusion into 'gawk'.
+
+   There are two ways to submit your changes for review.
+
+_Generate a single large patch_
+     To do this, simply compare your branch to the branch off which it
+     is based:
+
+          $ git checkout feature/python
+          $ git diff master > /tmp/python.diff
+
+     Mail the 'python.diff' file to the appropriate mailing list along
+     with a description of what you've changed and why.
+
+_Generate a set of patches that in toto comprise your changes_
+     To do this, use 'git format-patch':
+
+          $ git checkout feature/python
+          $ git format-patch
+
+     This creates a set of patch files, one per commit that isn't on the
+     original branch.  Mail these patches, either separately, or as a
+     set of attachments, to the appropriate mailing list along with a
+     description of what you've changed and why.
+
+   Either way you choose to submit your changes, the 'gawk' maintainer
+and development team will review your changes and provide feedback.  If
+you have signed paperwork with the FSF for 'gawk' and the maintainer
+approves your changes, he will apply the patch(es) and commit the
+changes.
+
+   Which list should you send mail to?  If you are just starting to
+contribute, use <bug-gawk@gnu.org>.  After making enough contributions,
+you may be invited to join the private 'gawk' developers' mailing list.
+If you do so, then submit your changes to that list.
+
+   If you make any substantial changes, you will need to assign
+copyright in those changes to the Free Software Foundation before the
+maintainer can commit those changes.  *Note Doing paperwork::, for more
+information.
+
+   ---------- Footnotes ----------
+
+   (1) You did do this, didn't you?
+
+   (2) You remembered this, right?
+
+   (3) You wouldn't neglect this, would you?
+
+
+File: gawkworkflow.info,  Node: Removing Branches,  Next: Points to remember,  Prev: Submitting Changes,  Up: Development without commit access
+
+4.7 Removing Branches
+=====================
+
+Once the maintainer has integrated your changes, you can get rid of your
+local branch:
+
+     $ git checkout master                 Move to upstream branch
+     $ git pull                            Update
+     $ gvim ChangeLog ...                  Verify your changes are in
+     $ git branch -d feature/python        Remove your local branch
+
+
+File: gawkworkflow.info,  Node: Points to remember,  Prev: Removing Branches,  Up: Development without commit access
+
+4.8 Points to Remember
+======================
+
+There are some important points to remember:
+
+   * Always do a 'make distclean' before switching between branches.
+     Things will get really confused if you don't.
+
+   * For upstream branches, _always_ work with tracking branches.
+     _Never_ use 'git checkout origin/WHATEVER'.  Git will happily let
+     you do something like that, but it's just plain asking for trouble.
+
+   * Make sure your tracking branches are up-to-date before doing
+     anything with them, particularly using them as the basis for a
+     rebase or merge.  This typically means a three-step process:
+
+          $ git checkout master             Get to local copy
+          $ git pull                        Bring it up to date
+          $ git checkout feature/python     Go back to your branch
+
+     You can then do the actual rebase:
+
+          $ git rebase master               Now rebase your feature off of master
+
+   * Git always treats the currently checked-out branch as the object of
+     operations.  For example, when comparing files with the regular
+     'diff' command, the usage is 'diff OLDFILE NEWFILE'.  For 'git
+     diff', the current branch takes the place of NEWFILE, thus:
+
+          $ git checkout feature/python
+          $ git diff master                 Compare master to current branch
+
+     or if merging:
+
+          $ git checkout master             Checkout master
+          $ git pull                        Update tracking branch
+          $ git merge feature/python        Merge changes into master
+
+
+File: gawkworkflow.info,  Node: Development with commit access,  Next: General practices,  Prev: Development without commit access,  Up: Top
+
+5 Development With Commit Access
+********************************
+
+This major node describes how to do development when you _do_ have
+commit access to the 'gawk' repo on Savannah.
+
+* Menu:
+
+* Initial setup::                   Getting started with commit access.
+* ssh clone::                       Cloning using an 'ssh://' URL.
+* Developing patches::              Developing patches.
+* Developing new features::         Developing new features.
+* Developing fixes::                Developing fixes.
+
+
+File: gawkworkflow.info,  Node: Initial setup,  Next: ssh clone,  Up: Development with commit access
+
+5.1 Initial Setup
+=================
+
+Congratulations!  After becoming a quality contributor to 'gawk'
+development, you've been invited to join the private development list
+and to accept having commit access to the repo.
+
+   The first thing to do is to create an account on Savannah, choosing a
+unique user name.  To do so, go to the Savannah home page
+(http://savannah.gnu.org) and click on the "New User" link.  The setup
+will include uploading of your 'ssh' key, as per the instructions on the
+Savannah web page.
+
+   After you've done all this, send email to the maintainer with your
+Savannah user name, and he will add you to the list of users who have
+commit access to the repo.
+
+
+File: gawkworkflow.info,  Node: ssh clone,  Next: Developing patches,  Prev: Initial setup,  Up: Development with commit access
+
+5.2 Cloning The Repo With An 'ssh' URL
+======================================
+
+In order to be able to commit changes to the repo, you must clone it
+using an 'ssh://' URL. Cloning the repo with 'ssh' is similar to cloning
+with the Git protocol or with HTTP, but the URL is different:
+
+     $ git clone ssh://yourname@git.sv.gnu.org/srv/git/gawk.git
+     -| ...
+
+   Here, you should replace 'yourname' in the command with the user name
+you chose for use on Savannah.
+
+
+File: gawkworkflow.info,  Node: Developing patches,  Next: Developing new features,  Prev: ssh clone,  Up: Development with commit access
+
+5.3 Developing Patches
+======================
+
+The first part of developing a patch is the same as for developers
+without commit access:
+
+  1. Develop the code and test it.
+
+  2. Update the 'ChangeLog'.
+
+  3. If necessary, update the documentation: 'doc/gawktexi.in' and/or
+     'doc/gawk.1'.
+
+  4. Use 'git diff > mychange.diff' to create a patch file.
+
+  5. Send it to the mailing list for discussion.
+
+  6. Iterate until the patch is ready to be committed.
+
+   However, now that you have commit access, you can commit the fix and
+push it up to the repo yourself!  Let's assume you've made a bug fix
+directly on 'master'.  Here's how to commit your changes:
+
+     $ git diff            Review the patch one more time
+     $ git add ...         Add any files for committing
+     $ git commit          Commit the files. Include a commit message.
+     $ git push            Push the files up to the repo. Ta da!
+
+   The first three steps are the same described earlier (*note Starting
+A New Branch::).  The 'git push' is what's new, and it updates the repo
+on Savannah.  Congratulations!
+
+   As a courtesy, you should send a note to the mailing list indicating
+that you have pushed your change.
+
+
+File: gawkworkflow.info,  Node: Developing new features,  Next: Developing fixes,  Prev: Developing patches,  Up: Development with commit access
+
+5.4 Developing New Features
+===========================
+
+Developing a new feature can be easier once you have commit access to
+the repo.  First, create a new branch to hold your feature:
+
+     $ git checkout master                     Start from master
+     $ git pull                                Be sure to be up to date
+     $ git checkout -b feature/python          Create and switch to a new branch
+
+   Now, you can develop as normal, adding new files if necessary (such
+as new tests), modifying code, updating the 'ChangeLog' and
+documentation, and so on.
+
+   You can share changes with the mailing list as diffs, as usual.
+However, especially for a large feature, it would be better to push your
+branch up to Savannah.  Then, everyone else can simply pull it down to
+their local systems and review your changes at their leisure.
+
+   To push your branch up initially:
+
+     $ git diff                                Review your changes
+     $ git add ...                             Add any files for committing
+     $ git commit                              Commit the files. Include a commit message
+     $ git push -u origin feature/python       Push the branch up to the repo
+
+   When you use 'push -u origin', Git helpfully converts your purely
+local branch into a tracking branch.  It becomes as if the branch had
+originated from the upstream repo and you checked it out locally.
+
+   _You only need to do 'git push -u origin' once._  As you continue to
+work on your branch, the workflow simplifies into this:
+
+     $ git diff                Review your changes
+     $ git add ...             Add any files for committing
+     $ git commit              Commit the files
+     $ git push                Push your changes to the branch upstream
+
+
+File: gawkworkflow.info,  Node: Developing fixes,  Prev: Developing new features,  Up: Development with commit access
+
+5.5 Developing Fixes
+====================
+
+If you want to make a fix on 'master' or on the current stable branch,
+you work the same way, by producing and discussing a diff on the mailing
+list.  Once it's approved, you can commit it yourself:
+
+     $ git checkout master     Move to master
+     $ git pull                Make sure we're up to date with the maintainer
+     $ gvim ...                Make any fixes, compile, test
+     $ git diff                Review your changes
+     $ git add ...             Add any files for committing
+     $ git commit              Commit the files. Include a commit message.
+
+   When you're ready to push your changes:
+
+     $ git pull                Download latest version; Git will merge
+     $ gvim ...                Resolve any merge conflicts with git add and git commit
+     $ git push                Now you can push your changes upstream
+
+   *Note Merge Conflicts:: for instructions on dealing with merge
+conflicts.
+
+
+File: gawkworkflow.info,  Node: General practices,  Next: Repo Maintenance,  Prev: Development with commit access,  Up: Top
+
+6 General Development Practices
+*******************************
+
+This major node discusses general practices for 'gawk' development.  The
+discussion here is mainly for developers with commit access to the
+Savannah repo.
+
+"Propagating Fixes"
+     Usually, bug fixes should be made on the current "stable" branch.
+     Once a fix has been reviewed and approved, you can commit it and
+     push it yourself.  Typically, the maintainer then takes care to
+     merge the fix to 'master' and from there to any other branches.
+     However, you are welcome to save him the time and do this yourself.
+
+"Directory ownership"
+     Some developers "own" certain parts of the tree, such as the 'pc'
+     and 'vms' directories.  They are allowed to commit changes to those
+     directories without review by the mailing list, but changes that
+     also touch the mainline code should be submitted for review.
+
+"New feature development"
+     Unless you can convince the maintainer (and the other developers!)
+     otherwise, you should _always_ start branches for new features from
+     'master', and not from the current "stable" branch.
+
+     Use 'checkout -b feature/FEATURE_NAME' to create the initial
+     branch.  You may then elect to keep it purely local, or to push it
+     up to Savannah for review, even if the feature is not yet totally
+     "ready for prime time."
+
+   During development of a new feature, you will most likely wish to
+keep your feature branch up to date with respect to ongoing improvements
+in 'master'.  This is generally easy to do.  There are two different
+mechanisms, and which one you use depends upon the nature of your new
+feature branch.
+
+"As long as your branch is purely local"
+     You should use 'git rebase' to the keep the branch synchronized
+     with the original branch from which it was forked:
+
+          $ git checkout master             Move to master
+          $ git pull                        Bring it up to date
+          $ git checkout feature/python     Move to your new feature branch
+          $ git rebase master               Rebase from master
+
+     The rebasing operation may require that you resolve conflicts
+     (*note Merge Conflicts::).  Edit any conflicted files and resolve
+     the problem(s).  Compile and test your changes, then use 'git add'
+     and 'git commit' to indicate resolution, and then use 'git rebase
+     --continue' to continue the rebasing.  Git is very good about
+     providing short instructions on how to continue when such conflicts
+     occur.
+
+"Once the branch has been pushed up to Savannah"
+     You _must_ use 'git merge' to bring your feature branch up to date.
+     That flow looks like this:
+
+          $ git checkout master             Move to master
+          $ git pull                        Bring it up to date
+          $ git checkout feature/python     Move to your new feature branch
+          $ git merge master                Merge from master
+
+     Here too, you may have to resolve any merge conflicts (*note Merge
+     Conflicts::).  Once that's done, you can push the changes up to
+     Savannah.
+
+     When the changes on your branch are complete, usually the
+     maintainer merges the branch to 'master'.  But there's really no
+     magic involved, the merge is simply done in the other direction:
+
+          $ git checkout feature/python     Checkout feature branch
+          $ git pull                        Bring it up to date
+          $ git checkout master             Checkout master
+          $ git pull                        Bring it up to date
+          $ git merge feature/python        Merge from feature/python into master
+
+     If you've been keeping 'feature/python' in sync with 'master', then
+     there should be no merge conflicts to resolve, and you can push the
+     result to Savannah:
+
+          $ git push                        Push up to Savannah
+
+     Since 'feature/python' is no longer needed, it can be gotten rid
+     of:
+
+          $ git branch -d feature/python                 Still on master, delete feature branch
+          $ git push -u origin --delete feature/python   Delete the branch on Savannah
+
+     The 'git push' command deletes the 'feature/python' branch from the
+     Savannah repo.
+
+     Finally, you should send an email to developer's list describing
+     what you've done so that everyone else can delete their copies of
+     the branch and do a 'git fetch --prune' (*note Repo Maintenance::).
+
+     To update the other remaining development branches with the latest
+     changes on 'master', use the 'helpers/update-branches.sh' script in
+     the repo.
+
+
+File: gawkworkflow.info,  Node: Repo Maintenance,  Next: Development Stuff,  Prev: General practices,  Up: Top
+
+7 Keeping Your Repo Organized
+*****************************
+
+There are a few commands you should know about to help keep your local
+repo clean.
+
+_Removing old branches_
+     Developers add branches to the Savannah repo and when development
+     on them is done, they get merged into 'master'.  Then the branches
+     on Savannah are deleted (as shown in *note General practices::).
+
+     However, your local copies of those branches (labelled with the
+     'origin/' prefix) remain in your local repo.  If you don't need
+     them, then you can clean up your repo as follows.
+
+     First, remove any related tracking branch you may have:
+
+          $ git pull                                Get up to date
+          $ git branch -d feature/merged-feature    Remove tracking branch
+
+     Then, ask Git to clean things up for you:
+
+          $ git fetch --prune                       Remove unneeded branches
+
+_Removing cruft_
+     As Git works, occasional "cruft" collects in the repository.  Git
+     does occasionally clean this out on its own, but if you're
+     concerned about disk usage, you can do so yourself using 'git gc'
+     (short for "garbage collect").  For example:
+
+          $ du -s .                               Check disk usage
+          -| 99188   .                            Almost 10 megabytes
+          $ git gc                                Collect garbage
+          -| Counting objects: 32114, done.
+          -| Delta compression using up to 4 threads.
+          -| Compressing objects: 100% (6370/6370), done.
+          -| Writing objects: 100% (32114/32114), done.
+          -| Total 32114 (delta 25655), reused 31525 (delta 25231)
+          $ du -s .                               Check disk usage again
+          -| 75168   .                            Down to 7 megabytes
+
+_Renaming branches_
+     Occasionally you may want to rename a branch.(1)  If your branch is
+     local and you are on it, us:
+
+          $ git branch -m feature/NEW-NAME
+
+     Otherwise, use:
+
+          $ git branch -m feature/OLD-NAME feature/NEW-NAME
+
+     You then need to fix the upstream repo.  This command does so,
+     using an older syntax to simultaneously delete the old name and
+     push the new name.  You should be on the new branch:
+
+          $ git push origin :feature/OLD-NAME feature/NEW-NAME
+
+          NOTE: It is the leading ':' in the first branch name that
+          causes Git to delete the old name in the upstream repo.  Don't
+          omit it!
+
+     Finally, reset the upstream branch for the local branch with the
+     new name:
+
+          $ git push -u origin feature/NEW-NAME
+
+   ---------- Footnotes ----------
+
+   (1) This discussion adopted from here
+(https://multiplestates.wordpress.com/2015/02/05/rename-a-local-and-remote-branch-in-git).
+
+
+File: gawkworkflow.info,  Node: Development Stuff,  Next: Cheat Sheet,  Prev: Repo Maintenance,  Up: Top
+
+8 Development Stuff
+*******************
+
+This major node discusses other things you need to know and/or do if
+you're going to participate seriously in 'gawk' development.
+
+* Menu:
+
+* Coding style::                Where to read up on the coding style.
+* Doing paperwork::             Legal stuff in order to contribute.
+* Tools::                       Tools to have on your system for development.
+* Debugging::                   Compiling for debugging.
+
+
+File: gawkworkflow.info,  Node: Coding style,  Next: Doing paperwork,  Up: Development Stuff
+
+8.1 Coding Style
+================
+
+You should read the discussion about adding code in the 'gawk'
+documentation.  *Note Additions: (gawk)Additions, for a discussion of
+the general procedure.  In particular, pay attention to the coding style
+guidelines in *note Adding Code: (gawk)Adding Code.(1)  These two
+sections may also be found online, at
+<https://www.gnu.org/software/gawk/manual/html_node/Additions.html#Additions>,
+and
+<https://www.gnu.org/software/gawk/manual/html_node/Adding-Code.html#Adding-Code>,
+respectively.
+
+   ---------- Footnotes ----------
+
+   (1) Changes that don't follow the coding style guidelines won't be
+accepted.  Period.
+
+
+File: gawkworkflow.info,  Node: Doing paperwork,  Next: Tools,  Prev: Coding style,  Up: Development Stuff
+
+8.2 Assigning Copyrights to the FSF
+===================================
+
+For any change of more than just a few lines, you will need to assign
+copyright in (that is, ownership of) those changes to the Free Software
+Foundation.
+
+   This is generally an easy thing to do.  In particular, you can choose
+to use a version of the copyright assignment which assigns all your
+current _and future_ changes to 'gawk' to the FSF. This means that you
+only need to do the paperwork once, and from then on all your changes
+will automatically belong to the FSF. The maintainer recommends doing
+this.
+
+   The maintainer will help you with this process once you have a
+contribution that warrants it.
+
+
+File: gawkworkflow.info,  Node: Tools,  Next: Debugging,  Prev: Doing paperwork,  Up: Development Stuff
+
+8.3 Software Tools You Will Need
+================================
+
+This minor node discusses additional tools that you may need to install
+on your system in order to be in sync with what the 'gawk' maintainer
+uses.  It also discusses different C compiler options for use during
+code development, and how to compile 'gawk' for debugging.
+
+* Menu:
+
+* GNU Tools::                   The GNU Autotools.
+* Compilers::                   A discussion of compilers that can be used.
+
+
+File: gawkworkflow.info,  Node: GNU Tools,  Next: Compilers,  Up: Tools
+
+8.3.1 GNU Tools
+---------------
+
+If you expect to work with the configuration files and/or the 'Makefile'
+files, you will need to install a number of other GNU tools.  In
+general, you should be using the latest versions of the tools, or least
+the same ones that the maintainer himself uses.  This helps minimize the
+differences that the maintainer has to resolve when merging changes, and
+in general avoids confusion and hassle.  Similarly, you should install
+the latest GNU documentation tools as well.  The tools are described in
+the following list:
+
+'autoconf'
+     GNU Autoconf processes the 'configure.ac' files in order to
+     generate the 'configure' shell script and 'config.h.in' input file.
+     See the Autoconf home page
+     (https://www.gnu.org/software/autoconf/autoconf.html) for more
+     information.
+
+'automake'
+     GNU Automake processes the 'configure.ac' and 'Makefile.am' files
+     to produce 'Makefile.in' files.  See the Automake home page
+     (https://www.gnu.org/software/automake) for more information.
+
+'gettext'
+     GNU Gettext processes the 'gawk' source code to produce the
+     original 'po/gawk.pot' message template file.  Normally you should
+     not need need to do this; the maintainer usually manages this task.
+     See the Gettext home page (https://www.gnu.org/software/gettext)
+     for more information.
+
+'libtool'
+     GNU Libtool works with Autoconf and Automake to produce portable
+     shared libraries.  It is used for the extensions that ship with
+     'gawk', whose code is in the 'extensions' directory.  See the
+     Libtool home page (https://www.gnu.org/software/libtool) for more
+     information.
+
+'makeinfo'
+     The 'makeinfo' command is used to build the Info versions of the
+     documentation.  You need to have the same version as the maintainer
+     uses, so that when you make a change to the documentation, the
+     corresponding change to the generated Info file will be minimal.
+     'makeinfo' is part of GNU Texinfo.  See the Texinfo home page
+     (https://www.gnu.org/software/texinfo) for more information.
+
+
+File: gawkworkflow.info,  Node: Compilers,  Prev: GNU Tools,  Up: Tools
+
+8.3.2 Compilers
+---------------
+
+The default compiler for 'gawk' development is GCC, the GNU Compiler
+Collection (https://gcc.gnu.org).  The default version of GCC is
+whatever is on the maintainer's personal GNU/Linux system, although he
+does try to build the latest released version if that is newer than
+what's on his system, and then occasionally test 'gawk' with it.
+
+   He also attempts to test occasionally with 'clang'
+(https://clang.llvm.org/).  However, he uses whatever is the default for
+his GNU/Linux system, and does _not_ make an effort to build the current
+version for testing.
+
+   Both GCC and 'clang' are highly optimizing compilers that produce
+good code, but are very slow.  There are two other compilers that are
+faster, but that may not produce quite as good code.  However, they are
+both reasonable for doing development.
+
+_The Tiny C Compiler, 'tcc'_
+     This compiler is _very_ fast, but it produces only mediocre code.
+     It is capable of compiling 'gawk', and it does so well enough that
+     'make check' runs without errors.
+
+     However, in the past the quality has varied, and the maintainer has
+     had problems with it.  He recommends using it for regular
+     development, where fast compiles are important, but rebuilding with
+     GCC before doing any commits, in case 'tcc' has missed
+     something.(1)
+
+     See the project's home page (http://www.tinycc.org) for some
+     information.  More information can be found in the project's Git
+     repository (http://repo.or.cz/tinycc.git).  The maintainer builds
+     from the 'mob' branch for his work, but after updating it you
+     should check that this branch still works to compile 'gawk' before
+     installing it.
+
+_The (Revived) Portable C Compiler_
+     This is an updated version of the venerable Unix Portable C
+     Compiler, PCC. It accepts ANSI C syntax and supports both older and
+     modern architectures.  It produces better code than 'tcc' but is
+     slower, although still much faster than GCC and 'clang'.
+
+     See the project's home page (http://pcc.ludd.ltu.se) for more
+     information.  See <http://pcc.ludd.ltu.se/supported-platforms> for
+     instructions about obtaining the code using CVS and building it.
+
+     An alternative location for the source is the 'gawk' maintainer's
+     Git mirror (https://github.com/arnoldrobbins/pcc-revived) of the
+     code.
+
+   ---------- Footnotes ----------
+
+   (1) This bit the maintainer once.
+
+
+File: gawkworkflow.info,  Node: Debugging,  Prev: Tools,  Up: Development Stuff
+
+8.4 Compiling For Debugging
+===========================
+
+If you wish to compile for debugging, you should use GCC. After running
+'configure' but before running 'make', edit the 'Makefile' and remove
+the '-O2' flag from the definition of 'CFLAGS'.  Optionally, do the same
+for 'extensions/Makefile'.  Then run 'make'.
+
+   You can enable additional debugging code by creating a file named
+'.developing' in the 'gawk' source code directory _before_ running
+'configure'.  Doing so enables additional conditionally-compiled
+debugging code within 'gawk', and adds additional warning and debugging
+options if compiling with GCC.
+
+
+File: gawkworkflow.info,  Node: Cheat Sheet,  Next: Resources,  Prev: Development Stuff,  Up: Top
+
+Appendix A Git Command Cheat Sheet
+**********************************
+
+This major node provides an alphabetical list of the Git commands cited
+in this Info file, along with brief descriptions of what the commands
+do.
+
+   Note that you may always use either 'git help COMMAND' or 'git
+COMMAND --help' to get short, man-page style help on how to use any
+given Git command.
+
+'git add'
+     Add a file to the list of files to be committed.
+
+'git branch'
+     View existing branches, or delete a branch.  Most useful options:
+     '-a' and '-d'.
+
+'git checkout'
+     Checkout an existing branch, create a new branch, or checkout a
+     file to reset it.  Use the '-b' option to create and checkout a new
+     branch in one operation.
+
+'git clone'
+     Clone (make a new copy of) an existing repository.  You generally
+     only need to do this once.
+
+'git commit'
+     Commit changes to files which have been staged for committing with
+     'git add'.  This makes your changes permanent, _in your local
+     repository only_.  To publish your changes to an upstream repo, you
+     must use 'git push'.
+
+'git config'
+     Display and/or change global and/or local configuration settings.
+
+'git diff'
+     Show a unified-format diff of what's changed in the current
+     directory as of the last commit.  It helps to have Git configured
+     to use its builtin pager for reviewing diffs (*note Configuring
+     git::).
+
+'git difftool'
+     Use a "tool" (usually a GUI-based program) to view differences,
+     instead of the standard textual diff as you'd get from 'git diff'.
+
+'git fetch'
+     Update your local copy of the upstream's branches.  That is, update
+     the various 'origin/' branches.  This leaves your local tracking
+     branches unchanged.  With the '--prune' option, this removes any
+     copies of stale 'origin/' branches.
+
+'git format-patch'
+     Create a series of patch files, one per commit not on the original
+     branch from which you started.
+
+'git gc'
+     Run a "garbage collection" pass in the current repository.  This
+     can often reduce the space used in a large repo.  For 'gawk' it
+     does not make that much difference.
+
+'git help'
+     Print a man-page-style usage summary for a command.
+
+'git log'
+     Show the current branch's commit log.  This includes who made the
+     commit, the date, and the commit message.  Commits are shown from
+     newest to oldest.
+
+'git merge'
+     Merge changes from the named branch into the current one.
+
+'git pull'
+     When in your local tracking branch 'XXX', run 'git fetch', and then
+     merge from 'origin/XXX' into 'XXX'.
+
+'git push'
+     Push commits from your local tracking branch 'XXX' through
+     'origin/XXX' and on to branch 'XXX' in the upstream repo.  Use 'git
+     push -u origin --delete XXX' to delete an upstream branch.  (Do so
+     carefully!)
+
+'git rebase'
+     Rebase the changes in the current purely local branch to look as if
+     they had been made relative to the latest commit in the current
+     upstream branch (typically 'master').  This is how you keep your
+     local, in-progress changes up-to-date with respect to the original
+     branch from which they were started.
+
+'git reset'
+     Restore the original state of the repo, especially with the
+     '--hard' option.  Read up on this command, and use it carefully.
+
+'git status'
+     Show the status of files that are scheduled to be committed, and
+     those that have been modified but not yet scheduled for committing.
+     Use 'git add' to schedule a file for committing.  This command also
+     lists untracked files.
+
+
+File: gawkworkflow.info,  Node: Resources,  Next: TODO,  Prev: Cheat Sheet,  Up: Top
+
+Appendix B Git Resources
+************************
+
+There are many Git resources available on the Internet.  Start at the
+Git Project home page (http://git-scm.org).  In particular, the 'Pro
+Git' book (https://git-scm.com/book/en/v2) is available online.
+
+   See also the Savannah quick introduction to Git
+(http://savannah.gnu.org/maintenance/UsingGit).
+
+
+File: gawkworkflow.info,  Node: TODO,  Next: Index,  Prev: Resources,  Up: Top
+
+Appendix C Stuff Still To Do In This Document
+*********************************************
+
+   * Fill out all examples with full output
+
+
+File: gawkworkflow.info,  Node: Index,  Prev: TODO,  Up: Top
+
+Index
+*****
+
+ [index ]
+* Menu:
+
+* --help option for git:                 Cheat Sheet.          (line 10)
+* .developing file:                      Debugging.            (line 11)
+* .gitconfig file:                       Configuring git.      (line 27)
+* account, Savannah, creation of:        Initial setup.        (line 10)
+* assigning copyright:                   Doing paperwork.      (line  6)
+* autoconf:                              GNU Tools.            (line 15)
+* automake:                              GNU Tools.            (line 22)
+* autotools:                             GNU Tools.            (line  6)
+* Bernat, Yehezkel:                      Acknowledgments.      (line 10)
+* bootstrap.sh script:                   Cloning.              (line 41)
+* branch, main:                          Repo State.           (line 27)
+* branch, master:                        Repo State.           (line 27)
+* branches, dead:                        Repo State.           (line  8)
+* branches, feature:                     Repo State.           (line 35)
+* branches, local:                       Local Branches.       (line  6)
+* branches, origin/:                     Repo Copies.          (line 68)
+* branches, purely local:                Local State.          (line  6)
+* branches, removing:                    Removing Branches.    (line  6)
+* branches, removing <1>:                Repo Maintenance.     (line  9)
+* branches, renaming:                    Repo Maintenance.     (line 44)
+* branches, stable:                      Repo State.           (line 15)
+* branches, tracking:                    Local Branches.       (line 11)
+* ChangeLog file:                        Starting A New Branch.
+                                                               (line 19)
+* ChangeLog file <1>:                    Developing patches.   (line 11)
+* changes, submitting for review:        Submitting Changes.   (line 12)
+* clang compiler:                        Compilers.            (line 12)
+* coding style:                          Coding style.         (line  6)
+* committing changes:                    Starting A New Branch.
+                                                               (line 19)
+* compilers:                             Compilers.            (line  6)
+* compiling for debugging:               Debugging.            (line  6)
+* configuration setting, pager.status:   Configuring git.      (line 24)
+* configuration setting, push.default:   Configuring git.      (line 24)
+* configuration setting, user.email:     Configuring git.      (line 16)
+* configuration setting, user.name:      Configuring git.      (line 16)
+* configuration settings:                Configuring git.      (line  6)
+* configuration settings, global:        Configuring git.      (line  6)
+* configure.ac file:                     GNU Tools.            (line 15)
+* conflicts, from merging:               Merge Conflicts.      (line  6)
+* copyright, assignment:                 Doing paperwork.      (line  6)
+* cruft, removing:                       Repo Maintenance.     (line 27)
+* dead branches:                         Repo State.           (line  8)
+* debugging, compiling for:              Debugging.            (line  6)
+* directory ownership:                   General practices.    (line 17)
+* documentation files:                   Developing patches.   (line 13)
+* email address:                         Configuring git.      (line 14)
+* extensions, gawk:                      GNU Tools.            (line 34)
+* feature branches:                      Repo State.           (line 35)
+* fixes, propagating to other branches:  General practices.    (line 10)
+* gawk.1 manual page:                    Developing patches.   (line 13)
+* gawk.pot file:                         GNU Tools.            (line 27)
+* gawktexi.in documentation:             Developing patches.   (line 13)
+* GCC, the GNU Compiler Collection:      Compilers.            (line  6)
+* generating a single patch:             Submitting Changes.   (line 14)
+* generating multiple patches:           Submitting Changes.   (line 24)
+* gettext:                               GNU Tools.            (line 27)
+* git add:                               Starting A New Branch.
+                                                               (line 36)
+* git add <1>:                           Developing patches.   (line 26)
+* git add <2>:                           Developing new features.
+                                                               (line 24)
+* git add <3>:                           Developing new features.
+                                                               (line 36)
+* git add <4>:                           Developing fixes.     (line 10)
+* git branch:                            Repo Copies.          (line 38)
+* git branch <1>:                        Removing Branches.    (line  9)
+* git branch <2>:                        General practices.    (line 88)
+* git branch <3>:                        Repo Maintenance.     (line 20)
+* git branch command, -a option:         Remotes.              (line  6)
+* git checkout:                          Local Branches.       (line 11)
+* git checkout <1>:                      Switching Branches.   (line  9)
+* git checkout <2>:                      Starting A New Branch.
+                                                               (line 10)
+* git checkout <3>:                      Undoing a change.     (line 10)
+* git checkout <4>:                      Rebasing.             (line 10)
+* git checkout <5>:                      Submitting Changes.   (line 18)
+* git checkout <6>:                      Submitting Changes.   (line 27)
+* git checkout <7>:                      Removing Branches.    (line  9)
+* git checkout <8>:                      Points to remember.   (line 19)
+* git checkout <9>:                      Points to remember.   (line 32)
+* git checkout <10>:                     Points to remember.   (line 37)
+* git checkout <11>:                     Developing new features.
+                                                               (line  9)
+* git checkout <12>:                     Developing fixes.     (line 10)
+* git checkout <13>:                     General practices.    (line 43)
+* git checkout <14>:                     General practices.    (line 60)
+* git checkout <15>:                     General practices.    (line 73)
+* git clone:                             Repo Copies.          (line 42)
+* git clone <1>:                         Cloning.              (line  6)
+* git clone <2>:                         ssh clone.            (line 10)
+* git command, --help option:            Cheat Sheet.          (line 10)
+* git commit:                            Starting A New Branch.
+                                                               (line 49)
+* git commit <1>:                        Developing patches.   (line 26)
+* git commit <2>:                        Developing new features.
+                                                               (line 24)
+* git commit <3>:                        Developing new features.
+                                                               (line 36)
+* git commit <4>:                        Developing fixes.     (line 10)
+* git config:                            Configuring git.      (line 11)
+* git diff:                              Starting A New Branch.
+                                                               (line 29)
+* git diff <1>:                          Submitting Changes.   (line 18)
+* git diff <2>:                          Points to remember.   (line 32)
+* git diff <3>:                          Developing patches.   (line 16)
+* git diff <4>:                          Developing patches.   (line 26)
+* git diff <5>:                          Developing new features.
+                                                               (line 24)
+* git diff <6>:                          Developing new features.
+                                                               (line 36)
+* git diff <7>:                          Developing fixes.     (line 10)
+* git difftool:                          Starting A New Branch.
+                                                               (line 29)
+* git fetch:                             General practices.    (line 94)
+* git fetch <1>:                         Repo Maintenance.     (line 25)
+* git format-patch:                      Submitting Changes.   (line 24)
+* git gc:                                Repo Maintenance.     (line 33)
+* git help:                              Cheat Sheet.          (line 10)
+* git log:                               Starting A New Branch.
+                                                               (line 51)
+* git merge:                             Points to remember.   (line 37)
+* git merge <1>:                         General practices.    (line 60)
+* git merge <2>:                         General practices.    (line 73)
+* Git Project:                           Preface.              (line 10)
+* git pull:                              Cloning.              (line 32)
+* git pull <1>:                          Switching Branches.   (line  9)
+* git pull <2>:                          Rebasing.             (line 10)
+* git pull <3>:                          Removing Branches.    (line  9)
+* git pull <4>:                          Points to remember.   (line 19)
+* git pull <5>:                          Points to remember.   (line 37)
+* git pull <6>:                          Developing new features.
+                                                               (line  9)
+* git pull <7>:                          Developing fixes.     (line 10)
+* git pull <8>:                          Developing fixes.     (line 19)
+* git pull <9>:                          General practices.    (line 43)
+* git pull <10>:                         General practices.    (line 60)
+* git pull <11>:                         General practices.    (line 73)
+* git pull <12>:                         Repo Maintenance.     (line 20)
+* git push:                              Local Branches.       (line 16)
+* git push <1>:                          Developing patches.   (line 26)
+* git push <2>:                          Developing new features.
+                                                               (line 24)
+* git push <3>:                          Developing new features.
+                                                               (line 36)
+* git push <4>:                          Developing fixes.     (line 19)
+* git push <5>:                          General practices.    (line 83)
+* git push <6>:                          General practices.    (line 88)
+* git rebase:                            Rebasing.             (line 10)
+* git rebase <1>:                        Points to remember.   (line 25)
+* git rebase <2>:                        General practices.    (line 43)
+* git reset:                             Undoing a change.     (line 12)
+* git reset, --hard option:              Cheat Sheet.          (line 93)
+* git status:                            Starting A New Branch.
+                                                               (line 23)
+* git status <1>:                        Starting A New Branch.
+                                                               (line 41)
+* GitHub:                                Contributing.         (line 57)
+* global configuration settings:         Configuring git.      (line  6)
+* GNU autoconf:                          GNU Tools.            (line 15)
+* GNU automake:                          GNU Tools.            (line 22)
+* GNU gettext:                           GNU Tools.            (line 27)
+* GNU libtool:                           GNU Tools.            (line 34)
+* GNU makeinfo:                          GNU Tools.            (line 41)
+* GNU software tools:                    GNU Tools.            (line  6)
+* GNU Texinfo:                           GNU Tools.            (line 41)
+* Kahrs, Ju"rgen:                        Acknowledgments.      (line  6)
+* libtool:                               GNU Tools.            (line 34)
+* local branches:                        Local Branches.       (line  6)
+* main branch:                           Repo State.           (line 27)
+* Makefile.am file:                      GNU Tools.            (line 22)
+* makeinfo:                              GNU Tools.            (line 41)
+* master branch:                         Repo State.           (line 27)
+* meld utility:                          Starting A New Branch.
+                                                               (line 29)
+* merge conflicts:                       Merge Conflicts.      (line  6)
+* old branches, removing:                Repo Maintenance.     (line  9)
+* origin/ branches:                      Repo Copies.          (line 68)
+* ownership of directories:              General practices.    (line 17)
+* pager.status configuration setting:    Configuring git.      (line 24)
+* patch, single, generation of:          Submitting Changes.   (line 14)
+* patches, multiple, generation of:      Submitting Changes.   (line 24)
+* pcc compiler:                          Compilers.            (line 40)
+* pcc compiler, Git mirror:              Compilers.            (line 50)
+* Portable C compiler:                   Compilers.            (line 40)
+* Pro Git book:                          Resources.            (line  6)
+* propagating fixes to other branches:   General practices.    (line 10)
+* purely local branches:                 Local State.          (line  6)
+* push.default configuration setting:    Configuring git.      (line 24)
+* rebasing:                              Rebasing.             (line  6)
+* removing branches:                     Removing Branches.    (line  6)
+* removing cruft:                        Repo Maintenance.     (line 27)
+* removing old branches:                 Repo Maintenance.     (line  9)
+* renaming branches:                     Repo Maintenance.     (line 44)
+* Repository, gawk, URL for:             Cloning.              (line 13)
+* Repository, gawk, URL for <1>:         ssh clone.            (line 10)
+* review, changes you made:              Submitting Changes.   (line 12)
+* Savannah, creating an account:         Initial setup.        (line 10)
+* Savannah, using Git guide:             Resources.            (line 10)
+* settings, configuration:               Configuring git.      (line  6)
+* software tools:                        Tools.                (line  6)
+* ssh key:                               Initial setup.        (line 10)
+* stable branches:                       Repo State.           (line 15)
+* tcc compiler:                          Compilers.            (line 22)
+* Texinfo:                               Conventions.          (line  6)
+* Texinfo <1>:                           GNU Tools.            (line 41)
+* Tiny C compiler:                       Compilers.            (line 22)
+* tracking branches:                     Local Branches.       (line 11)
+* URL, for cloning repositories:         Cloning.              (line 10)
+* URL, for gawk repository:              Cloning.              (line 13)
+* URL, for gawk repository <1>:          ssh clone.            (line 10)
+* user.email configuration setting:      Configuring git.      (line 16)
+* user.name configuration setting:       Configuring git.      (line 16)
+
+
+
+Tag Table:
+Node: Top1115
+Node: Preface5199
+Node: This Manual6095
+Node: Conventions7584
+Node: Acknowledgments9053
+Node: Reviewers9490
+Node: Contributing9811
+Ref: Contributing-Footnote-113166
+Node: Using Git13198
+Node: Push Pull13954
+Node: Repo Copies15369
+Ref: savannah-repo16352
+Ref: your-repo17385
+Ref: Repo Copies-Footnote-119079
+Node: Local Branches19136
+Ref: your-repo-220914
+Ref: Local Branches-Footnote-121995
+Node: Branches are state22053
+Node: Repo State22776
+Node: Local State24896
+Node: Remotes25560
+Node: Configuring git26874
+Ref: Configuring git-Footnote-129227
+Node: Development without commit access29396
+Node: Cloning30398
+Node: Switching Branches32257
+Node: Starting A New Branch32910
+Ref: Starting A New Branch-Footnote-134798
+Ref: Starting A New Branch-Footnote-234856
+Node: Undoing a change34932
+Node: Updating35533
+Node: Rebasing36035
+Node: Merge Conflicts36647
+Node: Submitting Changes38147
+Ref: Submitting Changes-Footnote-140291
+Ref: Submitting Changes-Footnote-240328
+Ref: Submitting Changes-Footnote-340364
+Node: Removing Branches40410
+Node: Points to remember40946
+Node: Development with commit access42623
+Node: Initial setup43268
+Node: ssh clone44056
+Node: Developing patches44653
+Node: Developing new features45989
+Node: Developing fixes47893
+Node: General practices48980
+Node: Repo Maintenance53722
+Ref: Repo Maintenance-Footnote-156491
+Node: Development Stuff56624
+Node: Coding style57187
+Ref: Coding style-Footnote-157845
+Node: Doing paperwork57935
+Node: Tools58730
+Node: GNU Tools59312
+Node: Compilers61473
+Ref: Compilers-Footnote-163967
+Node: Debugging64005
+Node: Cheat Sheet64711
+Node: Resources68398
+Node: TODO68841
+Node: Index69061
+
+End Tag Table

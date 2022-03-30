@@ -1,0 +1,13 @@
+prefix=/home/defjovi/temp3/toolchain/crosstools-aarch64-gcc-9.2-linux-4.19-glibc-2.30-binutils-2.32
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Python
+Description: Python library
+Requires: 
+Version: 2.7
+Libs.private: -lpthread -ldl  -lutil
+Libs: -L${libdir} -lpython2.7
+Cflags: -I${includedir}/python2.7 
+
