@@ -25,12 +25,12 @@ struct geoip_subnet {
 };
 
 struct geoip_info {
-   struct geoip_subnet *subnets;
+   aligned_u64 subnets;
    u_int32_t count;
    u_int32_t ref;
    u_int16_t cc;
-   struct geoip_info *next;
-   struct geoip_info *prev;
+   aligned_u64 next;
+   aligned_u64 prev;
 };
 
 struct xt_geoip_match_info {
@@ -39,8 +39,8 @@ struct xt_geoip_match_info {
    u_int16_t cc[XT_GEOIP_MAX];
 
    /* Used internally by the kernel */
-   struct geoip_info *mem[XT_GEOIP_MAX];
-   u_int8_t *refcount;
+   aligned_u64 mem[XT_GEOIP_MAX];
+   aligned_u64 refcount;
 
    /* not implemented yet:
    void *fini;
