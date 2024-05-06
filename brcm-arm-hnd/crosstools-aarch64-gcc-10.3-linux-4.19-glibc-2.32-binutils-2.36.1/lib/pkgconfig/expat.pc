@@ -1,0 +1,11 @@
+prefix=/auto/tool_build/bintools_04/crosstools-aarch64-gcc-10.3-linux-4.19-glibc-2.32-binutils-2.36.1
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: expat
+Version: 2.4.1
+Description: expat XML parser
+URL: http://www.libexpat.org
+Libs: -L${libdir} -lexpat
+Cflags: -I${includedir}

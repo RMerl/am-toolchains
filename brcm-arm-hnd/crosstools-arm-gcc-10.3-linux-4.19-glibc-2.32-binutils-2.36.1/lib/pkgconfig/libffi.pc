@@ -1,0 +1,11 @@
+prefix=/auto/tool_build/bintools_04/crosstools-arm-gcc-10.3-linux-4.19-glibc-2.32-binutils-2.36.1
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+toolexeclibdir=${libdir}/../lib64
+includedir=${prefix}/include
+
+Name: libffi
+Description: Library supporting Foreign Function Interfaces
+Version: 3.3
+Libs: -L${toolexeclibdir} -lffi
+Cflags: -I${includedir}

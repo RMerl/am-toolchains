@@ -1,0 +1,11 @@
+prefix=/auto/tool_build/bintools_04/crosstools-arm-gcc-10.3-linux-4.19-glibc-2.32-binutils-2.36.1
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: mpfr
+URL: https://www.mpfr.org/
+Description: C library for multiple-precision floating-point computations
+Version: 4.0.2
+Libs: -L${libdir} -lmpfr -lgmp
+Cflags: -I${includedir}

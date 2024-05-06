@@ -1,0 +1,5 @@
+#!/auto/tool_build/bintools_04/crosstools-aarch64-gcc-10.3-linux-4.19-glibc-2.32-binutils-2.36.1/bin/python2.7
+
+import pydoc
+if __name__ == '__main__':
+    pydoc.cli()

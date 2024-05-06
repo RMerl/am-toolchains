@@ -1,0 +1,465 @@
+.TH FILEFUNCS 3am "Feb 21 2018" "Free Software Foundation" "GNU Awk Extension Modules"
+.SH NAME
+filefuncs \- provide some file related functionality to gawk
+.SH SYNOPSIS
+.ft CW
+@load "filefuncs"
+.sp
+result = chdir("/some/directory")
+.sp
+result = stat("/some/path", statdata [, follow])
+.sp
+flags = or(FTS_PHYSICAL, ...)
+.br
+result = fts(pathlist, flags, filedata)
+.sp
+result = statvfs("/some/path", fsdata)
+.ft R
+.SH DESCRIPTION
+The
+.I filefuncs
+extension adds several functions that provide access to
+file-related facilities.
+.SS chdir()
+The
+.B chdir()
+function is a direct hook to the
+.IR chdir (2)
+system call to change the current directory.
+It returns zero
+upon success or less than zero upon error.
+In the latter case it updates
+.BR ERRNO .
+.SS stat()
+The
+.B stat()
+function provides a hook into the
+.IR stat (2)
+system call.
+It returns zero
+upon success or less than zero upon error.
+In the latter case it updates
+.BR ERRNO .
+By default, it uses
+.IR lstat (2).
+However, if passed a third argument, it uses
+.IR stat (2),
+instead.
+.PP
+In all cases, it clears the
+.B statdata
+array.
+When the call is successful,
+.B stat()
+fills the
+.B statdata
+array with information retrieved from the filesystem, as follows:
+.TP
+\fBstatdata["name"]\fP
+The name of the file, equal to the first argument passed to
+.BR stat() .
+.TP
+\fBstatdata["dev"]\fP
+Corresponds to the
+.I st_dev
+field in the
+.IR "struct stat" .
+.TP
+\fBstatdata["ino"]\fP
+Corresponds to the
+.I st_ino
+field in the
+.IR "struct stat" .
+.TP
+\fBstatdata["mode"]\fP
+Corresponds to the
+.I st_mode
+field in the
+.IR "struct stat" .
+.TP
+\fBstatdata["nlink"]\fP
+Corresponds to the
+.I st_nlink
+field in the
+.IR "struct stat" .
+.TP
+\fBstatdata["uid"]\fP
+Corresponds to the
+.I st_uid
+field in the
+.IR "struct stat" .
+.TP
+\fBstatdata["gid"]\fP
+Corresponds to the
+.I st_gid
+field in the
+.IR "struct stat" .
+.TP
+\fBstatdata["size"]\fP
+Corresponds to the
+.I st_size
+field in the
+.IR "struct stat" .
+.TP
+\fBstatdata["atime"]\fP
+Corresponds to the
+.I st_atime
+field in the
+.IR "struct stat" .
+.TP
+\fBstatdata["mtime"]\fP
+Corresponds to the
+.I st_mtime
+field in the
+.IR "struct stat" .
+.TP
+\fBstatdata["ctime"]\fP
+Corresponds to the
+.I st_ctime
+field in the
+.IR "struct stat" .
+.TP
+\fBstatdata["rdev"]\fP
+Corresponds to the
+.I st_rdev
+field in the
+.IR "struct stat" .
+This element is only present for device files.
+.TP
+\fBstatdata["major"]\fP
+Corresponds to the
+.I st_major
+field in the
+.IR "struct stat" .
+This element is only present for device files.
+.TP
+\fBstatdata["minor"]\fP
+Corresponds to the
+.I st_minor
+field in the
+.IR "struct stat" .
+This element is only present for device files.
+.TP
+\fBstatdata["blksize"]\fP
+Corresponds to the
+.I st_blksize
+field in the
+.IR "struct stat" ,
+if this field is present on your system.
+(It is present on all modern systems that we know of.)
+.TP
+\fBstatdata["pmode"]\fP
+A human-readable version of the mode value, such as printed by
+.IR ls (1).
+For example, \fB"-rwxr-xr-x"\fP.
+.TP
+\fBstatdata["linkval"]\fP
+If the named file is a symbolic link, this element will exist
+and its value is the value of the symbolic link (where the
+symbolic link points to).
+.TP
+\fBstatdata["type"]\fP
+The type of the file as a string. One of
+\fB"file"\fP,
+\fB"blockdev"\fP,
+\fB"chardev"\fP,
+\fB"directory"\fP,
+\fB"socket"\fP,
+\fB"fifo"\fP,
+\fB"symlink"\fP,
+\fB"door"\fP,
+or
+\fB"unknown"\fP.
+Not all systems support all file types.
+.SS fts()
+The
+.B fts()
+function provides a hook to the
+.IR fts (3)
+set of routines for traversing file hierarchies.
+Instead of returning data about one file at a time in a stream,
+it fills in a multi-dimensional array with data about each file and
+directory encountered in the requested hierarchies.
+.PP
+The arguments are as follows:
+.TP
+.B pathlist
+An array of filenames.  The element values are used; the index values are ignored.
+.TP
+.B flags
+This should be the bitwise OR of one or more of the following
+predefined flag values.  At least one of
+.B FTS_LOGICAL
+or
+.B FTS_PHYSICAL
+must be provided; otherwise
+.B fts()
+returns an error value and sets
+.BR ERRNO .
+.RS
+.TP
+.B FTS_LOGICAL
+Do a ``logical'' file traversal, where the information returned for
+a symbolic link refers to the linked-to file, and not to the
+symbolic link itself.
+This flag is mutually exclusive with
+.BR FTS_PHYSICAL .
+.TP
+.B FTS_PHYSICAL
+Do a ``physical'' file traversal, where the information returned for
+a symbolic link refers to the symbolic link itself.
+This flag is mutually exclusive with
+.BR FTS_LOGICAL .
+.TP
+.B FTS_NOCHDIR
+As a performance optimization, the
+.IR fts (3)
+routines change directory as they traverse a file hierarchy.
+This flag disables that optimization.
+.TP
+.B FTS_COMFOLLOW
+Immediately follow a symbolic link named in
+.BR pathlist ,
+whether or not
+.B FTS_LOGICAL
+is set.
+.TP
+.B FTS_SEEDOT
+By default, the
+.IR fts (3)
+routines do not return entries for ``.'' and ``..''.
+This option causes entries for ``..'' to also be included.
+(The AWK extension always includes an entry for ``.'', see below.)
+.TP
+.B FTS_XDEV
+During a traversal, do not cross onto a different mounted filesystem.
+.TP
+.B FTS_SKIP
+When set, causes top level directories to not be descended into.
+.RE
+.TP
+.B filedata
+The
+.B filedata
+array is first cleared.
+Then,
+.B fts()
+creates an element in
+.B filedata
+for every element in
+.BR pathlist .
+The index is the name of the directory or file given in
+.BR pathlist .
+The element for this index is itself an array.
+There are two cases.
+.RS
+.TP
+The path is a file.
+In this case, the array contains two or three elements:
+.RS
+.TP
+\fB"path"\fP
+The full path to this file, starting from the ``root'' that was given
+in the
+.B pathlist
+array.
+.TP
+\fB"stat"\fP
+This element is itself an array, containing the same information as provided
+by the
+.B stat()
+function described earlier for its
+.B statdata
+argument.
+The element may not be present if
+.IR stat (2)
+for the file failed.
+.TP
+\fB"error"\fP
+If some kind of error was encountered, the array will also
+contain an element named \fB"error"\fP, which is a string describing the error.
+.RE
+.TP
+The path is a directory.
+In this case, the array contains one element for each entry in the directory.
+If an entry is a file, that element is as for files, just described.
+If the entry is a directory, that element is (recursively), an array describing
+the subdirectory.
+If
+.B FTS_SEEDOT
+was provided in the flags, then there will also be an element named
+\fB".."\fP.  This element will be an array containing the data
+as provided by
+.BR stat() .
+.sp
+In addition, there will be an element whose index is \fB"."\fP.
+This element is an array containing the same two or three elements
+as for a file:
+\fB"path"\fP,
+\fB"stat"\fP,
+and
+\fB"error"\fP.
+.RE
+.PP
+The
+.B fts()
+function returns 0 if there were no errors. Otherwise it returns \-1.
+.SS statvfs()
+The
+.B statvfs()
+function provides a hook into the
+.IR statvfs (2)
+system call on systems that supply this system call.
+It returns zero
+upon success or less than zero upon error.
+In the latter case it updates
+.BR ERRNO .
+.PP
+When the call is successful,
+.B statvfs()
+fills the
+.B fsdata
+array with information retrieved about the filesystem, as follows:
+.TP
+\fBfsdata["bsize"]\fP
+Corresponds to the
+.B bsize
+member in the
+.IR "struct statvfs" .
+.TP
+\fBfsdata["frsize"]\fP
+Corresponds to the
+.I f_frsize
+member in the
+.IR "struct statvfs" .
+.TP
+\fBfsdata["blocks"]\fP
+Corresponds to the
+.I f_blocks
+member in the
+.IR "struct statvfs" .
+.TP
+\fBfsdata["bfree"]\fP
+Corresponds to the
+.I f_bfree
+member in the
+.IR "struct statvfs" .
+.TP
+\fBfsdata["bavail"]\fP
+Corresponds to the
+.I f_bavail
+member in the
+.IR "struct statvfs" .
+.TP
+\fBfsdata["files"]\fP
+Corresponds to the
+.I f_files
+member in the
+.IR "struct statvfs" .
+.TP
+\fBfsdata["ffree"]\fP
+Corresponds to the
+.I f_ffree
+member in the
+.IR "struct statvfs" .
+.TP
+\fBfsdata["favail"]\fP
+Corresponds to the
+.I f_favail
+member in the
+.IR "struct statvfs" .
+.TP
+\fBfsdata["fsid"]\fP
+Corresponds to the
+.I f_fsid
+member in the
+.IR "struct statvfs" .
+This member is not available on all systems.
+.TP
+\fBfsdata["flag"]\fP
+Corresponds to the
+.I f_flag
+member in the
+.IR "struct statvfs" .
+.TP
+\fBfsdata["namemax"]\fP
+Corresponds to the
+.I f_namemax
+member in the
+.IR "struct statvfs" .
+.SH NOTES
+The AWK
+.B fts()
+extension does not exactly mimic the interface of the
+.IR fts (3)
+routines, choosing instead to provide an interface that is based
+on associative arrays, which should be more comfortable to use from
+an AWK program.  This includes the lack of a comparison function, since
+.I gawk
+already provides powerful array sorting facilities.  While an
+.IR fts_read() \-like
+interface could have been provided, this felt less natural than
+simply creating a multi-dimensional array to represent the file
+hierarchy and its information.
+.PP
+Nothing prevents AWK code from changing the predefined
+.BI FTS_ xx
+values, but doing so may cause strange results when
+the changed values are passed to
+.BR fts() .
+.SH BUGS
+There are many more file-related functions for which AWK
+interfaces would be desirable.
+.PP
+It's not clear why I thought adding
+.B FTS_SKIP
+was a good idea.
+.SH EXAMPLE
+See
+.B test/fts.awk
+in the
+.I gawk
+distribution for an example.
+.SH "SEE ALSO"
+.IR "GAWK: Effective AWK Programming" ,
+.IR fnmatch (3am),
+.IR fork (3am),
+.IR inplace (3am),
+.IR ordchr (3am),
+.IR readdir (3am),
+.IR readfile (3am),
+.IR revoutput (3am),
+.IR rwarray (3am),
+.IR time (3am).
+.PP
+.IR chdir (2),
+.IR fts (3),
+.IR stat (2),
+.IR statvfs (2).
+.SH AUTHOR
+Arnold Robbins,
+.BR arnold@skeeve.com .
+.SH COPYING PERMISSIONS
+Copyright \(co 2012, 2013, 2018, 2019,
+Free Software Foundation, Inc.
+.PP
+Permission is granted to make and distribute verbatim copies of
+this manual page provided the copyright notice and this permission
+notice are preserved on all copies.
+.ig
+Permission is granted to process this file through troff and print the
+results, provided the printed document carries copying permission
+notice identical to this one except for the removal of this paragraph
+(this paragraph not being relevant to the printed manual page).
+..
+.PP
+Permission is granted to copy and distribute modified versions of this
+manual page under the conditions for verbatim copying, provided that
+the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+.PP
+Permission is granted to copy and distribute translations of this
+manual page into another language, under the above conditions for
+modified versions, except that this permission notice may be stated in
+a translation approved by the Foundation.
+.\" vim: set filetype=nroff :

@@ -1,0 +1,11 @@
+prefix=/auto/tool_build/bintools_04/crosstools-aarch64-gcc-10.3-linux-4.19-glibc-2.32-binutils-2.36.1
+exec_prefix=${prefix}
+includedir=${prefix}/include
+libdir=${exec_prefix}/lib
+
+Name: libpkgconf
+Description: a library for accessing and manipulating development framework configuration
+URL: http://github.com/pkgconf/pkgconf
+Version: 1.6.3
+CFlags: -I${includedir}/pkgconf
+Libs: -L${libdir} -lpkgconf

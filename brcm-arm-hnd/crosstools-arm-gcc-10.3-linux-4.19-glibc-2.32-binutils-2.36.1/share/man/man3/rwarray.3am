@@ -1,0 +1,104 @@
+.TH RWARRAY 3am "Feb 02 2018" "Free Software Foundation" "GNU Awk Extension Modules"
+.SH NAME
+writea, reada \- write and read gawk arrays to/from files
+.SH SYNOPSIS
+.ft CW
+@load "rwarray"
+.sp
+ret = writea(file, array)
+.br
+ret = reada(file, array)
+.ft R
+.SH DESCRIPTION
+The
+.I rwarray
+extension adds two functions named
+.BR writea() .
+and
+.BR reada() ,
+as follows.
+.TP
+.B writea()
+This function takes a string argument, which is the name of the
+file to which dump the array, and the array itself as the second
+argument.
+.B writea()
+understands multidimensional arrays.
+It returns one on success, or zero upon failure.
+.TP
+.B reada()
+is the inverse of
+.BR writea() ;
+it reads the file named as its first argument, filling in
+the array named as the second argument. It clears the array
+first.
+Here too, the return value is one on success and zero upon failure.
+.SH NOTES
+The array created by
+.B reada()
+is identical to that written by
+.B writea()
+in the sense that the contents are the same. However, due
+to implementation issues, the array traversal order of the recreated
+array will likely be different from that of the original array.
+As array traversal order in AWK is by default undefined, this is
+not (technically) a problem.  If you need to guarantee a particular
+traversal order, use the array sorting features in
+.I gawk
+to do so.
+.PP
+The file contains binary data.  All integral values are written
+in network byte order.
+However, double precision floating-point values are written as
+native binary data.  Thus, arrays containing only string data
+can theoretically be dumped on systems with one byte order and
+restored on systems with a different one, but this has not been tried.
+.\" .SH BUGS
+.SH EXAMPLE
+.ft CW
+.nf
+@load "rwarray"
+\&...
+ret = writea("arraydump.bin", array)
+\&...
+ret = reada("arraydump.bin", array)
+.fi
+.ft R
+.SH "SEE ALSO"
+.IR "GAWK: Effective AWK Programming" ,
+.IR filefuncs (3am),
+.IR fnmatch (3am),
+.IR fork (3am),
+.IR inplace (3am),
+.IR ordchr (3am),
+.IR readdir (3am),
+.IR readfile (3am),
+.IR revoutput (3am),
+.IR time (3am).
+.SH AUTHOR
+Arnold Robbins,
+.BR arnold@skeeve.com .
+.SH COPYING PERMISSIONS
+Copyright \(co 2012, 2013, 2018,
+Free Software Foundation, Inc.
+.PP
+Permission is granted to make and distribute verbatim copies of
+this manual page provided the copyright notice and this permission
+notice are preserved on all copies.
+.ig
+Permission is granted to process this file through troff and print the
+results, provided the printed document carries copying permission
+notice identical to this one except for the removal of this paragraph
+(this paragraph not being relevant to the printed manual page).
+..
+.PP
+Permission is granted to copy and distribute modified versions of this
+manual page under the conditions for verbatim copying, provided that
+the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+.PP
+Permission is granted to copy and distribute translations of this
+manual page into another language, under the above conditions for
+modified versions, except that this permission notice may be stated in
+a translation approved by the Foundation.
+.\" vim: set filetype=nroff :
