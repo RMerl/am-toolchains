@@ -1,0 +1,2 @@
+add-auto-load-safe-path /auto/toolbuild/bintools//crosstools-aarch64-gcc-13.2-linux-5.15-glibc-2.38-binutils-2.41/aarch64-buildroot-linux-gnu/sysroot
+set sysroot /auto/toolbuild/bintools//crosstools-aarch64-gcc-13.2-linux-5.15-glibc-2.38-binutils-2.41/aarch64-buildroot-linux-gnu/sysroot

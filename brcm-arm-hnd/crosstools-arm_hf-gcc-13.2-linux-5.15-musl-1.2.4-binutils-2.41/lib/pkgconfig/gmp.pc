@@ -1,0 +1,11 @@
+prefix=/auto/toolbuild/bintools//crosstools-arm_hf-gcc-13.2-linux-5.15-musl-1.2.4-binutils-2.41
+exec_prefix=${prefix}
+includedir=${prefix}/include
+libdir=${exec_prefix}/lib
+
+Name: GNU MP
+Description: GNU Multiple Precision Arithmetic Library
+URL: https://gmplib.org
+Version: 6.3.0
+Cflags: -I${includedir}
+Libs: -L${libdir} -lgmp

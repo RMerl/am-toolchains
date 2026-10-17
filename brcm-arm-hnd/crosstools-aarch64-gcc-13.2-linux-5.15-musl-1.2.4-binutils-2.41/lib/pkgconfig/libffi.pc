@@ -1,0 +1,11 @@
+prefix=/auto/toolbuild/bintools//crosstools-aarch64-gcc-13.2-linux-5.15-musl-1.2.4-binutils-2.41
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+toolexeclibdir=${libdir}/../lib64
+includedir=${prefix}/include
+
+Name: libffi
+Description: Library supporting Foreign Function Interfaces
+Version: 3.4.4
+Libs: -L${toolexeclibdir} -lffi
+Cflags: -I${includedir}

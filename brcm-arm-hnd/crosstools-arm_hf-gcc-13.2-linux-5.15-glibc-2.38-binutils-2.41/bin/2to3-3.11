@@ -1,0 +1,5 @@
+#!/auto/toolbuild/bintools//crosstools-arm_hf-gcc-13.2-linux-5.15-glibc-2.38-binutils-2.41/bin/python3.11
+import sys
+from lib2to3.main import main
+
+sys.exit(main("lib2to3.fixes"))

@@ -1,0 +1,208 @@
+.ds EP \fIGAWK: Effective AWK Programming\fP
+.ds PM \fIPersistent Memory gawk User Manual\fP
+.TH PM-GAWK 1 "Nov 17 2022" "Free Software Foundation" "Utility Commands"
+.SH NAME
+persistent memory gawk \- persistent data and functions
+.SH SYNOPSIS
+.ft CW
+.nf
+truncate -s \f(CIsize\fP heap.pma
+export GAWK_PERSIST_FILE=heap.pma
+gawk .\^.\^.
+.sp
+truncate -s \f(CIsize\fP heap.pma
+GAWK_PERSIST_FILE=heap.pma gawk .\^.\^.
+.sp
+truncate -s \f(CIsize\fP heap.pma
+alias pm='GAWK_PERSIST_FILE=heap.pma'
+pm gawk .\^.\^.                       # succinct
+.sp
+unset GAWK_PERSIST_FILE   # disable persistence
+.sp
+export GAWK_PERSIST_FILE=other_heap.pma  # change heap
+.sp
+rm heap.pma               # delete heap
+.fi
+.ft R
+.SH DESCRIPTION
+.PP
+.I Gawk
+5.2 and later supports a persistent memory feature that
+can store script-defined variables and functions in a
+file for later use.  The feature, called
+.IR pm-gawk ,
+is described in \*(EP and in \*(PM.
+.PP
+.I pm-gawk
+is activated by passing to
+.I gawk
+the name of an initially empty
+(all-zero-bytes)
+.IR "heap file" ,
+via the environment variable
+\f(CWGAWK_PERSIST_FILE\fP.
+.I pm-gawk
+retains script-defined variables and functions in the heap file for
+use in subsequent
+.I gawk
+invocations.
+.PP
+.I pm-gawk
+offers at least two advantages compared with the existing \f(CWrwarray\fP
+extension: it offers constant-time (``O(1) time'') access to individual
+elements of persistent associative arrays, and it can store script-defined
+functions in addition to variables.
+.SH EXAMPLES
+.PP
+Demonstrate persistent variables:
+.sp .5
+.RS
+.nf
+.ft CW
+$ \f(CBtruncate -s 1G heap.pma\fP            # create heap file
+$ \f(CBexport GAWK_PERSIST_FILE=heap.pma\fP  # "ambient" env var
+$ \f(CBgawk 'BEGIN { print ++i }'\fP
+1
+$ \f(CBgawk 'BEGIN { print ++i }'\fP
+2
+$ \f(CBgawk 'BEGIN { print ++i }'\fP
+3
+.ft R
+.fi
+.RE
+.PP
+To pass the environment variable on per-command basis:
+.sp .5
+.RS
+.nf
+.ft CW
+$ \f(CBunset GAWK_PERSIST_FILE\fP
+$ \f(CBGAWK_PERSIST_FILE=heap.pma gawk 'BEGIN { print ++i }'\fP
+4
+$ \f(CBGAWK_PERSIST_FILE=heap.pma gawk 'BEGIN { print ++i }'\fP
+5
+$ \f(CBGAWK_PERSIST_FILE=heap.pma gawk 'BEGIN { print ++i }'\fP
+6
+.ft R
+.fi
+.RE
+.PP
+To reduce visual clutter of per-command environment variable passing:
+.sp .5
+.RS
+.nf
+.ft CW
+$ \f(CBalias pm='GAWK_PERSIST_FILE=heap.pma'\fP
+$ \f(CBpm gawk 'BEGIN { print ++i }'\fP
+7
+$ \f(CBpm gawk 'BEGIN { print ++i }'\fP
+8
+.ft R
+.fi
+.RE
+.PP
+To refrain from activating persistence:
+.sp .5
+.RS
+.nf
+.ft CW
+$ \f(CBunset GAWK_PERSIST_FILE\fP
+$ \f(CBgawk 'BEGIN { print ++i }'\fP
+1
+$ \f(CBgawk 'BEGIN { print ++i }'\fP
+1
+.ft R
+.fi
+.RE
+.PP
+To permanently ``forget'' the contents of the heap file:
+.sp .5
+.RS
+.nf
+.ft CW
+$ \f(CBrm heap.pma\fP
+.ft R
+.fi
+.RE
+.PP
+.SH ENVIRONMENT VARIABLES
+.PP
+\f(CWGAWK_PERSIST_FILE\fP contains the name of a heap file where
+script-defined variables and functions are stored.  If this environment
+variable is not visible to
+.IR gawk ,
+the
+persistence feature is not activated and
+.I gawk
+behaves in
+its traditional manner.
+.SH VERSION INFORMATION
+.PP
+Persistent memory
+.I gawk
+was first released in
+.I gawk
+5.2.
+.SH AUTHORS
+Arnold Robbins, the maintainer of
+.IR gawk ,
+implemented 
+.I pm-gawk
+using a persistent memory allocator (pma) provided by
+Terence Kelly.  An earlier proof-of-concept prototype
+of persistent
+.I gawk
+was developed by Haris Volos, Zi Fan
+Tan, and Jianan Li using a fork of the official
+.I gawk
+sources.
+.SH CAVEATS
+The GNU/Linux CIFS filesystem is known to cause problems
+for the persistent memory allocator. Do not use a backing file
+on such a filesystem with
+.IR pm-gawk .
+.SH BUG REPORTS
+Follow the procedures in \*(EP and in \*(PM.
+For suspected
+bugs related to persistence (as opposed to other
+non-persistence-related
+.I gawk
+bugs) please also send
+e-mail to Terence Kelly at one or more of these addresses:
+\f(CWtpkelly@acm.org\fP,
+\f(CWtpkelly@eecs.umich.edu\fP,
+or
+\f(CWtpkelly@cs.princeton.edu\fP.
+.SH SEE ALSO
+.IR gawk (1),
+\*(EP,
+and
+\*(PM.
+The two manuals should be available in the Info subsystem
+if Info installed on your system.
+.PP
+See \f(CWhttps://web.eecs.umich.edu/~tpkelly/pma/\fP for
+the latest source code and manual.
+.SH COPYING PERMISSIONS
+Copyright \(co 2022
+Terence Kelly.
+.PP
+Permission is granted to make and distribute verbatim copies of
+this manual page provided the copyright notice and this permission
+notice are preserved on all copies.
+.ig
+Permission is granted to process this file through troff and print the
+results, provided the printed document carries copying permission
+notice identical to this one except for the removal of this paragraph
+(this paragraph not being relevant to the printed manual page).
+..
+.PP
+Permission is granted to copy and distribute modified versions of this
+manual page under the conditions for verbatim copying, provided that
+the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+.PP
+Permission is granted to copy and distribute translations of this
+manual page into another language, under the above conditions for
+modified versions, except that this permission notice may be stated in
+a translation approved by the Foundation.

@@ -1,0 +1,126 @@
+.TH FNMATCH 3am "Feb 21 2018" "Free Software Foundation" "GNU Awk Extension Modules"
+.SH NAME
+fnmatch \- compare a string against a filename wildcard
+.SH SYNOPSIS
+.ft CW
+@load "fnmatch"
+.sp
+result = fnmatch(pattern, string, flags)
+.ft R
+.SH DESCRIPTION
+The
+.I fnmatch
+extension provides an AWK interface to the
+.IR fnmatch (3)
+routine.  It adds a single function named
+.BR fnmatch() ,
+one predefined variable
+.RB ( FNM_NOMATCH ),
+and an array of flag values named
+.BR FNM .
+.PP
+The first argument is the filename wildcard to match, the second
+is the filename string, and the third is either zero,
+or the bitwise OR of one or more of the flags in the
+.B FNM
+array.
+.PP
+The return value is zero on success,
+.B FNM_NOMATCH
+if the string did not match the pattern, or
+a different non-zero value if an error occurred.
+.PP
+The flags are follows:
+.TP
+\fBFNM["CASEFOLD"]\fP
+Corresponds to the
+.B FNM_CASEFOLD
+flag as defined in
+.IR fnmatch (3).
+.TP
+\fBFNM["FILE_NAME"]\fP
+Corresponds to the
+.B FNM_FILE_NAME
+flag as defined in
+.IR fnmatch (3).
+.TP
+\fBFNM["LEADING_DIR"]\fP
+Corresponds to the
+.B FNM_LEADING_DIR
+flag as defined in
+.IR fnmatch (3).
+.TP
+\fBFNM["NOESCAPE"]\fP
+Corresponds to the
+.B FNM_NOESCAPE
+flag as defined in
+.IR fnmatch (3).
+.TP
+\fBFNM["PATHNAME"]\fP
+Corresponds to the
+.B FNM_PATHNAME
+flag as defined in
+.IR fnmatch (3).
+.TP
+\fBFNM["PERIOD"]\fP
+Corresponds to the
+.B FNM_PERIOD
+flag as defined in
+.IR fnmatch (3).
+.PP
+.SH NOTES
+Nothing prevents AWK code from changing the predefined
+variable
+.BR FNM_NOMATCH ,
+but doing so may cause strange results.
+.\" .SH BUGS
+.SH EXAMPLE
+.ft CW
+.nf
+@load "fnmatch"
+\&...
+flags = or(FNM["PERIOD"], FNM["NOESCAPE"])
+if (fnmatch("*.a", "foo.c", flags) == FNM_NOMATCH)
+	print "no match"
+.fi
+.ft R
+.SH "SEE ALSO"
+.IR "GAWK: Effective AWK Programming" ,
+.IR filefuncs (3am),
+.IR fork (3am),
+.IR inplace (3am),
+.IR ordchr (3am),
+.IR readdir (3am),
+.IR readfile (3am),
+.IR revoutput (3am),
+.IR rwarray (3am),
+.IR time (3am).
+.PP
+.IR fnmatch (3).
+.SH AUTHOR
+Arnold Robbins,
+.BR arnold@skeeve.com .
+.SH COPYING PERMISSIONS
+Copyright \(co 2012, 2013, 2018,
+Free Software Foundation, Inc.
+.PP
+Permission is granted to make and distribute verbatim copies of
+this manual page provided the copyright notice and this permission
+notice are preserved on all copies.
+.ig
+Permission is granted to process this file through troff and print the
+results, provided the printed document carries copying permission
+notice identical to this one except for the removal of this paragraph
+(this paragraph not being relevant to the printed manual page).
+..
+.PP
+Permission is granted to copy and distribute modified versions of this
+manual page under the conditions for verbatim copying, provided that
+the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+.PP
+Permission is granted to copy and distribute translations of this
+manual page into another language, under the above conditions for
+modified versions, except that this permission notice may be stated in
+a translation approved by the Foundation.
+.\" vim: set filetype=nroff :

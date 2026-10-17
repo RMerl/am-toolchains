@@ -1,0 +1,88 @@
+.TH READFILE 3am "Feb 02 2018" "Free Software Foundation" "GNU Awk Extension Modules"
+.SH NAME
+readfile \- return the entire contents of a file as a string
+.SH SYNOPSIS
+.ft CW
+@load "readfile"
+.sp
+result = readfile("/some/path")
+.sp
+.ft R
+For making whole files be single records:
+.sp
+.ft CW
+@load "readfile"
+.br
+BEGIN { PROCINFO["readfile"] = 1 }
+.ft R
+.SH DESCRIPTION
+The
+.I readfile
+extension adds a single function named
+.BR readfile() .
+The argument is the name of the file to read.
+The return value is a string containing the entire contents of
+the requested file.
+.PP
+Upon error, the function returns the empty string and sets
+.BR ERRNO .
+.PP
+In addition, it adds an input parser that is activated if
+.ft CW
+PROCINFO["readfile"]
+.ft R
+exists.
+When activated, each input file is returned in its entirety as \f(CW$0\fR.
+\f(CWRT\fP is set to the null string.
+.\" .SH NOTES
+.\" .SH BUGS
+.SH EXAMPLE
+.ft CW
+.nf
+@load "readfile"
+\&...
+contents = readfile("/path/to/file");
+if (contents == "" && ERRNO != "") {
+    print("problem reading file", ERRNO) > "/dev/stderr"
+    ...
+}
+.fi
+.ft R
+.SH "SEE ALSO"
+.IR "GAWK: Effective AWK Programming" ,
+.IR filefuncs (3am),
+.IR fnmatch (3am),
+.IR fork (3am),
+.IR inplace (3am),
+.IR ordchr (3am),
+.IR readdir (3am),
+.IR revoutput (3am),
+.IR rwarray (3am),
+.IR time (3am).
+.SH AUTHOR
+Arnold Robbins,
+.BR arnold@skeeve.com .
+.SH COPYING PERMISSIONS
+Copyright \(co 2012, 2013, 2014, 2018,
+Free Software Foundation, Inc.
+.PP
+Permission is granted to make and distribute verbatim copies of
+this manual page provided the copyright notice and this permission
+notice are preserved on all copies.
+.ig
+Permission is granted to process this file through troff and print the
+results, provided the printed document carries copying permission
+notice identical to this one except for the removal of this paragraph
+(this paragraph not being relevant to the printed manual page).
+..
+.PP
+Permission is granted to copy and distribute modified versions of this
+manual page under the conditions for verbatim copying, provided that
+the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+.PP
+Permission is granted to copy and distribute translations of this
+manual page into another language, under the above conditions for
+modified versions, except that this permission notice may be stated in
+a translation approved by the Foundation.
+.\" vim: set filetype=nroff :

@@ -1,0 +1,10 @@
+prefix=/usr
+exec_prefix=/usr
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: musl-fts
+Description: Implementation of fts(3) functions for musl libc
+Version: 1.2.7
+Libs: -L${libdir} -lfts
+Cflags: -I${includedir}

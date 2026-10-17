@@ -1,0 +1,3754 @@
+This is libc.info, produced by makeinfo version 5.1 from libc.texinfo.
+
+This is ‘The GNU C Library Reference Manual’, for version 2.38
+(Buildroot).
+
+   Copyright © 1993–2023 Free Software Foundation, Inc.
+
+   Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with the
+Invariant Sections being “Free Software Needs Free Documentation” and
+“GNU Lesser General Public License”, the Front-Cover texts being “A GNU
+Manual”, and with the Back-Cover Texts as in (a) below.  A copy of the
+license is included in the section entitled "GNU Free Documentation
+License".
+
+   (a) The FSF’s Back-Cover Text is: “You have the freedom to copy and
+modify this GNU manual.  Buying copies from the FSF supports it in
+developing GNU and promoting software freedom.”
+INFO-DIR-SECTION Software libraries
+START-INFO-DIR-ENTRY
+* Libc: (libc).                 C library.
+END-INFO-DIR-ENTRY
+
+INFO-DIR-SECTION GNU C library functions and macros
+START-INFO-DIR-ENTRY
+* ALTWERASE: (libc)Local Modes.
+* ARGP_ERR_UNKNOWN: (libc)Argp Parser Functions.
+* ARG_MAX: (libc)General Limits.
+* BC_BASE_MAX: (libc)Utility Limits.
+* BC_DIM_MAX: (libc)Utility Limits.
+* BC_SCALE_MAX: (libc)Utility Limits.
+* BC_STRING_MAX: (libc)Utility Limits.
+* BRKINT: (libc)Input Modes.
+* BUFSIZ: (libc)Controlling Buffering.
+* CCTS_OFLOW: (libc)Control Modes.
+* CHAR_BIT: (libc)Width of Type.
+* CHILD_MAX: (libc)General Limits.
+* CIGNORE: (libc)Control Modes.
+* CLK_TCK: (libc)Processor Time.
+* CLOCAL: (libc)Control Modes.
+* CLOCKS_PER_SEC: (libc)CPU Time.
+* CLOCK_MONOTONIC: (libc)Getting the Time.
+* CLOCK_REALTIME: (libc)Getting the Time.
+* COLL_WEIGHTS_MAX: (libc)Utility Limits.
+* CPU_CLR: (libc)CPU Affinity.
+* CPU_FEATURE_ACTIVE: (libc)X86.
+* CPU_FEATURE_PRESENT: (libc)X86.
+* CPU_ISSET: (libc)CPU Affinity.
+* CPU_SET: (libc)CPU Affinity.
+* CPU_SETSIZE: (libc)CPU Affinity.
+* CPU_ZERO: (libc)CPU Affinity.
+* CREAD: (libc)Control Modes.
+* CRTS_IFLOW: (libc)Control Modes.
+* CS5: (libc)Control Modes.
+* CS6: (libc)Control Modes.
+* CS7: (libc)Control Modes.
+* CS8: (libc)Control Modes.
+* CSIZE: (libc)Control Modes.
+* CSTOPB: (libc)Control Modes.
+* DLFO_EH_SEGMENT_TYPE: (libc)Dynamic Linker Introspection.
+* DLFO_STRUCT_HAS_EH_COUNT: (libc)Dynamic Linker Introspection.
+* DLFO_STRUCT_HAS_EH_DBASE: (libc)Dynamic Linker Introspection.
+* DTTOIF: (libc)Directory Entries.
+* E2BIG: (libc)Error Codes.
+* EACCES: (libc)Error Codes.
+* EADDRINUSE: (libc)Error Codes.
+* EADDRNOTAVAIL: (libc)Error Codes.
+* EADV: (libc)Error Codes.
+* EAFNOSUPPORT: (libc)Error Codes.
+* EAGAIN: (libc)Error Codes.
+* EALREADY: (libc)Error Codes.
+* EAUTH: (libc)Error Codes.
+* EBACKGROUND: (libc)Error Codes.
+* EBADE: (libc)Error Codes.
+* EBADF: (libc)Error Codes.
+* EBADFD: (libc)Error Codes.
+* EBADMSG: (libc)Error Codes.
+* EBADR: (libc)Error Codes.
+* EBADRPC: (libc)Error Codes.
+* EBADRQC: (libc)Error Codes.
+* EBADSLT: (libc)Error Codes.
+* EBFONT: (libc)Error Codes.
+* EBUSY: (libc)Error Codes.
+* ECANCELED: (libc)Error Codes.
+* ECHILD: (libc)Error Codes.
+* ECHO: (libc)Local Modes.
+* ECHOCTL: (libc)Local Modes.
+* ECHOE: (libc)Local Modes.
+* ECHOK: (libc)Local Modes.
+* ECHOKE: (libc)Local Modes.
+* ECHONL: (libc)Local Modes.
+* ECHOPRT: (libc)Local Modes.
+* ECHRNG: (libc)Error Codes.
+* ECOMM: (libc)Error Codes.
+* ECONNABORTED: (libc)Error Codes.
+* ECONNREFUSED: (libc)Error Codes.
+* ECONNRESET: (libc)Error Codes.
+* ED: (libc)Error Codes.
+* EDEADLK: (libc)Error Codes.
+* EDEADLOCK: (libc)Error Codes.
+* EDESTADDRREQ: (libc)Error Codes.
+* EDIED: (libc)Error Codes.
+* EDOM: (libc)Error Codes.
+* EDOTDOT: (libc)Error Codes.
+* EDQUOT: (libc)Error Codes.
+* EEXIST: (libc)Error Codes.
+* EFAULT: (libc)Error Codes.
+* EFBIG: (libc)Error Codes.
+* EFTYPE: (libc)Error Codes.
+* EGRATUITOUS: (libc)Error Codes.
+* EGREGIOUS: (libc)Error Codes.
+* EHOSTDOWN: (libc)Error Codes.
+* EHOSTUNREACH: (libc)Error Codes.
+* EHWPOISON: (libc)Error Codes.
+* EIDRM: (libc)Error Codes.
+* EIEIO: (libc)Error Codes.
+* EILSEQ: (libc)Error Codes.
+* EINPROGRESS: (libc)Error Codes.
+* EINTR: (libc)Error Codes.
+* EINVAL: (libc)Error Codes.
+* EIO: (libc)Error Codes.
+* EISCONN: (libc)Error Codes.
+* EISDIR: (libc)Error Codes.
+* EISNAM: (libc)Error Codes.
+* EKEYEXPIRED: (libc)Error Codes.
+* EKEYREJECTED: (libc)Error Codes.
+* EKEYREVOKED: (libc)Error Codes.
+* EL2HLT: (libc)Error Codes.
+* EL2NSYNC: (libc)Error Codes.
+* EL3HLT: (libc)Error Codes.
+* EL3RST: (libc)Error Codes.
+* ELIBACC: (libc)Error Codes.
+* ELIBBAD: (libc)Error Codes.
+* ELIBEXEC: (libc)Error Codes.
+* ELIBMAX: (libc)Error Codes.
+* ELIBSCN: (libc)Error Codes.
+* ELNRNG: (libc)Error Codes.
+* ELOOP: (libc)Error Codes.
+* EMEDIUMTYPE: (libc)Error Codes.
+* EMFILE: (libc)Error Codes.
+* EMLINK: (libc)Error Codes.
+* EMSGSIZE: (libc)Error Codes.
+* EMULTIHOP: (libc)Error Codes.
+* ENAMETOOLONG: (libc)Error Codes.
+* ENAVAIL: (libc)Error Codes.
+* ENEEDAUTH: (libc)Error Codes.
+* ENETDOWN: (libc)Error Codes.
+* ENETRESET: (libc)Error Codes.
+* ENETUNREACH: (libc)Error Codes.
+* ENFILE: (libc)Error Codes.
+* ENOANO: (libc)Error Codes.
+* ENOBUFS: (libc)Error Codes.
+* ENOCSI: (libc)Error Codes.
+* ENODATA: (libc)Error Codes.
+* ENODEV: (libc)Error Codes.
+* ENOENT: (libc)Error Codes.
+* ENOEXEC: (libc)Error Codes.
+* ENOKEY: (libc)Error Codes.
+* ENOLCK: (libc)Error Codes.
+* ENOLINK: (libc)Error Codes.
+* ENOMEDIUM: (libc)Error Codes.
+* ENOMEM: (libc)Error Codes.
+* ENOMSG: (libc)Error Codes.
+* ENONET: (libc)Error Codes.
+* ENOPKG: (libc)Error Codes.
+* ENOPROTOOPT: (libc)Error Codes.
+* ENOSPC: (libc)Error Codes.
+* ENOSR: (libc)Error Codes.
+* ENOSTR: (libc)Error Codes.
+* ENOSYS: (libc)Error Codes.
+* ENOTBLK: (libc)Error Codes.
+* ENOTCONN: (libc)Error Codes.
+* ENOTDIR: (libc)Error Codes.
+* ENOTEMPTY: (libc)Error Codes.
+* ENOTNAM: (libc)Error Codes.
+* ENOTRECOVERABLE: (libc)Error Codes.
+* ENOTSOCK: (libc)Error Codes.
+* ENOTSUP: (libc)Error Codes.
+* ENOTTY: (libc)Error Codes.
+* ENOTUNIQ: (libc)Error Codes.
+* ENXIO: (libc)Error Codes.
+* EOF: (libc)EOF and Errors.
+* EOPNOTSUPP: (libc)Error Codes.
+* EOVERFLOW: (libc)Error Codes.
+* EOWNERDEAD: (libc)Error Codes.
+* EPERM: (libc)Error Codes.
+* EPFNOSUPPORT: (libc)Error Codes.
+* EPIPE: (libc)Error Codes.
+* EPROCLIM: (libc)Error Codes.
+* EPROCUNAVAIL: (libc)Error Codes.
+* EPROGMISMATCH: (libc)Error Codes.
+* EPROGUNAVAIL: (libc)Error Codes.
+* EPROTO: (libc)Error Codes.
+* EPROTONOSUPPORT: (libc)Error Codes.
+* EPROTOTYPE: (libc)Error Codes.
+* EQUIV_CLASS_MAX: (libc)Utility Limits.
+* ERANGE: (libc)Error Codes.
+* EREMCHG: (libc)Error Codes.
+* EREMOTE: (libc)Error Codes.
+* EREMOTEIO: (libc)Error Codes.
+* ERESTART: (libc)Error Codes.
+* ERFKILL: (libc)Error Codes.
+* EROFS: (libc)Error Codes.
+* ERPCMISMATCH: (libc)Error Codes.
+* ESHUTDOWN: (libc)Error Codes.
+* ESOCKTNOSUPPORT: (libc)Error Codes.
+* ESPIPE: (libc)Error Codes.
+* ESRCH: (libc)Error Codes.
+* ESRMNT: (libc)Error Codes.
+* ESTALE: (libc)Error Codes.
+* ESTRPIPE: (libc)Error Codes.
+* ETIME: (libc)Error Codes.
+* ETIMEDOUT: (libc)Error Codes.
+* ETOOMANYREFS: (libc)Error Codes.
+* ETXTBSY: (libc)Error Codes.
+* EUCLEAN: (libc)Error Codes.
+* EUNATCH: (libc)Error Codes.
+* EUSERS: (libc)Error Codes.
+* EWOULDBLOCK: (libc)Error Codes.
+* EXDEV: (libc)Error Codes.
+* EXFULL: (libc)Error Codes.
+* EXIT_FAILURE: (libc)Exit Status.
+* EXIT_SUCCESS: (libc)Exit Status.
+* EXPR_NEST_MAX: (libc)Utility Limits.
+* FD_CLOEXEC: (libc)Descriptor Flags.
+* FD_CLR: (libc)Waiting for I/O.
+* FD_ISSET: (libc)Waiting for I/O.
+* FD_SET: (libc)Waiting for I/O.
+* FD_SETSIZE: (libc)Waiting for I/O.
+* FD_ZERO: (libc)Waiting for I/O.
+* FE_SNANS_ALWAYS_SIGNAL: (libc)Infinity and NaN.
+* FILENAME_MAX: (libc)Limits for Files.
+* FLUSHO: (libc)Local Modes.
+* FOPEN_MAX: (libc)Opening Streams.
+* FP_ILOGB0: (libc)Exponents and Logarithms.
+* FP_ILOGBNAN: (libc)Exponents and Logarithms.
+* FP_LLOGB0: (libc)Exponents and Logarithms.
+* FP_LLOGBNAN: (libc)Exponents and Logarithms.
+* F_DUPFD: (libc)Duplicating Descriptors.
+* F_GETFD: (libc)Descriptor Flags.
+* F_GETFL: (libc)Getting File Status Flags.
+* F_GETLK: (libc)File Locks.
+* F_GETOWN: (libc)Interrupt Input.
+* F_OFD_GETLK: (libc)Open File Description Locks.
+* F_OFD_SETLK: (libc)Open File Description Locks.
+* F_OFD_SETLKW: (libc)Open File Description Locks.
+* F_OK: (libc)Testing File Access.
+* F_SETFD: (libc)Descriptor Flags.
+* F_SETFL: (libc)Getting File Status Flags.
+* F_SETLK: (libc)File Locks.
+* F_SETLKW: (libc)File Locks.
+* F_SETOWN: (libc)Interrupt Input.
+* HUGE_VAL: (libc)Math Error Reporting.
+* HUGE_VALF: (libc)Math Error Reporting.
+* HUGE_VALL: (libc)Math Error Reporting.
+* HUGE_VAL_FN: (libc)Math Error Reporting.
+* HUGE_VAL_FNx: (libc)Math Error Reporting.
+* HUPCL: (libc)Control Modes.
+* I: (libc)Complex Numbers.
+* ICANON: (libc)Local Modes.
+* ICRNL: (libc)Input Modes.
+* IEXTEN: (libc)Local Modes.
+* IFNAMSIZ: (libc)Interface Naming.
+* IFTODT: (libc)Directory Entries.
+* IGNBRK: (libc)Input Modes.
+* IGNCR: (libc)Input Modes.
+* IGNPAR: (libc)Input Modes.
+* IMAXBEL: (libc)Input Modes.
+* INADDR_ANY: (libc)Host Address Data Type.
+* INADDR_BROADCAST: (libc)Host Address Data Type.
+* INADDR_LOOPBACK: (libc)Host Address Data Type.
+* INADDR_NONE: (libc)Host Address Data Type.
+* INFINITY: (libc)Infinity and NaN.
+* INLCR: (libc)Input Modes.
+* INPCK: (libc)Input Modes.
+* IPPORT_RESERVED: (libc)Ports.
+* IPPORT_USERRESERVED: (libc)Ports.
+* ISIG: (libc)Local Modes.
+* ISTRIP: (libc)Input Modes.
+* IXANY: (libc)Input Modes.
+* IXOFF: (libc)Input Modes.
+* IXON: (libc)Input Modes.
+* LINE_MAX: (libc)Utility Limits.
+* LINK_MAX: (libc)Limits for Files.
+* L_ctermid: (libc)Identifying the Terminal.
+* L_cuserid: (libc)Who Logged In.
+* L_tmpnam: (libc)Temporary Files.
+* MAXNAMLEN: (libc)Limits for Files.
+* MAXSYMLINKS: (libc)Symbolic Links.
+* MAX_CANON: (libc)Limits for Files.
+* MAX_INPUT: (libc)Limits for Files.
+* MB_CUR_MAX: (libc)Selecting the Conversion.
+* MB_LEN_MAX: (libc)Selecting the Conversion.
+* MDMBUF: (libc)Control Modes.
+* MSG_DONTROUTE: (libc)Socket Data Options.
+* MSG_OOB: (libc)Socket Data Options.
+* MSG_PEEK: (libc)Socket Data Options.
+* NAME_MAX: (libc)Limits for Files.
+* NAN: (libc)Infinity and NaN.
+* NCCS: (libc)Mode Data Types.
+* NGROUPS_MAX: (libc)General Limits.
+* NOFLSH: (libc)Local Modes.
+* NOKERNINFO: (libc)Local Modes.
+* NSIG: (libc)Standard Signals.
+* NULL: (libc)Null Pointer Constant.
+* ONLCR: (libc)Output Modes.
+* ONOEOT: (libc)Output Modes.
+* OPEN_MAX: (libc)General Limits.
+* OPOST: (libc)Output Modes.
+* OXTABS: (libc)Output Modes.
+* O_ACCMODE: (libc)Access Modes.
+* O_APPEND: (libc)Operating Modes.
+* O_ASYNC: (libc)Operating Modes.
+* O_CREAT: (libc)Open-time Flags.
+* O_DIRECTORY: (libc)Open-time Flags.
+* O_EXCL: (libc)Open-time Flags.
+* O_EXEC: (libc)Access Modes.
+* O_EXLOCK: (libc)Open-time Flags.
+* O_FSYNC: (libc)Operating Modes.
+* O_IGNORE_CTTY: (libc)Open-time Flags.
+* O_NDELAY: (libc)Operating Modes.
+* O_NOATIME: (libc)Operating Modes.
+* O_NOCTTY: (libc)Open-time Flags.
+* O_NOFOLLOW: (libc)Open-time Flags.
+* O_NOLINK: (libc)Open-time Flags.
+* O_NONBLOCK: (libc)Open-time Flags.
+* O_NONBLOCK: (libc)Operating Modes.
+* O_NOTRANS: (libc)Open-time Flags.
+* O_PATH: (libc)Access Modes.
+* O_RDONLY: (libc)Access Modes.
+* O_RDWR: (libc)Access Modes.
+* O_READ: (libc)Access Modes.
+* O_SHLOCK: (libc)Open-time Flags.
+* O_SYNC: (libc)Operating Modes.
+* O_TMPFILE: (libc)Open-time Flags.
+* O_TRUNC: (libc)Open-time Flags.
+* O_WRITE: (libc)Access Modes.
+* O_WRONLY: (libc)Access Modes.
+* PARENB: (libc)Control Modes.
+* PARMRK: (libc)Input Modes.
+* PARODD: (libc)Control Modes.
+* PATH_MAX: (libc)Limits for Files.
+* PA_FLAG_MASK: (libc)Parsing a Template String.
+* PENDIN: (libc)Local Modes.
+* PF_FILE: (libc)Local Namespace Details.
+* PF_INET6: (libc)Internet Namespace.
+* PF_INET: (libc)Internet Namespace.
+* PF_LOCAL: (libc)Local Namespace Details.
+* PF_UNIX: (libc)Local Namespace Details.
+* PIPE_BUF: (libc)Limits for Files.
+* PTHREAD_ATTR_NO_SIGMASK_NP: (libc)Initial Thread Signal Mask.
+* P_tmpdir: (libc)Temporary Files.
+* RAND_MAX: (libc)ISO Random.
+* RE_DUP_MAX: (libc)General Limits.
+* RLIM_INFINITY: (libc)Limits on Resources.
+* RSEQ_SIG: (libc)Restartable Sequences.
+* R_OK: (libc)Testing File Access.
+* SA_NOCLDSTOP: (libc)Flags for Sigaction.
+* SA_ONSTACK: (libc)Flags for Sigaction.
+* SA_RESTART: (libc)Flags for Sigaction.
+* SEEK_CUR: (libc)File Positioning.
+* SEEK_END: (libc)File Positioning.
+* SEEK_SET: (libc)File Positioning.
+* SIGABRT: (libc)Program Error Signals.
+* SIGALRM: (libc)Alarm Signals.
+* SIGBUS: (libc)Program Error Signals.
+* SIGCHLD: (libc)Job Control Signals.
+* SIGCLD: (libc)Job Control Signals.
+* SIGCONT: (libc)Job Control Signals.
+* SIGEMT: (libc)Program Error Signals.
+* SIGFPE: (libc)Program Error Signals.
+* SIGHUP: (libc)Termination Signals.
+* SIGILL: (libc)Program Error Signals.
+* SIGINFO: (libc)Miscellaneous Signals.
+* SIGINT: (libc)Termination Signals.
+* SIGIO: (libc)Asynchronous I/O Signals.
+* SIGIOT: (libc)Program Error Signals.
+* SIGKILL: (libc)Termination Signals.
+* SIGLOST: (libc)Operation Error Signals.
+* SIGPIPE: (libc)Operation Error Signals.
+* SIGPOLL: (libc)Asynchronous I/O Signals.
+* SIGPROF: (libc)Alarm Signals.
+* SIGQUIT: (libc)Termination Signals.
+* SIGSEGV: (libc)Program Error Signals.
+* SIGSTOP: (libc)Job Control Signals.
+* SIGSYS: (libc)Program Error Signals.
+* SIGTERM: (libc)Termination Signals.
+* SIGTRAP: (libc)Program Error Signals.
+* SIGTSTP: (libc)Job Control Signals.
+* SIGTTIN: (libc)Job Control Signals.
+* SIGTTOU: (libc)Job Control Signals.
+* SIGURG: (libc)Asynchronous I/O Signals.
+* SIGUSR1: (libc)Miscellaneous Signals.
+* SIGUSR2: (libc)Miscellaneous Signals.
+* SIGVTALRM: (libc)Alarm Signals.
+* SIGWINCH: (libc)Miscellaneous Signals.
+* SIGXCPU: (libc)Operation Error Signals.
+* SIGXFSZ: (libc)Operation Error Signals.
+* SIG_ERR: (libc)Basic Signal Handling.
+* SNAN: (libc)Infinity and NaN.
+* SNANF: (libc)Infinity and NaN.
+* SNANFN: (libc)Infinity and NaN.
+* SNANFNx: (libc)Infinity and NaN.
+* SNANL: (libc)Infinity and NaN.
+* SOCK_DGRAM: (libc)Communication Styles.
+* SOCK_RAW: (libc)Communication Styles.
+* SOCK_RDM: (libc)Communication Styles.
+* SOCK_SEQPACKET: (libc)Communication Styles.
+* SOCK_STREAM: (libc)Communication Styles.
+* SOL_SOCKET: (libc)Socket-Level Options.
+* SSIZE_MAX: (libc)General Limits.
+* STREAM_MAX: (libc)General Limits.
+* SUN_LEN: (libc)Local Namespace Details.
+* S_IFMT: (libc)Testing File Type.
+* S_ISBLK: (libc)Testing File Type.
+* S_ISCHR: (libc)Testing File Type.
+* S_ISDIR: (libc)Testing File Type.
+* S_ISFIFO: (libc)Testing File Type.
+* S_ISLNK: (libc)Testing File Type.
+* S_ISREG: (libc)Testing File Type.
+* S_ISSOCK: (libc)Testing File Type.
+* S_TYPEISMQ: (libc)Testing File Type.
+* S_TYPEISSEM: (libc)Testing File Type.
+* S_TYPEISSHM: (libc)Testing File Type.
+* TMP_MAX: (libc)Temporary Files.
+* TOSTOP: (libc)Local Modes.
+* TZNAME_MAX: (libc)General Limits.
+* VDISCARD: (libc)Other Special.
+* VDSUSP: (libc)Signal Characters.
+* VEOF: (libc)Editing Characters.
+* VEOL2: (libc)Editing Characters.
+* VEOL: (libc)Editing Characters.
+* VERASE: (libc)Editing Characters.
+* VINTR: (libc)Signal Characters.
+* VKILL: (libc)Editing Characters.
+* VLNEXT: (libc)Other Special.
+* VMIN: (libc)Noncanonical Input.
+* VQUIT: (libc)Signal Characters.
+* VREPRINT: (libc)Editing Characters.
+* VSTART: (libc)Start/Stop Characters.
+* VSTATUS: (libc)Other Special.
+* VSTOP: (libc)Start/Stop Characters.
+* VSUSP: (libc)Signal Characters.
+* VTIME: (libc)Noncanonical Input.
+* VWERASE: (libc)Editing Characters.
+* WCHAR_MAX: (libc)Extended Char Intro.
+* WCHAR_MIN: (libc)Extended Char Intro.
+* WCOREDUMP: (libc)Process Completion Status.
+* WEOF: (libc)EOF and Errors.
+* WEOF: (libc)Extended Char Intro.
+* WEXITSTATUS: (libc)Process Completion Status.
+* WIFEXITED: (libc)Process Completion Status.
+* WIFSIGNALED: (libc)Process Completion Status.
+* WIFSTOPPED: (libc)Process Completion Status.
+* WSTOPSIG: (libc)Process Completion Status.
+* WTERMSIG: (libc)Process Completion Status.
+* W_OK: (libc)Testing File Access.
+* X_OK: (libc)Testing File Access.
+* _Complex_I: (libc)Complex Numbers.
+* _Exit: (libc)Termination Internals.
+* _Fork: (libc)Creating a Process.
+* _IOFBF: (libc)Controlling Buffering.
+* _IOLBF: (libc)Controlling Buffering.
+* _IONBF: (libc)Controlling Buffering.
+* _Imaginary_I: (libc)Complex Numbers.
+* _PATH_UTMP: (libc)Manipulating the Database.
+* _PATH_WTMP: (libc)Manipulating the Database.
+* _POSIX2_C_DEV: (libc)System Options.
+* _POSIX2_C_VERSION: (libc)Version Supported.
+* _POSIX2_FORT_DEV: (libc)System Options.
+* _POSIX2_FORT_RUN: (libc)System Options.
+* _POSIX2_LOCALEDEF: (libc)System Options.
+* _POSIX2_SW_DEV: (libc)System Options.
+* _POSIX_CHOWN_RESTRICTED: (libc)Options for Files.
+* _POSIX_JOB_CONTROL: (libc)System Options.
+* _POSIX_NO_TRUNC: (libc)Options for Files.
+* _POSIX_SAVED_IDS: (libc)System Options.
+* _POSIX_VDISABLE: (libc)Options for Files.
+* _POSIX_VERSION: (libc)Version Supported.
+* __fbufsize: (libc)Controlling Buffering.
+* __flbf: (libc)Controlling Buffering.
+* __fpending: (libc)Controlling Buffering.
+* __fpurge: (libc)Flushing Buffers.
+* __freadable: (libc)Opening Streams.
+* __freading: (libc)Opening Streams.
+* __fsetlocking: (libc)Streams and Threads.
+* __fwritable: (libc)Opening Streams.
+* __fwriting: (libc)Opening Streams.
+* __gconv_end_fct: (libc)glibc iconv Implementation.
+* __gconv_fct: (libc)glibc iconv Implementation.
+* __gconv_init_fct: (libc)glibc iconv Implementation.
+* __ppc_get_timebase: (libc)PowerPC.
+* __ppc_get_timebase_freq: (libc)PowerPC.
+* __ppc_mdoio: (libc)PowerPC.
+* __ppc_mdoom: (libc)PowerPC.
+* __ppc_set_ppr_low: (libc)PowerPC.
+* __ppc_set_ppr_med: (libc)PowerPC.
+* __ppc_set_ppr_med_high: (libc)PowerPC.
+* __ppc_set_ppr_med_low: (libc)PowerPC.
+* __ppc_set_ppr_very_low: (libc)PowerPC.
+* __ppc_yield: (libc)PowerPC.
+* __riscv_flush_icache: (libc)RISC-V.
+* __va_copy: (libc)Argument Macros.
+* __x86_get_cpuid_feature_leaf: (libc)X86.
+* _dl_find_object: (libc)Dynamic Linker Introspection.
+* _exit: (libc)Termination Internals.
+* _flushlbf: (libc)Flushing Buffers.
+* _tolower: (libc)Case Conversion.
+* _toupper: (libc)Case Conversion.
+* a64l: (libc)Encode Binary Data.
+* abort: (libc)Aborting a Program.
+* abs: (libc)Absolute Value.
+* accept: (libc)Accepting Connections.
+* access: (libc)Testing File Access.
+* acos: (libc)Inverse Trig Functions.
+* acosf: (libc)Inverse Trig Functions.
+* acosfN: (libc)Inverse Trig Functions.
+* acosfNx: (libc)Inverse Trig Functions.
+* acosh: (libc)Hyperbolic Functions.
+* acoshf: (libc)Hyperbolic Functions.
+* acoshfN: (libc)Hyperbolic Functions.
+* acoshfNx: (libc)Hyperbolic Functions.
+* acoshl: (libc)Hyperbolic Functions.
+* acosl: (libc)Inverse Trig Functions.
+* addmntent: (libc)mtab.
+* addseverity: (libc)Adding Severity Classes.
+* adjtime: (libc)Setting and Adjusting the Time.
+* adjtimex: (libc)Setting and Adjusting the Time.
+* aio_cancel64: (libc)Cancel AIO Operations.
+* aio_cancel: (libc)Cancel AIO Operations.
+* aio_error64: (libc)Status of AIO Operations.
+* aio_error: (libc)Status of AIO Operations.
+* aio_fsync64: (libc)Synchronizing AIO Operations.
+* aio_fsync: (libc)Synchronizing AIO Operations.
+* aio_init: (libc)Configuration of AIO.
+* aio_read64: (libc)Asynchronous Reads/Writes.
+* aio_read: (libc)Asynchronous Reads/Writes.
+* aio_return64: (libc)Status of AIO Operations.
+* aio_return: (libc)Status of AIO Operations.
+* aio_suspend64: (libc)Synchronizing AIO Operations.
+* aio_suspend: (libc)Synchronizing AIO Operations.
+* aio_write64: (libc)Asynchronous Reads/Writes.
+* aio_write: (libc)Asynchronous Reads/Writes.
+* alarm: (libc)Setting an Alarm.
+* aligned_alloc: (libc)Aligned Memory Blocks.
+* alloca: (libc)Variable Size Automatic.
+* alphasort64: (libc)Scanning Directory Content.
+* alphasort: (libc)Scanning Directory Content.
+* arc4random: (libc)High Quality Random.
+* arc4random_buf: (libc)High Quality Random.
+* arc4random_uniform: (libc)High Quality Random.
+* argp_error: (libc)Argp Helper Functions.
+* argp_failure: (libc)Argp Helper Functions.
+* argp_help: (libc)Argp Help.
+* argp_parse: (libc)Argp.
+* argp_state_help: (libc)Argp Helper Functions.
+* argp_usage: (libc)Argp Helper Functions.
+* argz_add: (libc)Argz Functions.
+* argz_add_sep: (libc)Argz Functions.
+* argz_append: (libc)Argz Functions.
+* argz_count: (libc)Argz Functions.
+* argz_create: (libc)Argz Functions.
+* argz_create_sep: (libc)Argz Functions.
+* argz_delete: (libc)Argz Functions.
+* argz_extract: (libc)Argz Functions.
+* argz_insert: (libc)Argz Functions.
+* argz_next: (libc)Argz Functions.
+* argz_replace: (libc)Argz Functions.
+* argz_stringify: (libc)Argz Functions.
+* asctime: (libc)Formatting Calendar Time.
+* asctime_r: (libc)Formatting Calendar Time.
+* asin: (libc)Inverse Trig Functions.
+* asinf: (libc)Inverse Trig Functions.
+* asinfN: (libc)Inverse Trig Functions.
+* asinfNx: (libc)Inverse Trig Functions.
+* asinh: (libc)Hyperbolic Functions.
+* asinhf: (libc)Hyperbolic Functions.
+* asinhfN: (libc)Hyperbolic Functions.
+* asinhfNx: (libc)Hyperbolic Functions.
+* asinhl: (libc)Hyperbolic Functions.
+* asinl: (libc)Inverse Trig Functions.
+* asprintf: (libc)Dynamic Output.
+* assert: (libc)Consistency Checking.
+* assert_perror: (libc)Consistency Checking.
+* atan2: (libc)Inverse Trig Functions.
+* atan2f: (libc)Inverse Trig Functions.
+* atan2fN: (libc)Inverse Trig Functions.
+* atan2fNx: (libc)Inverse Trig Functions.
+* atan2l: (libc)Inverse Trig Functions.
+* atan: (libc)Inverse Trig Functions.
+* atanf: (libc)Inverse Trig Functions.
+* atanfN: (libc)Inverse Trig Functions.
+* atanfNx: (libc)Inverse Trig Functions.
+* atanh: (libc)Hyperbolic Functions.
+* atanhf: (libc)Hyperbolic Functions.
+* atanhfN: (libc)Hyperbolic Functions.
+* atanhfNx: (libc)Hyperbolic Functions.
+* atanhl: (libc)Hyperbolic Functions.
+* atanl: (libc)Inverse Trig Functions.
+* atexit: (libc)Cleanups on Exit.
+* atof: (libc)Parsing of Floats.
+* atoi: (libc)Parsing of Integers.
+* atol: (libc)Parsing of Integers.
+* atoll: (libc)Parsing of Integers.
+* backtrace: (libc)Backtraces.
+* backtrace_symbols: (libc)Backtraces.
+* backtrace_symbols_fd: (libc)Backtraces.
+* basename: (libc)Finding Tokens in a String.
+* basename: (libc)Finding Tokens in a String.
+* bcmp: (libc)String/Array Comparison.
+* bcopy: (libc)Copying Strings and Arrays.
+* bind: (libc)Setting Address.
+* bind_textdomain_codeset: (libc)Charset conversion in gettext.
+* bindtextdomain: (libc)Locating gettext catalog.
+* brk: (libc)Resizing the Data Segment.
+* bsearch: (libc)Array Search Function.
+* btowc: (libc)Converting a Character.
+* bzero: (libc)Copying Strings and Arrays.
+* cabs: (libc)Absolute Value.
+* cabsf: (libc)Absolute Value.
+* cabsfN: (libc)Absolute Value.
+* cabsfNx: (libc)Absolute Value.
+* cabsl: (libc)Absolute Value.
+* cacos: (libc)Inverse Trig Functions.
+* cacosf: (libc)Inverse Trig Functions.
+* cacosfN: (libc)Inverse Trig Functions.
+* cacosfNx: (libc)Inverse Trig Functions.
+* cacosh: (libc)Hyperbolic Functions.
+* cacoshf: (libc)Hyperbolic Functions.
+* cacoshfN: (libc)Hyperbolic Functions.
+* cacoshfNx: (libc)Hyperbolic Functions.
+* cacoshl: (libc)Hyperbolic Functions.
+* cacosl: (libc)Inverse Trig Functions.
+* call_once: (libc)Call Once.
+* calloc: (libc)Allocating Cleared Space.
+* canonicalize: (libc)FP Bit Twiddling.
+* canonicalize_file_name: (libc)Symbolic Links.
+* canonicalizef: (libc)FP Bit Twiddling.
+* canonicalizefN: (libc)FP Bit Twiddling.
+* canonicalizefNx: (libc)FP Bit Twiddling.
+* canonicalizel: (libc)FP Bit Twiddling.
+* carg: (libc)Operations on Complex.
+* cargf: (libc)Operations on Complex.
+* cargfN: (libc)Operations on Complex.
+* cargfNx: (libc)Operations on Complex.
+* cargl: (libc)Operations on Complex.
+* casin: (libc)Inverse Trig Functions.
+* casinf: (libc)Inverse Trig Functions.
+* casinfN: (libc)Inverse Trig Functions.
+* casinfNx: (libc)Inverse Trig Functions.
+* casinh: (libc)Hyperbolic Functions.
+* casinhf: (libc)Hyperbolic Functions.
+* casinhfN: (libc)Hyperbolic Functions.
+* casinhfNx: (libc)Hyperbolic Functions.
+* casinhl: (libc)Hyperbolic Functions.
+* casinl: (libc)Inverse Trig Functions.
+* catan: (libc)Inverse Trig Functions.
+* catanf: (libc)Inverse Trig Functions.
+* catanfN: (libc)Inverse Trig Functions.
+* catanfNx: (libc)Inverse Trig Functions.
+* catanh: (libc)Hyperbolic Functions.
+* catanhf: (libc)Hyperbolic Functions.
+* catanhfN: (libc)Hyperbolic Functions.
+* catanhfNx: (libc)Hyperbolic Functions.
+* catanhl: (libc)Hyperbolic Functions.
+* catanl: (libc)Inverse Trig Functions.
+* catclose: (libc)The catgets Functions.
+* catgets: (libc)The catgets Functions.
+* catopen: (libc)The catgets Functions.
+* cbrt: (libc)Exponents and Logarithms.
+* cbrtf: (libc)Exponents and Logarithms.
+* cbrtfN: (libc)Exponents and Logarithms.
+* cbrtfNx: (libc)Exponents and Logarithms.
+* cbrtl: (libc)Exponents and Logarithms.
+* ccos: (libc)Trig Functions.
+* ccosf: (libc)Trig Functions.
+* ccosfN: (libc)Trig Functions.
+* ccosfNx: (libc)Trig Functions.
+* ccosh: (libc)Hyperbolic Functions.
+* ccoshf: (libc)Hyperbolic Functions.
+* ccoshfN: (libc)Hyperbolic Functions.
+* ccoshfNx: (libc)Hyperbolic Functions.
+* ccoshl: (libc)Hyperbolic Functions.
+* ccosl: (libc)Trig Functions.
+* ceil: (libc)Rounding Functions.
+* ceilf: (libc)Rounding Functions.
+* ceilfN: (libc)Rounding Functions.
+* ceilfNx: (libc)Rounding Functions.
+* ceill: (libc)Rounding Functions.
+* cexp: (libc)Exponents and Logarithms.
+* cexpf: (libc)Exponents and Logarithms.
+* cexpfN: (libc)Exponents and Logarithms.
+* cexpfNx: (libc)Exponents and Logarithms.
+* cexpl: (libc)Exponents and Logarithms.
+* cfgetispeed: (libc)Line Speed.
+* cfgetospeed: (libc)Line Speed.
+* cfmakeraw: (libc)Noncanonical Input.
+* cfsetispeed: (libc)Line Speed.
+* cfsetospeed: (libc)Line Speed.
+* cfsetspeed: (libc)Line Speed.
+* chdir: (libc)Working Directory.
+* chmod: (libc)Setting Permissions.
+* chown: (libc)File Owner.
+* cimag: (libc)Operations on Complex.
+* cimagf: (libc)Operations on Complex.
+* cimagfN: (libc)Operations on Complex.
+* cimagfNx: (libc)Operations on Complex.
+* cimagl: (libc)Operations on Complex.
+* clearenv: (libc)Environment Access.
+* clearerr: (libc)Error Recovery.
+* clearerr_unlocked: (libc)Error Recovery.
+* clock: (libc)CPU Time.
+* clock_getres: (libc)Getting the Time.
+* clock_gettime: (libc)Getting the Time.
+* clock_settime: (libc)Setting and Adjusting the Time.
+* clog10: (libc)Exponents and Logarithms.
+* clog10f: (libc)Exponents and Logarithms.
+* clog10fN: (libc)Exponents and Logarithms.
+* clog10fNx: (libc)Exponents and Logarithms.
+* clog10l: (libc)Exponents and Logarithms.
+* clog: (libc)Exponents and Logarithms.
+* clogf: (libc)Exponents and Logarithms.
+* clogfN: (libc)Exponents and Logarithms.
+* clogfNx: (libc)Exponents and Logarithms.
+* clogl: (libc)Exponents and Logarithms.
+* close: (libc)Opening and Closing Files.
+* close_range: (libc)Opening and Closing Files.
+* closedir: (libc)Reading/Closing Directory.
+* closefrom: (libc)Opening and Closing Files.
+* closelog: (libc)closelog.
+* cnd_broadcast: (libc)ISO C Condition Variables.
+* cnd_destroy: (libc)ISO C Condition Variables.
+* cnd_init: (libc)ISO C Condition Variables.
+* cnd_signal: (libc)ISO C Condition Variables.
+* cnd_timedwait: (libc)ISO C Condition Variables.
+* cnd_wait: (libc)ISO C Condition Variables.
+* confstr: (libc)String Parameters.
+* conj: (libc)Operations on Complex.
+* conjf: (libc)Operations on Complex.
+* conjfN: (libc)Operations on Complex.
+* conjfNx: (libc)Operations on Complex.
+* conjl: (libc)Operations on Complex.
+* connect: (libc)Connecting.
+* copy_file_range: (libc)Copying File Data.
+* copysign: (libc)FP Bit Twiddling.
+* copysignf: (libc)FP Bit Twiddling.
+* copysignfN: (libc)FP Bit Twiddling.
+* copysignfNx: (libc)FP Bit Twiddling.
+* copysignl: (libc)FP Bit Twiddling.
+* cos: (libc)Trig Functions.
+* cosf: (libc)Trig Functions.
+* cosfN: (libc)Trig Functions.
+* cosfNx: (libc)Trig Functions.
+* cosh: (libc)Hyperbolic Functions.
+* coshf: (libc)Hyperbolic Functions.
+* coshfN: (libc)Hyperbolic Functions.
+* coshfNx: (libc)Hyperbolic Functions.
+* coshl: (libc)Hyperbolic Functions.
+* cosl: (libc)Trig Functions.
+* cpow: (libc)Exponents and Logarithms.
+* cpowf: (libc)Exponents and Logarithms.
+* cpowfN: (libc)Exponents and Logarithms.
+* cpowfNx: (libc)Exponents and Logarithms.
+* cpowl: (libc)Exponents and Logarithms.
+* cproj: (libc)Operations on Complex.
+* cprojf: (libc)Operations on Complex.
+* cprojfN: (libc)Operations on Complex.
+* cprojfNx: (libc)Operations on Complex.
+* cprojl: (libc)Operations on Complex.
+* creal: (libc)Operations on Complex.
+* crealf: (libc)Operations on Complex.
+* crealfN: (libc)Operations on Complex.
+* crealfNx: (libc)Operations on Complex.
+* creall: (libc)Operations on Complex.
+* creat64: (libc)Opening and Closing Files.
+* creat: (libc)Opening and Closing Files.
+* crypt: (libc)Passphrase Storage.
+* crypt_r: (libc)Passphrase Storage.
+* csin: (libc)Trig Functions.
+* csinf: (libc)Trig Functions.
+* csinfN: (libc)Trig Functions.
+* csinfNx: (libc)Trig Functions.
+* csinh: (libc)Hyperbolic Functions.
+* csinhf: (libc)Hyperbolic Functions.
+* csinhfN: (libc)Hyperbolic Functions.
+* csinhfNx: (libc)Hyperbolic Functions.
+* csinhl: (libc)Hyperbolic Functions.
+* csinl: (libc)Trig Functions.
+* csqrt: (libc)Exponents and Logarithms.
+* csqrtf: (libc)Exponents and Logarithms.
+* csqrtfN: (libc)Exponents and Logarithms.
+* csqrtfNx: (libc)Exponents and Logarithms.
+* csqrtl: (libc)Exponents and Logarithms.
+* ctan: (libc)Trig Functions.
+* ctanf: (libc)Trig Functions.
+* ctanfN: (libc)Trig Functions.
+* ctanfNx: (libc)Trig Functions.
+* ctanh: (libc)Hyperbolic Functions.
+* ctanhf: (libc)Hyperbolic Functions.
+* ctanhfN: (libc)Hyperbolic Functions.
+* ctanhfNx: (libc)Hyperbolic Functions.
+* ctanhl: (libc)Hyperbolic Functions.
+* ctanl: (libc)Trig Functions.
+* ctermid: (libc)Identifying the Terminal.
+* ctime: (libc)Formatting Calendar Time.
+* ctime_r: (libc)Formatting Calendar Time.
+* cuserid: (libc)Who Logged In.
+* daddl: (libc)Misc FP Arithmetic.
+* dcgettext: (libc)Translation with gettext.
+* dcngettext: (libc)Advanced gettext functions.
+* ddivl: (libc)Misc FP Arithmetic.
+* dfmal: (libc)Misc FP Arithmetic.
+* dgettext: (libc)Translation with gettext.
+* difftime: (libc)Calculating Elapsed Time.
+* dirfd: (libc)Opening a Directory.
+* dirname: (libc)Finding Tokens in a String.
+* div: (libc)Integer Division.
+* dlinfo: (libc)Dynamic Linker Introspection.
+* dmull: (libc)Misc FP Arithmetic.
+* dngettext: (libc)Advanced gettext functions.
+* drand48: (libc)SVID Random.
+* drand48_r: (libc)SVID Random.
+* drem: (libc)Remainder Functions.
+* dremf: (libc)Remainder Functions.
+* dreml: (libc)Remainder Functions.
+* dsqrtl: (libc)Misc FP Arithmetic.
+* dsubl: (libc)Misc FP Arithmetic.
+* dup2: (libc)Duplicating Descriptors.
+* dup: (libc)Duplicating Descriptors.
+* ecvt: (libc)System V Number Conversion.
+* ecvt_r: (libc)System V Number Conversion.
+* endfsent: (libc)fstab.
+* endgrent: (libc)Scanning All Groups.
+* endhostent: (libc)Host Names.
+* endmntent: (libc)mtab.
+* endnetent: (libc)Networks Database.
+* endnetgrent: (libc)Lookup Netgroup.
+* endprotoent: (libc)Protocols Database.
+* endpwent: (libc)Scanning All Users.
+* endservent: (libc)Services Database.
+* endutent: (libc)Manipulating the Database.
+* endutxent: (libc)XPG Functions.
+* envz_add: (libc)Envz Functions.
+* envz_entry: (libc)Envz Functions.
+* envz_get: (libc)Envz Functions.
+* envz_merge: (libc)Envz Functions.
+* envz_remove: (libc)Envz Functions.
+* envz_strip: (libc)Envz Functions.
+* erand48: (libc)SVID Random.
+* erand48_r: (libc)SVID Random.
+* erf: (libc)Special Functions.
+* erfc: (libc)Special Functions.
+* erfcf: (libc)Special Functions.
+* erfcfN: (libc)Special Functions.
+* erfcfNx: (libc)Special Functions.
+* erfcl: (libc)Special Functions.
+* erff: (libc)Special Functions.
+* erffN: (libc)Special Functions.
+* erffNx: (libc)Special Functions.
+* erfl: (libc)Special Functions.
+* err: (libc)Error Messages.
+* errno: (libc)Checking for Errors.
+* error: (libc)Error Messages.
+* error_at_line: (libc)Error Messages.
+* errx: (libc)Error Messages.
+* execl: (libc)Executing a File.
+* execle: (libc)Executing a File.
+* execlp: (libc)Executing a File.
+* execv: (libc)Executing a File.
+* execve: (libc)Executing a File.
+* execvp: (libc)Executing a File.
+* exit: (libc)Normal Termination.
+* exp10: (libc)Exponents and Logarithms.
+* exp10f: (libc)Exponents and Logarithms.
+* exp10fN: (libc)Exponents and Logarithms.
+* exp10fNx: (libc)Exponents and Logarithms.
+* exp10l: (libc)Exponents and Logarithms.
+* exp2: (libc)Exponents and Logarithms.
+* exp2f: (libc)Exponents and Logarithms.
+* exp2fN: (libc)Exponents and Logarithms.
+* exp2fNx: (libc)Exponents and Logarithms.
+* exp2l: (libc)Exponents and Logarithms.
+* exp: (libc)Exponents and Logarithms.
+* expf: (libc)Exponents and Logarithms.
+* expfN: (libc)Exponents and Logarithms.
+* expfNx: (libc)Exponents and Logarithms.
+* expl: (libc)Exponents and Logarithms.
+* explicit_bzero: (libc)Erasing Sensitive Data.
+* expm1: (libc)Exponents and Logarithms.
+* expm1f: (libc)Exponents and Logarithms.
+* expm1fN: (libc)Exponents and Logarithms.
+* expm1fNx: (libc)Exponents and Logarithms.
+* expm1l: (libc)Exponents and Logarithms.
+* fMaddfN: (libc)Misc FP Arithmetic.
+* fMaddfNx: (libc)Misc FP Arithmetic.
+* fMdivfN: (libc)Misc FP Arithmetic.
+* fMdivfNx: (libc)Misc FP Arithmetic.
+* fMfmafN: (libc)Misc FP Arithmetic.
+* fMfmafNx: (libc)Misc FP Arithmetic.
+* fMmulfN: (libc)Misc FP Arithmetic.
+* fMmulfNx: (libc)Misc FP Arithmetic.
+* fMsqrtfN: (libc)Misc FP Arithmetic.
+* fMsqrtfNx: (libc)Misc FP Arithmetic.
+* fMsubfN: (libc)Misc FP Arithmetic.
+* fMsubfNx: (libc)Misc FP Arithmetic.
+* fMxaddfN: (libc)Misc FP Arithmetic.
+* fMxaddfNx: (libc)Misc FP Arithmetic.
+* fMxdivfN: (libc)Misc FP Arithmetic.
+* fMxdivfNx: (libc)Misc FP Arithmetic.
+* fMxfmafN: (libc)Misc FP Arithmetic.
+* fMxfmafNx: (libc)Misc FP Arithmetic.
+* fMxmulfN: (libc)Misc FP Arithmetic.
+* fMxmulfNx: (libc)Misc FP Arithmetic.
+* fMxsqrtfN: (libc)Misc FP Arithmetic.
+* fMxsqrtfNx: (libc)Misc FP Arithmetic.
+* fMxsubfN: (libc)Misc FP Arithmetic.
+* fMxsubfNx: (libc)Misc FP Arithmetic.
+* fabs: (libc)Absolute Value.
+* fabsf: (libc)Absolute Value.
+* fabsfN: (libc)Absolute Value.
+* fabsfNx: (libc)Absolute Value.
+* fabsl: (libc)Absolute Value.
+* fadd: (libc)Misc FP Arithmetic.
+* faddl: (libc)Misc FP Arithmetic.
+* fchdir: (libc)Working Directory.
+* fchmod: (libc)Setting Permissions.
+* fchown: (libc)File Owner.
+* fclose: (libc)Closing Streams.
+* fcloseall: (libc)Closing Streams.
+* fcntl: (libc)Control Operations.
+* fcvt: (libc)System V Number Conversion.
+* fcvt_r: (libc)System V Number Conversion.
+* fdatasync: (libc)Synchronizing I/O.
+* fdim: (libc)Misc FP Arithmetic.
+* fdimf: (libc)Misc FP Arithmetic.
+* fdimfN: (libc)Misc FP Arithmetic.
+* fdimfNx: (libc)Misc FP Arithmetic.
+* fdiml: (libc)Misc FP Arithmetic.
+* fdiv: (libc)Misc FP Arithmetic.
+* fdivl: (libc)Misc FP Arithmetic.
+* fdopen: (libc)Descriptors and Streams.
+* fdopendir: (libc)Opening a Directory.
+* feclearexcept: (libc)Status bit operations.
+* fedisableexcept: (libc)Control Functions.
+* feenableexcept: (libc)Control Functions.
+* fegetenv: (libc)Control Functions.
+* fegetexcept: (libc)Control Functions.
+* fegetexceptflag: (libc)Status bit operations.
+* fegetmode: (libc)Control Functions.
+* fegetround: (libc)Rounding.
+* feholdexcept: (libc)Control Functions.
+* feof: (libc)EOF and Errors.
+* feof_unlocked: (libc)EOF and Errors.
+* feraiseexcept: (libc)Status bit operations.
+* ferror: (libc)EOF and Errors.
+* ferror_unlocked: (libc)EOF and Errors.
+* fesetenv: (libc)Control Functions.
+* fesetexcept: (libc)Status bit operations.
+* fesetexceptflag: (libc)Status bit operations.
+* fesetmode: (libc)Control Functions.
+* fesetround: (libc)Rounding.
+* fetestexcept: (libc)Status bit operations.
+* fetestexceptflag: (libc)Status bit operations.
+* feupdateenv: (libc)Control Functions.
+* fexecve: (libc)Executing a File.
+* fflush: (libc)Flushing Buffers.
+* fflush_unlocked: (libc)Flushing Buffers.
+* ffma: (libc)Misc FP Arithmetic.
+* ffmal: (libc)Misc FP Arithmetic.
+* fgetc: (libc)Character Input.
+* fgetc_unlocked: (libc)Character Input.
+* fgetgrent: (libc)Scanning All Groups.
+* fgetgrent_r: (libc)Scanning All Groups.
+* fgetpos64: (libc)Portable Positioning.
+* fgetpos: (libc)Portable Positioning.
+* fgetpwent: (libc)Scanning All Users.
+* fgetpwent_r: (libc)Scanning All Users.
+* fgets: (libc)Line Input.
+* fgets_unlocked: (libc)Line Input.
+* fgetwc: (libc)Character Input.
+* fgetwc_unlocked: (libc)Character Input.
+* fgetws: (libc)Line Input.
+* fgetws_unlocked: (libc)Line Input.
+* fileno: (libc)Descriptors and Streams.
+* fileno_unlocked: (libc)Descriptors and Streams.
+* finite: (libc)Floating Point Classes.
+* finitef: (libc)Floating Point Classes.
+* finitel: (libc)Floating Point Classes.
+* flockfile: (libc)Streams and Threads.
+* floor: (libc)Rounding Functions.
+* floorf: (libc)Rounding Functions.
+* floorfN: (libc)Rounding Functions.
+* floorfNx: (libc)Rounding Functions.
+* floorl: (libc)Rounding Functions.
+* fma: (libc)Misc FP Arithmetic.
+* fmaf: (libc)Misc FP Arithmetic.
+* fmafN: (libc)Misc FP Arithmetic.
+* fmafNx: (libc)Misc FP Arithmetic.
+* fmal: (libc)Misc FP Arithmetic.
+* fmax: (libc)Misc FP Arithmetic.
+* fmaxf: (libc)Misc FP Arithmetic.
+* fmaxfN: (libc)Misc FP Arithmetic.
+* fmaxfNx: (libc)Misc FP Arithmetic.
+* fmaximum: (libc)Misc FP Arithmetic.
+* fmaximum_mag: (libc)Misc FP Arithmetic.
+* fmaximum_mag_num: (libc)Misc FP Arithmetic.
+* fmaximum_mag_numf: (libc)Misc FP Arithmetic.
+* fmaximum_mag_numfN: (libc)Misc FP Arithmetic.
+* fmaximum_mag_numfNx: (libc)Misc FP Arithmetic.
+* fmaximum_mag_numl: (libc)Misc FP Arithmetic.
+* fmaximum_magf: (libc)Misc FP Arithmetic.
+* fmaximum_magfN: (libc)Misc FP Arithmetic.
+* fmaximum_magfNx: (libc)Misc FP Arithmetic.
+* fmaximum_magl: (libc)Misc FP Arithmetic.
+* fmaximum_num: (libc)Misc FP Arithmetic.
+* fmaximum_numf: (libc)Misc FP Arithmetic.
+* fmaximum_numfN: (libc)Misc FP Arithmetic.
+* fmaximum_numfNx: (libc)Misc FP Arithmetic.
+* fmaximum_numl: (libc)Misc FP Arithmetic.
+* fmaximumf: (libc)Misc FP Arithmetic.
+* fmaximumfN: (libc)Misc FP Arithmetic.
+* fmaximumfNx: (libc)Misc FP Arithmetic.
+* fmaximuml: (libc)Misc FP Arithmetic.
+* fmaxl: (libc)Misc FP Arithmetic.
+* fmaxmag: (libc)Misc FP Arithmetic.
+* fmaxmagf: (libc)Misc FP Arithmetic.
+* fmaxmagfN: (libc)Misc FP Arithmetic.
+* fmaxmagfNx: (libc)Misc FP Arithmetic.
+* fmaxmagl: (libc)Misc FP Arithmetic.
+* fmemopen: (libc)String Streams.
+* fmin: (libc)Misc FP Arithmetic.
+* fminf: (libc)Misc FP Arithmetic.
+* fminfN: (libc)Misc FP Arithmetic.
+* fminfNx: (libc)Misc FP Arithmetic.
+* fminimum: (libc)Misc FP Arithmetic.
+* fminimum_mag: (libc)Misc FP Arithmetic.
+* fminimum_mag_num: (libc)Misc FP Arithmetic.
+* fminimum_mag_numf: (libc)Misc FP Arithmetic.
+* fminimum_mag_numfN: (libc)Misc FP Arithmetic.
+* fminimum_mag_numfNx: (libc)Misc FP Arithmetic.
+* fminimum_mag_numl: (libc)Misc FP Arithmetic.
+* fminimum_magf: (libc)Misc FP Arithmetic.
+* fminimum_magfN: (libc)Misc FP Arithmetic.
+* fminimum_magfNx: (libc)Misc FP Arithmetic.
+* fminimum_magl: (libc)Misc FP Arithmetic.
+* fminimum_num: (libc)Misc FP Arithmetic.
+* fminimum_numf: (libc)Misc FP Arithmetic.
+* fminimum_numfN: (libc)Misc FP Arithmetic.
+* fminimum_numfNx: (libc)Misc FP Arithmetic.
+* fminimum_numl: (libc)Misc FP Arithmetic.
+* fminimumf: (libc)Misc FP Arithmetic.
+* fminimumfN: (libc)Misc FP Arithmetic.
+* fminimumfNx: (libc)Misc FP Arithmetic.
+* fminimuml: (libc)Misc FP Arithmetic.
+* fminl: (libc)Misc FP Arithmetic.
+* fminmag: (libc)Misc FP Arithmetic.
+* fminmagf: (libc)Misc FP Arithmetic.
+* fminmagfN: (libc)Misc FP Arithmetic.
+* fminmagfNx: (libc)Misc FP Arithmetic.
+* fminmagl: (libc)Misc FP Arithmetic.
+* fmod: (libc)Remainder Functions.
+* fmodf: (libc)Remainder Functions.
+* fmodfN: (libc)Remainder Functions.
+* fmodfNx: (libc)Remainder Functions.
+* fmodl: (libc)Remainder Functions.
+* fmtmsg: (libc)Printing Formatted Messages.
+* fmul: (libc)Misc FP Arithmetic.
+* fmull: (libc)Misc FP Arithmetic.
+* fnmatch: (libc)Wildcard Matching.
+* fopen64: (libc)Opening Streams.
+* fopen: (libc)Opening Streams.
+* fopencookie: (libc)Streams and Cookies.
+* fork: (libc)Creating a Process.
+* forkpty: (libc)Pseudo-Terminal Pairs.
+* fpathconf: (libc)Pathconf.
+* fpclassify: (libc)Floating Point Classes.
+* fprintf: (libc)Formatted Output Functions.
+* fputc: (libc)Simple Output.
+* fputc_unlocked: (libc)Simple Output.
+* fputs: (libc)Simple Output.
+* fputs_unlocked: (libc)Simple Output.
+* fputwc: (libc)Simple Output.
+* fputwc_unlocked: (libc)Simple Output.
+* fputws: (libc)Simple Output.
+* fputws_unlocked: (libc)Simple Output.
+* fread: (libc)Block Input/Output.
+* fread_unlocked: (libc)Block Input/Output.
+* free: (libc)Freeing after Malloc.
+* freopen64: (libc)Opening Streams.
+* freopen: (libc)Opening Streams.
+* frexp: (libc)Normalization Functions.
+* frexpf: (libc)Normalization Functions.
+* frexpfN: (libc)Normalization Functions.
+* frexpfNx: (libc)Normalization Functions.
+* frexpl: (libc)Normalization Functions.
+* fromfp: (libc)Rounding Functions.
+* fromfpf: (libc)Rounding Functions.
+* fromfpfN: (libc)Rounding Functions.
+* fromfpfNx: (libc)Rounding Functions.
+* fromfpl: (libc)Rounding Functions.
+* fromfpx: (libc)Rounding Functions.
+* fromfpxf: (libc)Rounding Functions.
+* fromfpxfN: (libc)Rounding Functions.
+* fromfpxfNx: (libc)Rounding Functions.
+* fromfpxl: (libc)Rounding Functions.
+* fscanf: (libc)Formatted Input Functions.
+* fseek: (libc)File Positioning.
+* fseeko64: (libc)File Positioning.
+* fseeko: (libc)File Positioning.
+* fsetpos64: (libc)Portable Positioning.
+* fsetpos: (libc)Portable Positioning.
+* fsqrt: (libc)Misc FP Arithmetic.
+* fsqrtl: (libc)Misc FP Arithmetic.
+* fstat64: (libc)Reading Attributes.
+* fstat: (libc)Reading Attributes.
+* fsub: (libc)Misc FP Arithmetic.
+* fsubl: (libc)Misc FP Arithmetic.
+* fsync: (libc)Synchronizing I/O.
+* ftell: (libc)File Positioning.
+* ftello64: (libc)File Positioning.
+* ftello: (libc)File Positioning.
+* ftruncate64: (libc)File Size.
+* ftruncate: (libc)File Size.
+* ftrylockfile: (libc)Streams and Threads.
+* ftw64: (libc)Working with Directory Trees.
+* ftw: (libc)Working with Directory Trees.
+* funlockfile: (libc)Streams and Threads.
+* futimes: (libc)File Times.
+* fwide: (libc)Streams and I18N.
+* fwprintf: (libc)Formatted Output Functions.
+* fwrite: (libc)Block Input/Output.
+* fwrite_unlocked: (libc)Block Input/Output.
+* fwscanf: (libc)Formatted Input Functions.
+* gamma: (libc)Special Functions.
+* gammaf: (libc)Special Functions.
+* gammal: (libc)Special Functions.
+* gcvt: (libc)System V Number Conversion.
+* get_avphys_pages: (libc)Query Memory Parameters.
+* get_current_dir_name: (libc)Working Directory.
+* get_nprocs: (libc)Processor Resources.
+* get_nprocs_conf: (libc)Processor Resources.
+* get_phys_pages: (libc)Query Memory Parameters.
+* getauxval: (libc)Auxiliary Vector.
+* getc: (libc)Character Input.
+* getc_unlocked: (libc)Character Input.
+* getchar: (libc)Character Input.
+* getchar_unlocked: (libc)Character Input.
+* getcontext: (libc)System V contexts.
+* getcpu: (libc)CPU Affinity.
+* getcwd: (libc)Working Directory.
+* getdate: (libc)General Time String Parsing.
+* getdate_r: (libc)General Time String Parsing.
+* getdelim: (libc)Line Input.
+* getdents64: (libc)Low-level Directory Access.
+* getdomainnname: (libc)Host Identification.
+* getegid: (libc)Reading Persona.
+* getentropy: (libc)Unpredictable Bytes.
+* getenv: (libc)Environment Access.
+* geteuid: (libc)Reading Persona.
+* getfsent: (libc)fstab.
+* getfsfile: (libc)fstab.
+* getfsspec: (libc)fstab.
+* getgid: (libc)Reading Persona.
+* getgrent: (libc)Scanning All Groups.
+* getgrent_r: (libc)Scanning All Groups.
+* getgrgid: (libc)Lookup Group.
+* getgrgid_r: (libc)Lookup Group.
+* getgrnam: (libc)Lookup Group.
+* getgrnam_r: (libc)Lookup Group.
+* getgrouplist: (libc)Setting Groups.
+* getgroups: (libc)Reading Persona.
+* gethostbyaddr: (libc)Host Names.
+* gethostbyaddr_r: (libc)Host Names.
+* gethostbyname2: (libc)Host Names.
+* gethostbyname2_r: (libc)Host Names.
+* gethostbyname: (libc)Host Names.
+* gethostbyname_r: (libc)Host Names.
+* gethostent: (libc)Host Names.
+* gethostid: (libc)Host Identification.
+* gethostname: (libc)Host Identification.
+* getitimer: (libc)Setting an Alarm.
+* getline: (libc)Line Input.
+* getloadavg: (libc)Processor Resources.
+* getlogin: (libc)Who Logged In.
+* getmntent: (libc)mtab.
+* getmntent_r: (libc)mtab.
+* getnetbyaddr: (libc)Networks Database.
+* getnetbyname: (libc)Networks Database.
+* getnetent: (libc)Networks Database.
+* getnetgrent: (libc)Lookup Netgroup.
+* getnetgrent_r: (libc)Lookup Netgroup.
+* getopt: (libc)Using Getopt.
+* getopt_long: (libc)Getopt Long Options.
+* getopt_long_only: (libc)Getopt Long Options.
+* getpagesize: (libc)Query Memory Parameters.
+* getpass: (libc)getpass.
+* getpayload: (libc)FP Bit Twiddling.
+* getpayloadf: (libc)FP Bit Twiddling.
+* getpayloadfN: (libc)FP Bit Twiddling.
+* getpayloadfNx: (libc)FP Bit Twiddling.
+* getpayloadl: (libc)FP Bit Twiddling.
+* getpeername: (libc)Who is Connected.
+* getpgid: (libc)Process Group Functions.
+* getpgrp: (libc)Process Group Functions.
+* getpid: (libc)Process Identification.
+* getppid: (libc)Process Identification.
+* getpriority: (libc)Traditional Scheduling Functions.
+* getprotobyname: (libc)Protocols Database.
+* getprotobynumber: (libc)Protocols Database.
+* getprotoent: (libc)Protocols Database.
+* getpt: (libc)Allocation.
+* getpwent: (libc)Scanning All Users.
+* getpwent_r: (libc)Scanning All Users.
+* getpwnam: (libc)Lookup User.
+* getpwnam_r: (libc)Lookup User.
+* getpwuid: (libc)Lookup User.
+* getpwuid_r: (libc)Lookup User.
+* getrandom: (libc)Unpredictable Bytes.
+* getrlimit64: (libc)Limits on Resources.
+* getrlimit: (libc)Limits on Resources.
+* getrusage: (libc)Resource Usage.
+* gets: (libc)Line Input.
+* getservbyname: (libc)Services Database.
+* getservbyport: (libc)Services Database.
+* getservent: (libc)Services Database.
+* getsid: (libc)Process Group Functions.
+* getsockname: (libc)Reading Address.
+* getsockopt: (libc)Socket Option Functions.
+* getsubopt: (libc)Suboptions.
+* gettext: (libc)Translation with gettext.
+* gettid: (libc)Process Identification.
+* gettimeofday: (libc)Getting the Time.
+* getuid: (libc)Reading Persona.
+* getumask: (libc)Setting Permissions.
+* getutent: (libc)Manipulating the Database.
+* getutent_r: (libc)Manipulating the Database.
+* getutid: (libc)Manipulating the Database.
+* getutid_r: (libc)Manipulating the Database.
+* getutline: (libc)Manipulating the Database.
+* getutline_r: (libc)Manipulating the Database.
+* getutmp: (libc)XPG Functions.
+* getutmpx: (libc)XPG Functions.
+* getutxent: (libc)XPG Functions.
+* getutxid: (libc)XPG Functions.
+* getutxline: (libc)XPG Functions.
+* getw: (libc)Character Input.
+* getwc: (libc)Character Input.
+* getwc_unlocked: (libc)Character Input.
+* getwchar: (libc)Character Input.
+* getwchar_unlocked: (libc)Character Input.
+* getwd: (libc)Working Directory.
+* glob64: (libc)Calling Glob.
+* glob: (libc)Calling Glob.
+* globfree64: (libc)More Flags for Globbing.
+* globfree: (libc)More Flags for Globbing.
+* gmtime: (libc)Broken-down Time.
+* gmtime_r: (libc)Broken-down Time.
+* grantpt: (libc)Allocation.
+* gsignal: (libc)Signaling Yourself.
+* gtty: (libc)BSD Terminal Modes.
+* hasmntopt: (libc)mtab.
+* hcreate: (libc)Hash Search Function.
+* hcreate_r: (libc)Hash Search Function.
+* hdestroy: (libc)Hash Search Function.
+* hdestroy_r: (libc)Hash Search Function.
+* hsearch: (libc)Hash Search Function.
+* hsearch_r: (libc)Hash Search Function.
+* htonl: (libc)Byte Order.
+* htons: (libc)Byte Order.
+* hypot: (libc)Exponents and Logarithms.
+* hypotf: (libc)Exponents and Logarithms.
+* hypotfN: (libc)Exponents and Logarithms.
+* hypotfNx: (libc)Exponents and Logarithms.
+* hypotl: (libc)Exponents and Logarithms.
+* iconv: (libc)Generic Conversion Interface.
+* iconv_close: (libc)Generic Conversion Interface.
+* iconv_open: (libc)Generic Conversion Interface.
+* if_freenameindex: (libc)Interface Naming.
+* if_indextoname: (libc)Interface Naming.
+* if_nameindex: (libc)Interface Naming.
+* if_nametoindex: (libc)Interface Naming.
+* ilogb: (libc)Exponents and Logarithms.
+* ilogbf: (libc)Exponents and Logarithms.
+* ilogbfN: (libc)Exponents and Logarithms.
+* ilogbfNx: (libc)Exponents and Logarithms.
+* ilogbl: (libc)Exponents and Logarithms.
+* imaxabs: (libc)Absolute Value.
+* imaxdiv: (libc)Integer Division.
+* in6addr_any: (libc)Host Address Data Type.
+* in6addr_loopback: (libc)Host Address Data Type.
+* index: (libc)Search Functions.
+* inet_addr: (libc)Host Address Functions.
+* inet_aton: (libc)Host Address Functions.
+* inet_lnaof: (libc)Host Address Functions.
+* inet_makeaddr: (libc)Host Address Functions.
+* inet_netof: (libc)Host Address Functions.
+* inet_network: (libc)Host Address Functions.
+* inet_ntoa: (libc)Host Address Functions.
+* inet_ntop: (libc)Host Address Functions.
+* inet_pton: (libc)Host Address Functions.
+* initgroups: (libc)Setting Groups.
+* initstate: (libc)BSD Random.
+* initstate_r: (libc)BSD Random.
+* innetgr: (libc)Netgroup Membership.
+* ioctl: (libc)IOCTLs.
+* isalnum: (libc)Classification of Characters.
+* isalpha: (libc)Classification of Characters.
+* isascii: (libc)Classification of Characters.
+* isatty: (libc)Is It a Terminal.
+* isblank: (libc)Classification of Characters.
+* iscanonical: (libc)Floating Point Classes.
+* iscntrl: (libc)Classification of Characters.
+* isdigit: (libc)Classification of Characters.
+* iseqsig: (libc)FP Comparison Functions.
+* isfinite: (libc)Floating Point Classes.
+* isgraph: (libc)Classification of Characters.
+* isgreater: (libc)FP Comparison Functions.
+* isgreaterequal: (libc)FP Comparison Functions.
+* isinf: (libc)Floating Point Classes.
+* isinff: (libc)Floating Point Classes.
+* isinfl: (libc)Floating Point Classes.
+* isless: (libc)FP Comparison Functions.
+* islessequal: (libc)FP Comparison Functions.
+* islessgreater: (libc)FP Comparison Functions.
+* islower: (libc)Classification of Characters.
+* isnan: (libc)Floating Point Classes.
+* isnan: (libc)Floating Point Classes.
+* isnanf: (libc)Floating Point Classes.
+* isnanl: (libc)Floating Point Classes.
+* isnormal: (libc)Floating Point Classes.
+* isprint: (libc)Classification of Characters.
+* ispunct: (libc)Classification of Characters.
+* issignaling: (libc)Floating Point Classes.
+* isspace: (libc)Classification of Characters.
+* issubnormal: (libc)Floating Point Classes.
+* isunordered: (libc)FP Comparison Functions.
+* isupper: (libc)Classification of Characters.
+* iswalnum: (libc)Classification of Wide Characters.
+* iswalpha: (libc)Classification of Wide Characters.
+* iswblank: (libc)Classification of Wide Characters.
+* iswcntrl: (libc)Classification of Wide Characters.
+* iswctype: (libc)Classification of Wide Characters.
+* iswdigit: (libc)Classification of Wide Characters.
+* iswgraph: (libc)Classification of Wide Characters.
+* iswlower: (libc)Classification of Wide Characters.
+* iswprint: (libc)Classification of Wide Characters.
+* iswpunct: (libc)Classification of Wide Characters.
+* iswspace: (libc)Classification of Wide Characters.
+* iswupper: (libc)Classification of Wide Characters.
+* iswxdigit: (libc)Classification of Wide Characters.
+* isxdigit: (libc)Classification of Characters.
+* iszero: (libc)Floating Point Classes.
+* j0: (libc)Special Functions.
+* j0f: (libc)Special Functions.
+* j0fN: (libc)Special Functions.
+* j0fNx: (libc)Special Functions.
+* j0l: (libc)Special Functions.
+* j1: (libc)Special Functions.
+* j1f: (libc)Special Functions.
+* j1fN: (libc)Special Functions.
+* j1fNx: (libc)Special Functions.
+* j1l: (libc)Special Functions.
+* jn: (libc)Special Functions.
+* jnf: (libc)Special Functions.
+* jnfN: (libc)Special Functions.
+* jnfNx: (libc)Special Functions.
+* jnl: (libc)Special Functions.
+* jrand48: (libc)SVID Random.
+* jrand48_r: (libc)SVID Random.
+* kill: (libc)Signaling Another Process.
+* killpg: (libc)Signaling Another Process.
+* l64a: (libc)Encode Binary Data.
+* labs: (libc)Absolute Value.
+* lcong48: (libc)SVID Random.
+* lcong48_r: (libc)SVID Random.
+* ldexp: (libc)Normalization Functions.
+* ldexpf: (libc)Normalization Functions.
+* ldexpfN: (libc)Normalization Functions.
+* ldexpfNx: (libc)Normalization Functions.
+* ldexpl: (libc)Normalization Functions.
+* ldiv: (libc)Integer Division.
+* lfind: (libc)Array Search Function.
+* lgamma: (libc)Special Functions.
+* lgamma_r: (libc)Special Functions.
+* lgammaf: (libc)Special Functions.
+* lgammafN: (libc)Special Functions.
+* lgammafN_r: (libc)Special Functions.
+* lgammafNx: (libc)Special Functions.
+* lgammafNx_r: (libc)Special Functions.
+* lgammaf_r: (libc)Special Functions.
+* lgammal: (libc)Special Functions.
+* lgammal_r: (libc)Special Functions.
+* link: (libc)Hard Links.
+* linkat: (libc)Hard Links.
+* lio_listio64: (libc)Asynchronous Reads/Writes.
+* lio_listio: (libc)Asynchronous Reads/Writes.
+* listen: (libc)Listening.
+* llabs: (libc)Absolute Value.
+* lldiv: (libc)Integer Division.
+* llogb: (libc)Exponents and Logarithms.
+* llogbf: (libc)Exponents and Logarithms.
+* llogbfN: (libc)Exponents and Logarithms.
+* llogbfNx: (libc)Exponents and Logarithms.
+* llogbl: (libc)Exponents and Logarithms.
+* llrint: (libc)Rounding Functions.
+* llrintf: (libc)Rounding Functions.
+* llrintfN: (libc)Rounding Functions.
+* llrintfNx: (libc)Rounding Functions.
+* llrintl: (libc)Rounding Functions.
+* llround: (libc)Rounding Functions.
+* llroundf: (libc)Rounding Functions.
+* llroundfN: (libc)Rounding Functions.
+* llroundfNx: (libc)Rounding Functions.
+* llroundl: (libc)Rounding Functions.
+* localeconv: (libc)The Lame Way to Locale Data.
+* localtime: (libc)Broken-down Time.
+* localtime_r: (libc)Broken-down Time.
+* log10: (libc)Exponents and Logarithms.
+* log10f: (libc)Exponents and Logarithms.
+* log10fN: (libc)Exponents and Logarithms.
+* log10fNx: (libc)Exponents and Logarithms.
+* log10l: (libc)Exponents and Logarithms.
+* log1p: (libc)Exponents and Logarithms.
+* log1pf: (libc)Exponents and Logarithms.
+* log1pfN: (libc)Exponents and Logarithms.
+* log1pfNx: (libc)Exponents and Logarithms.
+* log1pl: (libc)Exponents and Logarithms.
+* log2: (libc)Exponents and Logarithms.
+* log2f: (libc)Exponents and Logarithms.
+* log2fN: (libc)Exponents and Logarithms.
+* log2fNx: (libc)Exponents and Logarithms.
+* log2l: (libc)Exponents and Logarithms.
+* log: (libc)Exponents and Logarithms.
+* logb: (libc)Exponents and Logarithms.
+* logbf: (libc)Exponents and Logarithms.
+* logbfN: (libc)Exponents and Logarithms.
+* logbfNx: (libc)Exponents and Logarithms.
+* logbl: (libc)Exponents and Logarithms.
+* logf: (libc)Exponents and Logarithms.
+* logfN: (libc)Exponents and Logarithms.
+* logfNx: (libc)Exponents and Logarithms.
+* login: (libc)Logging In and Out.
+* login_tty: (libc)Logging In and Out.
+* logl: (libc)Exponents and Logarithms.
+* logout: (libc)Logging In and Out.
+* logwtmp: (libc)Logging In and Out.
+* longjmp: (libc)Non-Local Details.
+* lrand48: (libc)SVID Random.
+* lrand48_r: (libc)SVID Random.
+* lrint: (libc)Rounding Functions.
+* lrintf: (libc)Rounding Functions.
+* lrintfN: (libc)Rounding Functions.
+* lrintfNx: (libc)Rounding Functions.
+* lrintl: (libc)Rounding Functions.
+* lround: (libc)Rounding Functions.
+* lroundf: (libc)Rounding Functions.
+* lroundfN: (libc)Rounding Functions.
+* lroundfNx: (libc)Rounding Functions.
+* lroundl: (libc)Rounding Functions.
+* lsearch: (libc)Array Search Function.
+* lseek64: (libc)File Position Primitive.
+* lseek: (libc)File Position Primitive.
+* lstat64: (libc)Reading Attributes.
+* lstat: (libc)Reading Attributes.
+* lutimes: (libc)File Times.
+* madvise: (libc)Memory-mapped I/O.
+* makecontext: (libc)System V contexts.
+* mallinfo2: (libc)Statistics of Malloc.
+* malloc: (libc)Basic Allocation.
+* mallopt: (libc)Malloc Tunable Parameters.
+* mblen: (libc)Non-reentrant Character Conversion.
+* mbrlen: (libc)Converting a Character.
+* mbrtowc: (libc)Converting a Character.
+* mbsinit: (libc)Keeping the state.
+* mbsnrtowcs: (libc)Converting Strings.
+* mbsrtowcs: (libc)Converting Strings.
+* mbstowcs: (libc)Non-reentrant String Conversion.
+* mbtowc: (libc)Non-reentrant Character Conversion.
+* mcheck: (libc)Heap Consistency Checking.
+* memalign: (libc)Aligned Memory Blocks.
+* memccpy: (libc)Copying Strings and Arrays.
+* memchr: (libc)Search Functions.
+* memcmp: (libc)String/Array Comparison.
+* memcpy: (libc)Copying Strings and Arrays.
+* memfd_create: (libc)Memory-mapped I/O.
+* memfrob: (libc)Obfuscating Data.
+* memmem: (libc)Search Functions.
+* memmove: (libc)Copying Strings and Arrays.
+* mempcpy: (libc)Copying Strings and Arrays.
+* memrchr: (libc)Search Functions.
+* memset: (libc)Copying Strings and Arrays.
+* mkdir: (libc)Creating Directories.
+* mkdtemp: (libc)Temporary Files.
+* mkfifo: (libc)FIFO Special Files.
+* mknod: (libc)Making Special Files.
+* mkstemp: (libc)Temporary Files.
+* mktemp: (libc)Temporary Files.
+* mktime: (libc)Broken-down Time.
+* mlock2: (libc)Page Lock Functions.
+* mlock: (libc)Page Lock Functions.
+* mlockall: (libc)Page Lock Functions.
+* mmap64: (libc)Memory-mapped I/O.
+* mmap: (libc)Memory-mapped I/O.
+* modf: (libc)Rounding Functions.
+* modff: (libc)Rounding Functions.
+* modffN: (libc)Rounding Functions.
+* modffNx: (libc)Rounding Functions.
+* modfl: (libc)Rounding Functions.
+* mount: (libc)Mount-Unmount-Remount.
+* mprobe: (libc)Heap Consistency Checking.
+* mprotect: (libc)Memory Protection.
+* mrand48: (libc)SVID Random.
+* mrand48_r: (libc)SVID Random.
+* mremap: (libc)Memory-mapped I/O.
+* msync: (libc)Memory-mapped I/O.
+* mtrace: (libc)Tracing malloc.
+* mtx_destroy: (libc)ISO C Mutexes.
+* mtx_init: (libc)ISO C Mutexes.
+* mtx_lock: (libc)ISO C Mutexes.
+* mtx_timedlock: (libc)ISO C Mutexes.
+* mtx_trylock: (libc)ISO C Mutexes.
+* mtx_unlock: (libc)ISO C Mutexes.
+* munlock: (libc)Page Lock Functions.
+* munlockall: (libc)Page Lock Functions.
+* munmap: (libc)Memory-mapped I/O.
+* muntrace: (libc)Tracing malloc.
+* nan: (libc)FP Bit Twiddling.
+* nanf: (libc)FP Bit Twiddling.
+* nanfN: (libc)FP Bit Twiddling.
+* nanfNx: (libc)FP Bit Twiddling.
+* nanl: (libc)FP Bit Twiddling.
+* nanosleep: (libc)Sleeping.
+* nearbyint: (libc)Rounding Functions.
+* nearbyintf: (libc)Rounding Functions.
+* nearbyintfN: (libc)Rounding Functions.
+* nearbyintfNx: (libc)Rounding Functions.
+* nearbyintl: (libc)Rounding Functions.
+* nextafter: (libc)FP Bit Twiddling.
+* nextafterf: (libc)FP Bit Twiddling.
+* nextafterfN: (libc)FP Bit Twiddling.
+* nextafterfNx: (libc)FP Bit Twiddling.
+* nextafterl: (libc)FP Bit Twiddling.
+* nextdown: (libc)FP Bit Twiddling.
+* nextdownf: (libc)FP Bit Twiddling.
+* nextdownfN: (libc)FP Bit Twiddling.
+* nextdownfNx: (libc)FP Bit Twiddling.
+* nextdownl: (libc)FP Bit Twiddling.
+* nexttoward: (libc)FP Bit Twiddling.
+* nexttowardf: (libc)FP Bit Twiddling.
+* nexttowardl: (libc)FP Bit Twiddling.
+* nextup: (libc)FP Bit Twiddling.
+* nextupf: (libc)FP Bit Twiddling.
+* nextupfN: (libc)FP Bit Twiddling.
+* nextupfNx: (libc)FP Bit Twiddling.
+* nextupl: (libc)FP Bit Twiddling.
+* nftw64: (libc)Working with Directory Trees.
+* nftw: (libc)Working with Directory Trees.
+* ngettext: (libc)Advanced gettext functions.
+* nice: (libc)Traditional Scheduling Functions.
+* nl_langinfo: (libc)The Elegant and Fast Way.
+* nrand48: (libc)SVID Random.
+* nrand48_r: (libc)SVID Random.
+* ntohl: (libc)Byte Order.
+* ntohs: (libc)Byte Order.
+* ntp_adjtime: (libc)Setting and Adjusting the Time.
+* ntp_gettime: (libc)Setting and Adjusting the Time.
+* obstack_1grow: (libc)Growing Objects.
+* obstack_1grow_fast: (libc)Extra Fast Growing.
+* obstack_alignment_mask: (libc)Obstacks Data Alignment.
+* obstack_alloc: (libc)Allocation in an Obstack.
+* obstack_base: (libc)Status of an Obstack.
+* obstack_blank: (libc)Growing Objects.
+* obstack_blank_fast: (libc)Extra Fast Growing.
+* obstack_chunk_size: (libc)Obstack Chunks.
+* obstack_copy0: (libc)Allocation in an Obstack.
+* obstack_copy: (libc)Allocation in an Obstack.
+* obstack_finish: (libc)Growing Objects.
+* obstack_free: (libc)Freeing Obstack Objects.
+* obstack_grow0: (libc)Growing Objects.
+* obstack_grow: (libc)Growing Objects.
+* obstack_init: (libc)Preparing for Obstacks.
+* obstack_int_grow: (libc)Growing Objects.
+* obstack_int_grow_fast: (libc)Extra Fast Growing.
+* obstack_next_free: (libc)Status of an Obstack.
+* obstack_object_size: (libc)Growing Objects.
+* obstack_object_size: (libc)Status of an Obstack.
+* obstack_printf: (libc)Dynamic Output.
+* obstack_ptr_grow: (libc)Growing Objects.
+* obstack_ptr_grow_fast: (libc)Extra Fast Growing.
+* obstack_room: (libc)Extra Fast Growing.
+* obstack_vprintf: (libc)Variable Arguments Output.
+* offsetof: (libc)Structure Measurement.
+* on_exit: (libc)Cleanups on Exit.
+* open64: (libc)Opening and Closing Files.
+* open: (libc)Opening and Closing Files.
+* open_memstream: (libc)String Streams.
+* opendir: (libc)Opening a Directory.
+* openlog: (libc)openlog.
+* openpty: (libc)Pseudo-Terminal Pairs.
+* parse_printf_format: (libc)Parsing a Template String.
+* pathconf: (libc)Pathconf.
+* pause: (libc)Using Pause.
+* pclose: (libc)Pipe to a Subprocess.
+* perror: (libc)Error Messages.
+* pipe: (libc)Creating a Pipe.
+* pkey_alloc: (libc)Memory Protection.
+* pkey_free: (libc)Memory Protection.
+* pkey_get: (libc)Memory Protection.
+* pkey_mprotect: (libc)Memory Protection.
+* pkey_set: (libc)Memory Protection.
+* popen: (libc)Pipe to a Subprocess.
+* posix_fallocate64: (libc)Storage Allocation.
+* posix_fallocate: (libc)Storage Allocation.
+* posix_memalign: (libc)Aligned Memory Blocks.
+* posix_openpt: (libc)Allocation.
+* pow: (libc)Exponents and Logarithms.
+* powf: (libc)Exponents and Logarithms.
+* powfN: (libc)Exponents and Logarithms.
+* powfNx: (libc)Exponents and Logarithms.
+* powl: (libc)Exponents and Logarithms.
+* pread64: (libc)I/O Primitives.
+* pread: (libc)I/O Primitives.
+* preadv2: (libc)Scatter-Gather.
+* preadv64: (libc)Scatter-Gather.
+* preadv64v2: (libc)Scatter-Gather.
+* preadv: (libc)Scatter-Gather.
+* printf: (libc)Formatted Output Functions.
+* printf_size: (libc)Predefined Printf Handlers.
+* printf_size_info: (libc)Predefined Printf Handlers.
+* psignal: (libc)Signal Messages.
+* pthread_attr_getsigmask_np: (libc)Initial Thread Signal Mask.
+* pthread_attr_setsigmask_np: (libc)Initial Thread Signal Mask.
+* pthread_clockjoin_np: (libc)Waiting with Explicit Clocks.
+* pthread_cond_clockwait: (libc)Waiting with Explicit Clocks.
+* pthread_getattr_default_np: (libc)Default Thread Attributes.
+* pthread_getspecific: (libc)Thread-specific Data.
+* pthread_key_create: (libc)Thread-specific Data.
+* pthread_key_delete: (libc)Thread-specific Data.
+* pthread_rwlock_clockrdlock: (libc)Waiting with Explicit Clocks.
+* pthread_rwlock_clockwrlock: (libc)Waiting with Explicit Clocks.
+* pthread_setattr_default_np: (libc)Default Thread Attributes.
+* pthread_setspecific: (libc)Thread-specific Data.
+* pthread_timedjoin_np: (libc)Waiting with Explicit Clocks.
+* pthread_tryjoin_np: (libc)Waiting with Explicit Clocks.
+* ptsname: (libc)Allocation.
+* ptsname_r: (libc)Allocation.
+* putc: (libc)Simple Output.
+* putc_unlocked: (libc)Simple Output.
+* putchar: (libc)Simple Output.
+* putchar_unlocked: (libc)Simple Output.
+* putenv: (libc)Environment Access.
+* putpwent: (libc)Writing a User Entry.
+* puts: (libc)Simple Output.
+* pututline: (libc)Manipulating the Database.
+* pututxline: (libc)XPG Functions.
+* putw: (libc)Simple Output.
+* putwc: (libc)Simple Output.
+* putwc_unlocked: (libc)Simple Output.
+* putwchar: (libc)Simple Output.
+* putwchar_unlocked: (libc)Simple Output.
+* pwrite64: (libc)I/O Primitives.
+* pwrite: (libc)I/O Primitives.
+* pwritev2: (libc)Scatter-Gather.
+* pwritev64: (libc)Scatter-Gather.
+* pwritev64v2: (libc)Scatter-Gather.
+* pwritev: (libc)Scatter-Gather.
+* qecvt: (libc)System V Number Conversion.
+* qecvt_r: (libc)System V Number Conversion.
+* qfcvt: (libc)System V Number Conversion.
+* qfcvt_r: (libc)System V Number Conversion.
+* qgcvt: (libc)System V Number Conversion.
+* qsort: (libc)Array Sort Function.
+* raise: (libc)Signaling Yourself.
+* rand: (libc)ISO Random.
+* rand_r: (libc)ISO Random.
+* random: (libc)BSD Random.
+* random_r: (libc)BSD Random.
+* rawmemchr: (libc)Search Functions.
+* read: (libc)I/O Primitives.
+* readdir64: (libc)Reading/Closing Directory.
+* readdir64_r: (libc)Reading/Closing Directory.
+* readdir: (libc)Reading/Closing Directory.
+* readdir_r: (libc)Reading/Closing Directory.
+* readlink: (libc)Symbolic Links.
+* readv: (libc)Scatter-Gather.
+* realloc: (libc)Changing Block Size.
+* reallocarray: (libc)Changing Block Size.
+* realpath: (libc)Symbolic Links.
+* recv: (libc)Receiving Data.
+* recvfrom: (libc)Receiving Datagrams.
+* recvmsg: (libc)Receiving Datagrams.
+* regcomp: (libc)POSIX Regexp Compilation.
+* regerror: (libc)Regexp Cleanup.
+* regexec: (libc)Matching POSIX Regexps.
+* regfree: (libc)Regexp Cleanup.
+* register_printf_function: (libc)Registering New Conversions.
+* remainder: (libc)Remainder Functions.
+* remainderf: (libc)Remainder Functions.
+* remainderfN: (libc)Remainder Functions.
+* remainderfNx: (libc)Remainder Functions.
+* remainderl: (libc)Remainder Functions.
+* remove: (libc)Deleting Files.
+* rename: (libc)Renaming Files.
+* rewind: (libc)File Positioning.
+* rewinddir: (libc)Random Access Directory.
+* rindex: (libc)Search Functions.
+* rint: (libc)Rounding Functions.
+* rintf: (libc)Rounding Functions.
+* rintfN: (libc)Rounding Functions.
+* rintfNx: (libc)Rounding Functions.
+* rintl: (libc)Rounding Functions.
+* rmdir: (libc)Deleting Files.
+* round: (libc)Rounding Functions.
+* roundeven: (libc)Rounding Functions.
+* roundevenf: (libc)Rounding Functions.
+* roundevenfN: (libc)Rounding Functions.
+* roundevenfNx: (libc)Rounding Functions.
+* roundevenl: (libc)Rounding Functions.
+* roundf: (libc)Rounding Functions.
+* roundfN: (libc)Rounding Functions.
+* roundfNx: (libc)Rounding Functions.
+* roundl: (libc)Rounding Functions.
+* rpmatch: (libc)Yes-or-No Questions.
+* sbrk: (libc)Resizing the Data Segment.
+* scalb: (libc)Normalization Functions.
+* scalbf: (libc)Normalization Functions.
+* scalbl: (libc)Normalization Functions.
+* scalbln: (libc)Normalization Functions.
+* scalblnf: (libc)Normalization Functions.
+* scalblnfN: (libc)Normalization Functions.
+* scalblnfNx: (libc)Normalization Functions.
+* scalblnl: (libc)Normalization Functions.
+* scalbn: (libc)Normalization Functions.
+* scalbnf: (libc)Normalization Functions.
+* scalbnfN: (libc)Normalization Functions.
+* scalbnfNx: (libc)Normalization Functions.
+* scalbnl: (libc)Normalization Functions.
+* scandir64: (libc)Scanning Directory Content.
+* scandir: (libc)Scanning Directory Content.
+* scanf: (libc)Formatted Input Functions.
+* sched_get_priority_max: (libc)Basic Scheduling Functions.
+* sched_get_priority_min: (libc)Basic Scheduling Functions.
+* sched_getaffinity: (libc)CPU Affinity.
+* sched_getparam: (libc)Basic Scheduling Functions.
+* sched_getscheduler: (libc)Basic Scheduling Functions.
+* sched_rr_get_interval: (libc)Basic Scheduling Functions.
+* sched_setaffinity: (libc)CPU Affinity.
+* sched_setparam: (libc)Basic Scheduling Functions.
+* sched_setscheduler: (libc)Basic Scheduling Functions.
+* sched_yield: (libc)Basic Scheduling Functions.
+* secure_getenv: (libc)Environment Access.
+* seed48: (libc)SVID Random.
+* seed48_r: (libc)SVID Random.
+* seekdir: (libc)Random Access Directory.
+* select: (libc)Waiting for I/O.
+* sem_clockwait: (libc)Waiting with Explicit Clocks.
+* sem_close: (libc)Semaphores.
+* sem_destroy: (libc)Semaphores.
+* sem_getvalue: (libc)Semaphores.
+* sem_init: (libc)Semaphores.
+* sem_open: (libc)Semaphores.
+* sem_post: (libc)Semaphores.
+* sem_timedwait: (libc)Semaphores.
+* sem_trywait: (libc)Semaphores.
+* sem_unlink: (libc)Semaphores.
+* sem_wait: (libc)Semaphores.
+* semctl: (libc)Semaphores.
+* semget: (libc)Semaphores.
+* semop: (libc)Semaphores.
+* semtimedop: (libc)Semaphores.
+* send: (libc)Sending Data.
+* sendmsg: (libc)Receiving Datagrams.
+* sendto: (libc)Sending Datagrams.
+* setbuf: (libc)Controlling Buffering.
+* setbuffer: (libc)Controlling Buffering.
+* setcontext: (libc)System V contexts.
+* setdomainname: (libc)Host Identification.
+* setegid: (libc)Setting Groups.
+* setenv: (libc)Environment Access.
+* seteuid: (libc)Setting User ID.
+* setfsent: (libc)fstab.
+* setgid: (libc)Setting Groups.
+* setgrent: (libc)Scanning All Groups.
+* setgroups: (libc)Setting Groups.
+* sethostent: (libc)Host Names.
+* sethostid: (libc)Host Identification.
+* sethostname: (libc)Host Identification.
+* setitimer: (libc)Setting an Alarm.
+* setjmp: (libc)Non-Local Details.
+* setlinebuf: (libc)Controlling Buffering.
+* setlocale: (libc)Setting the Locale.
+* setlogmask: (libc)setlogmask.
+* setmntent: (libc)mtab.
+* setnetent: (libc)Networks Database.
+* setnetgrent: (libc)Lookup Netgroup.
+* setpayload: (libc)FP Bit Twiddling.
+* setpayloadf: (libc)FP Bit Twiddling.
+* setpayloadfN: (libc)FP Bit Twiddling.
+* setpayloadfNx: (libc)FP Bit Twiddling.
+* setpayloadl: (libc)FP Bit Twiddling.
+* setpayloadsig: (libc)FP Bit Twiddling.
+* setpayloadsigf: (libc)FP Bit Twiddling.
+* setpayloadsigfN: (libc)FP Bit Twiddling.
+* setpayloadsigfNx: (libc)FP Bit Twiddling.
+* setpayloadsigl: (libc)FP Bit Twiddling.
+* setpgid: (libc)Process Group Functions.
+* setpgrp: (libc)Process Group Functions.
+* setpriority: (libc)Traditional Scheduling Functions.
+* setprotoent: (libc)Protocols Database.
+* setpwent: (libc)Scanning All Users.
+* setregid: (libc)Setting Groups.
+* setreuid: (libc)Setting User ID.
+* setrlimit64: (libc)Limits on Resources.
+* setrlimit: (libc)Limits on Resources.
+* setservent: (libc)Services Database.
+* setsid: (libc)Process Group Functions.
+* setsockopt: (libc)Socket Option Functions.
+* setstate: (libc)BSD Random.
+* setstate_r: (libc)BSD Random.
+* settimeofday: (libc)Setting and Adjusting the Time.
+* setuid: (libc)Setting User ID.
+* setutent: (libc)Manipulating the Database.
+* setutxent: (libc)XPG Functions.
+* setvbuf: (libc)Controlling Buffering.
+* shm_open: (libc)Memory-mapped I/O.
+* shm_unlink: (libc)Memory-mapped I/O.
+* shutdown: (libc)Closing a Socket.
+* sigabbrev_np: (libc)Signal Messages.
+* sigaction: (libc)Advanced Signal Handling.
+* sigaddset: (libc)Signal Sets.
+* sigaltstack: (libc)Signal Stack.
+* sigblock: (libc)BSD Signal Handling.
+* sigdelset: (libc)Signal Sets.
+* sigdescr_np: (libc)Signal Messages.
+* sigemptyset: (libc)Signal Sets.
+* sigfillset: (libc)Signal Sets.
+* siginterrupt: (libc)BSD Signal Handling.
+* sigismember: (libc)Signal Sets.
+* siglongjmp: (libc)Non-Local Exits and Signals.
+* sigmask: (libc)BSD Signal Handling.
+* signal: (libc)Basic Signal Handling.
+* signbit: (libc)FP Bit Twiddling.
+* significand: (libc)Normalization Functions.
+* significandf: (libc)Normalization Functions.
+* significandl: (libc)Normalization Functions.
+* sigpause: (libc)BSD Signal Handling.
+* sigpending: (libc)Checking for Pending Signals.
+* sigprocmask: (libc)Process Signal Mask.
+* sigsetjmp: (libc)Non-Local Exits and Signals.
+* sigsetmask: (libc)BSD Signal Handling.
+* sigstack: (libc)Signal Stack.
+* sigsuspend: (libc)Sigsuspend.
+* sin: (libc)Trig Functions.
+* sincos: (libc)Trig Functions.
+* sincosf: (libc)Trig Functions.
+* sincosfN: (libc)Trig Functions.
+* sincosfNx: (libc)Trig Functions.
+* sincosl: (libc)Trig Functions.
+* sinf: (libc)Trig Functions.
+* sinfN: (libc)Trig Functions.
+* sinfNx: (libc)Trig Functions.
+* sinh: (libc)Hyperbolic Functions.
+* sinhf: (libc)Hyperbolic Functions.
+* sinhfN: (libc)Hyperbolic Functions.
+* sinhfNx: (libc)Hyperbolic Functions.
+* sinhl: (libc)Hyperbolic Functions.
+* sinl: (libc)Trig Functions.
+* sleep: (libc)Sleeping.
+* snprintf: (libc)Formatted Output Functions.
+* socket: (libc)Creating a Socket.
+* socketpair: (libc)Socket Pairs.
+* sprintf: (libc)Formatted Output Functions.
+* sqrt: (libc)Exponents and Logarithms.
+* sqrtf: (libc)Exponents and Logarithms.
+* sqrtfN: (libc)Exponents and Logarithms.
+* sqrtfNx: (libc)Exponents and Logarithms.
+* sqrtl: (libc)Exponents and Logarithms.
+* srand48: (libc)SVID Random.
+* srand48_r: (libc)SVID Random.
+* srand: (libc)ISO Random.
+* srandom: (libc)BSD Random.
+* srandom_r: (libc)BSD Random.
+* sscanf: (libc)Formatted Input Functions.
+* ssignal: (libc)Basic Signal Handling.
+* stat64: (libc)Reading Attributes.
+* stat: (libc)Reading Attributes.
+* stime: (libc)Setting and Adjusting the Time.
+* stpcpy: (libc)Copying Strings and Arrays.
+* stpncpy: (libc)Truncating Strings.
+* strcasecmp: (libc)String/Array Comparison.
+* strcasestr: (libc)Search Functions.
+* strcat: (libc)Concatenating Strings.
+* strchr: (libc)Search Functions.
+* strchrnul: (libc)Search Functions.
+* strcmp: (libc)String/Array Comparison.
+* strcoll: (libc)Collation Functions.
+* strcpy: (libc)Copying Strings and Arrays.
+* strcspn: (libc)Search Functions.
+* strdup: (libc)Copying Strings and Arrays.
+* strdupa: (libc)Copying Strings and Arrays.
+* strerror: (libc)Error Messages.
+* strerror_l: (libc)Error Messages.
+* strerror_r: (libc)Error Messages.
+* strerror_r: (libc)Error Messages.
+* strerrordesc_np: (libc)Error Messages.
+* strerrorname_np: (libc)Error Messages.
+* strfmon: (libc)Formatting Numbers.
+* strfromd: (libc)Printing of Floats.
+* strfromf: (libc)Printing of Floats.
+* strfromfN: (libc)Printing of Floats.
+* strfromfNx: (libc)Printing of Floats.
+* strfroml: (libc)Printing of Floats.
+* strfry: (libc)Shuffling Bytes.
+* strftime: (libc)Formatting Calendar Time.
+* strlcat: (libc)Truncating Strings.
+* strlcpy: (libc)Truncating Strings.
+* strlen: (libc)String Length.
+* strncasecmp: (libc)String/Array Comparison.
+* strncat: (libc)Truncating Strings.
+* strncmp: (libc)String/Array Comparison.
+* strncpy: (libc)Truncating Strings.
+* strndup: (libc)Truncating Strings.
+* strndupa: (libc)Truncating Strings.
+* strnlen: (libc)String Length.
+* strpbrk: (libc)Search Functions.
+* strptime: (libc)Low-Level Time String Parsing.
+* strrchr: (libc)Search Functions.
+* strsep: (libc)Finding Tokens in a String.
+* strsignal: (libc)Signal Messages.
+* strspn: (libc)Search Functions.
+* strstr: (libc)Search Functions.
+* strtod: (libc)Parsing of Floats.
+* strtof: (libc)Parsing of Floats.
+* strtofN: (libc)Parsing of Floats.
+* strtofNx: (libc)Parsing of Floats.
+* strtoimax: (libc)Parsing of Integers.
+* strtok: (libc)Finding Tokens in a String.
+* strtok_r: (libc)Finding Tokens in a String.
+* strtol: (libc)Parsing of Integers.
+* strtold: (libc)Parsing of Floats.
+* strtoll: (libc)Parsing of Integers.
+* strtoq: (libc)Parsing of Integers.
+* strtoul: (libc)Parsing of Integers.
+* strtoull: (libc)Parsing of Integers.
+* strtoumax: (libc)Parsing of Integers.
+* strtouq: (libc)Parsing of Integers.
+* strverscmp: (libc)String/Array Comparison.
+* strxfrm: (libc)Collation Functions.
+* stty: (libc)BSD Terminal Modes.
+* swapcontext: (libc)System V contexts.
+* swprintf: (libc)Formatted Output Functions.
+* swscanf: (libc)Formatted Input Functions.
+* symlink: (libc)Symbolic Links.
+* sync: (libc)Synchronizing I/O.
+* syscall: (libc)System Calls.
+* sysconf: (libc)Sysconf Definition.
+* syslog: (libc)syslog; vsyslog.
+* system: (libc)Running a Command.
+* sysv_signal: (libc)Basic Signal Handling.
+* tan: (libc)Trig Functions.
+* tanf: (libc)Trig Functions.
+* tanfN: (libc)Trig Functions.
+* tanfNx: (libc)Trig Functions.
+* tanh: (libc)Hyperbolic Functions.
+* tanhf: (libc)Hyperbolic Functions.
+* tanhfN: (libc)Hyperbolic Functions.
+* tanhfNx: (libc)Hyperbolic Functions.
+* tanhl: (libc)Hyperbolic Functions.
+* tanl: (libc)Trig Functions.
+* tcdrain: (libc)Line Control.
+* tcflow: (libc)Line Control.
+* tcflush: (libc)Line Control.
+* tcgetattr: (libc)Mode Functions.
+* tcgetpgrp: (libc)Terminal Access Functions.
+* tcgetsid: (libc)Terminal Access Functions.
+* tcsendbreak: (libc)Line Control.
+* tcsetattr: (libc)Mode Functions.
+* tcsetpgrp: (libc)Terminal Access Functions.
+* tdelete: (libc)Tree Search Function.
+* tdestroy: (libc)Tree Search Function.
+* telldir: (libc)Random Access Directory.
+* tempnam: (libc)Temporary Files.
+* textdomain: (libc)Locating gettext catalog.
+* tfind: (libc)Tree Search Function.
+* tgamma: (libc)Special Functions.
+* tgammaf: (libc)Special Functions.
+* tgammafN: (libc)Special Functions.
+* tgammafNx: (libc)Special Functions.
+* tgammal: (libc)Special Functions.
+* tgkill: (libc)Signaling Another Process.
+* thrd_create: (libc)ISO C Thread Management.
+* thrd_current: (libc)ISO C Thread Management.
+* thrd_detach: (libc)ISO C Thread Management.
+* thrd_equal: (libc)ISO C Thread Management.
+* thrd_exit: (libc)ISO C Thread Management.
+* thrd_join: (libc)ISO C Thread Management.
+* thrd_sleep: (libc)ISO C Thread Management.
+* thrd_yield: (libc)ISO C Thread Management.
+* time: (libc)Getting the Time.
+* timegm: (libc)Broken-down Time.
+* timelocal: (libc)Broken-down Time.
+* times: (libc)Processor Time.
+* tmpfile64: (libc)Temporary Files.
+* tmpfile: (libc)Temporary Files.
+* tmpnam: (libc)Temporary Files.
+* tmpnam_r: (libc)Temporary Files.
+* toascii: (libc)Case Conversion.
+* tolower: (libc)Case Conversion.
+* totalorder: (libc)FP Comparison Functions.
+* totalorderf: (libc)FP Comparison Functions.
+* totalorderfN: (libc)FP Comparison Functions.
+* totalorderfNx: (libc)FP Comparison Functions.
+* totalorderl: (libc)FP Comparison Functions.
+* totalordermag: (libc)FP Comparison Functions.
+* totalordermagf: (libc)FP Comparison Functions.
+* totalordermagfN: (libc)FP Comparison Functions.
+* totalordermagfNx: (libc)FP Comparison Functions.
+* totalordermagl: (libc)FP Comparison Functions.
+* toupper: (libc)Case Conversion.
+* towctrans: (libc)Wide Character Case Conversion.
+* towlower: (libc)Wide Character Case Conversion.
+* towupper: (libc)Wide Character Case Conversion.
+* trunc: (libc)Rounding Functions.
+* truncate64: (libc)File Size.
+* truncate: (libc)File Size.
+* truncf: (libc)Rounding Functions.
+* truncfN: (libc)Rounding Functions.
+* truncfNx: (libc)Rounding Functions.
+* truncl: (libc)Rounding Functions.
+* tsearch: (libc)Tree Search Function.
+* tss_create: (libc)ISO C Thread-local Storage.
+* tss_delete: (libc)ISO C Thread-local Storage.
+* tss_get: (libc)ISO C Thread-local Storage.
+* tss_set: (libc)ISO C Thread-local Storage.
+* ttyname: (libc)Is It a Terminal.
+* ttyname_r: (libc)Is It a Terminal.
+* twalk: (libc)Tree Search Function.
+* twalk_r: (libc)Tree Search Function.
+* tzset: (libc)Time Zone Functions.
+* ufromfp: (libc)Rounding Functions.
+* ufromfpf: (libc)Rounding Functions.
+* ufromfpfN: (libc)Rounding Functions.
+* ufromfpfNx: (libc)Rounding Functions.
+* ufromfpl: (libc)Rounding Functions.
+* ufromfpx: (libc)Rounding Functions.
+* ufromfpxf: (libc)Rounding Functions.
+* ufromfpxfN: (libc)Rounding Functions.
+* ufromfpxfNx: (libc)Rounding Functions.
+* ufromfpxl: (libc)Rounding Functions.
+* ulimit: (libc)Limits on Resources.
+* umask: (libc)Setting Permissions.
+* umount2: (libc)Mount-Unmount-Remount.
+* umount: (libc)Mount-Unmount-Remount.
+* uname: (libc)Platform Type.
+* ungetc: (libc)How Unread.
+* ungetwc: (libc)How Unread.
+* unlink: (libc)Deleting Files.
+* unlockpt: (libc)Allocation.
+* unsetenv: (libc)Environment Access.
+* updwtmp: (libc)Manipulating the Database.
+* utime: (libc)File Times.
+* utimes: (libc)File Times.
+* utmpname: (libc)Manipulating the Database.
+* utmpxname: (libc)XPG Functions.
+* va_arg: (libc)Argument Macros.
+* va_copy: (libc)Argument Macros.
+* va_end: (libc)Argument Macros.
+* va_start: (libc)Argument Macros.
+* valloc: (libc)Aligned Memory Blocks.
+* vasprintf: (libc)Variable Arguments Output.
+* verr: (libc)Error Messages.
+* verrx: (libc)Error Messages.
+* versionsort64: (libc)Scanning Directory Content.
+* versionsort: (libc)Scanning Directory Content.
+* vfork: (libc)Creating a Process.
+* vfprintf: (libc)Variable Arguments Output.
+* vfscanf: (libc)Variable Arguments Input.
+* vfwprintf: (libc)Variable Arguments Output.
+* vfwscanf: (libc)Variable Arguments Input.
+* vlimit: (libc)Limits on Resources.
+* vprintf: (libc)Variable Arguments Output.
+* vscanf: (libc)Variable Arguments Input.
+* vsnprintf: (libc)Variable Arguments Output.
+* vsprintf: (libc)Variable Arguments Output.
+* vsscanf: (libc)Variable Arguments Input.
+* vswprintf: (libc)Variable Arguments Output.
+* vswscanf: (libc)Variable Arguments Input.
+* vsyslog: (libc)syslog; vsyslog.
+* vwarn: (libc)Error Messages.
+* vwarnx: (libc)Error Messages.
+* vwprintf: (libc)Variable Arguments Output.
+* vwscanf: (libc)Variable Arguments Input.
+* wait3: (libc)BSD Wait Functions.
+* wait4: (libc)Process Completion.
+* wait: (libc)Process Completion.
+* waitpid: (libc)Process Completion.
+* warn: (libc)Error Messages.
+* warnx: (libc)Error Messages.
+* wcpcpy: (libc)Copying Strings and Arrays.
+* wcpncpy: (libc)Truncating Strings.
+* wcrtomb: (libc)Converting a Character.
+* wcscasecmp: (libc)String/Array Comparison.
+* wcscat: (libc)Concatenating Strings.
+* wcschr: (libc)Search Functions.
+* wcschrnul: (libc)Search Functions.
+* wcscmp: (libc)String/Array Comparison.
+* wcscoll: (libc)Collation Functions.
+* wcscpy: (libc)Copying Strings and Arrays.
+* wcscspn: (libc)Search Functions.
+* wcsdup: (libc)Copying Strings and Arrays.
+* wcsftime: (libc)Formatting Calendar Time.
+* wcslcat: (libc)Truncating Strings.
+* wcslcpy: (libc)Truncating Strings.
+* wcslen: (libc)String Length.
+* wcsncasecmp: (libc)String/Array Comparison.
+* wcsncat: (libc)Truncating Strings.
+* wcsncmp: (libc)String/Array Comparison.
+* wcsncpy: (libc)Truncating Strings.
+* wcsnlen: (libc)String Length.
+* wcsnrtombs: (libc)Converting Strings.
+* wcspbrk: (libc)Search Functions.
+* wcsrchr: (libc)Search Functions.
+* wcsrtombs: (libc)Converting Strings.
+* wcsspn: (libc)Search Functions.
+* wcsstr: (libc)Search Functions.
+* wcstod: (libc)Parsing of Floats.
+* wcstof: (libc)Parsing of Floats.
+* wcstofN: (libc)Parsing of Floats.
+* wcstofNx: (libc)Parsing of Floats.
+* wcstoimax: (libc)Parsing of Integers.
+* wcstok: (libc)Finding Tokens in a String.
+* wcstol: (libc)Parsing of Integers.
+* wcstold: (libc)Parsing of Floats.
+* wcstoll: (libc)Parsing of Integers.
+* wcstombs: (libc)Non-reentrant String Conversion.
+* wcstoq: (libc)Parsing of Integers.
+* wcstoul: (libc)Parsing of Integers.
+* wcstoull: (libc)Parsing of Integers.
+* wcstoumax: (libc)Parsing of Integers.
+* wcstouq: (libc)Parsing of Integers.
+* wcswcs: (libc)Search Functions.
+* wcsxfrm: (libc)Collation Functions.
+* wctob: (libc)Converting a Character.
+* wctomb: (libc)Non-reentrant Character Conversion.
+* wctrans: (libc)Wide Character Case Conversion.
+* wctype: (libc)Classification of Wide Characters.
+* wmemchr: (libc)Search Functions.
+* wmemcmp: (libc)String/Array Comparison.
+* wmemcpy: (libc)Copying Strings and Arrays.
+* wmemmove: (libc)Copying Strings and Arrays.
+* wmempcpy: (libc)Copying Strings and Arrays.
+* wmemset: (libc)Copying Strings and Arrays.
+* wordexp: (libc)Calling Wordexp.
+* wordfree: (libc)Calling Wordexp.
+* wprintf: (libc)Formatted Output Functions.
+* write: (libc)I/O Primitives.
+* writev: (libc)Scatter-Gather.
+* wscanf: (libc)Formatted Input Functions.
+* y0: (libc)Special Functions.
+* y0f: (libc)Special Functions.
+* y0fN: (libc)Special Functions.
+* y0fNx: (libc)Special Functions.
+* y0l: (libc)Special Functions.
+* y1: (libc)Special Functions.
+* y1f: (libc)Special Functions.
+* y1fN: (libc)Special Functions.
+* y1fNx: (libc)Special Functions.
+* y1l: (libc)Special Functions.
+* yn: (libc)Special Functions.
+* ynf: (libc)Special Functions.
+* ynfN: (libc)Special Functions.
+* ynfNx: (libc)Special Functions.
+* ynl: (libc)Special Functions.
+END-INFO-DIR-ENTRY
+
+
+File: libc.info,  Node: Installation,  Next: Maintenance,  Prev: Library Summary,  Up: Top
+
+Appendix C Installing the GNU C Library
+***************************************
+
+Before you do anything else, you should read the FAQ at
+<https://sourceware.org/glibc/wiki/FAQ>.  It answers common questions
+and describes problems you may experience with compilation and
+installation.
+
+   You will need recent versions of several GNU tools: definitely GCC
+and GNU Make, and possibly others.  *Note Tools for Compilation::,
+below.
+
+* Menu:
+
+* Configuring and compiling::   How to compile and test GNU libc.
+* Running make install::        How to install it once you’ve got it
+ compiled.
+* Tools for Compilation::       You’ll need these first.
+* Linux::                       Specific advice for GNU/Linux systems.
+* Reporting Bugs::              So they’ll get fixed.
+
+
+File: libc.info,  Node: Configuring and compiling,  Next: Running make install,  Up: Installation
+
+C.1 Configuring and compiling the GNU C Library
+===============================================
+
+The GNU C Library cannot be compiled in the source directory.  You must
+build it in a separate build directory.  For example, if you have
+unpacked the GNU C Library sources in ‘/src/gnu/glibc-VERSION’, create a
+directory ‘/src/gnu/glibc-build’ to put the object files in.  This
+allows removing the whole build directory in case an error occurs, which
+is the safest way to get a fresh start and should always be done.
+
+   From your object directory, run the shell script ‘configure’ located
+at the top level of the source tree.  In the scenario above, you’d type
+
+     $ ../glibc-VERSION/configure ARGS…
+
+   Please note that even though you’re building in a separate build
+directory, the compilation may need to create or modify files and
+directories in the source directory.
+
+‘configure’ takes many options, but the only one that is usually
+mandatory is ‘--prefix’.  This option tells ‘configure’ where you want
+the GNU C Library installed.  This defaults to ‘/usr/local’, but the
+normal setting to install as the standard system library is
+‘--prefix=/usr’ for GNU/Linux systems and ‘--prefix=’ (an empty prefix)
+for GNU/Hurd systems.
+
+   It may also be useful to pass ‘CC=COMPILER’ and ‘CFLAGS=FLAGS’
+arguments to ‘configure’.  ‘CC’ selects the C compiler that will be
+used, and ‘CFLAGS’ sets optimization options for the compiler.  Any
+compiler options required for all compilations, such as options
+selecting an ABI or a processor for which to generate code, should be
+included in ‘CC’.  Options that may be overridden by the GNU C Library
+build system for particular files, such as for optimization and
+debugging, should go in ‘CFLAGS’.  The default value of ‘CFLAGS’ is ‘-g
+-O2’, and the GNU C Library cannot be compiled without optimization, so
+if ‘CFLAGS’ is specified it must enable optimization.  For example:
+
+     $ ../glibc-VERSION/configure CC="gcc -m32" CFLAGS="-O3"
+
+   The following list describes all of the available options for
+‘configure’:
+
+‘--prefix=DIRECTORY’
+     Install machine-independent data files in subdirectories of
+     ‘DIRECTORY’.  The default is to install in ‘/usr/local’.
+
+‘--exec-prefix=DIRECTORY’
+     Install the library and other machine-dependent files in
+     subdirectories of ‘DIRECTORY’.  The default is to the ‘--prefix’
+     directory if that option is specified, or ‘/usr/local’ otherwise.
+
+‘--with-headers=DIRECTORY’
+     Look for kernel header files in DIRECTORY, not ‘/usr/include’.  The
+     GNU C Library needs information from the kernel’s header files
+     describing the interface to the kernel.  The GNU C Library will
+     normally look in ‘/usr/include’ for them, but if you specify this
+     option, it will look in DIRECTORY instead.
+
+     This option is primarily of use on a system where the headers in
+     ‘/usr/include’ come from an older version of the GNU C Library.
+     Conflicts can occasionally happen in this case.  You can also use
+     this option if you want to compile the GNU C Library with a newer
+     set of kernel headers than the ones found in ‘/usr/include’.
+
+‘--enable-kernel=VERSION’
+     This option is currently only useful on GNU/Linux systems.  The
+     VERSION parameter should have the form X.Y.Z and describes the
+     smallest version of the Linux kernel the generated library is
+     expected to support.  The higher the VERSION number is, the less
+     compatibility code is added, and the faster the code gets.
+
+‘--with-binutils=DIRECTORY’
+     Use the binutils (assembler and linker) in ‘DIRECTORY’, not the
+     ones the C compiler would default to.  You can use this option if
+     the default binutils on your system cannot deal with all the
+     constructs in the GNU C Library.  In that case, ‘configure’ will
+     detect the problem and suppress these constructs, so that the
+     library will still be usable, but functionality may be lost—for
+     example, you can’t build a shared libc with old binutils.
+
+‘--with-nonshared-cflags=CFLAGS’
+     Use additional compiler flags CFLAGS to build the parts of the
+     library which are always statically linked into applications and
+     libraries even with shared linking (that is, the object files
+     contained in ‘lib*_nonshared.a’ libraries).  The build process will
+     automatically use the appropriate flags, but this option can be
+     used to set additional flags required for building applications and
+     libraries, to match local policy.  For example, if such a policy
+     requires that all code linked into applications must be built with
+     source fortification,
+     ‘--with-nonshared-cflags=-Wp,-D_FORTIFY_SOURCE=2’ will make sure
+     that the objects in ‘libc_nonshared.a’ are compiled with this flag
+     (although this will not affect the generated code in this
+     particular case and potentially change debugging information and
+     metadata only).
+
+‘--with-rtld-early-cflags=CFLAGS’
+     Use additional compiler flags CFLAGS to build the early startup
+     code of the dynamic linker.  These flags can be used to enable
+     early dynamic linker diagnostics to run on CPUs which are not
+     compatible with the rest of the GNU C Library, for example, due to
+     compiler flags which target a later instruction set architecture
+     (ISA).
+
+‘--with-timeoutfactor=NUM’
+     Specify an integer NUM to scale the timeout of test programs.  This
+     factor can be changed at run time using ‘TIMEOUTFACTOR’ environment
+     variable.
+
+‘--disable-shared’
+     Don’t build shared libraries even if it is possible.  Not all
+     systems support shared libraries; you need ELF support and
+     (currently) the GNU linker.
+
+‘--disable-default-pie’
+     Don’t build glibc programs and the testsuite as position
+     independent executables (PIE). By default, glibc programs and tests
+     are created as position independent executables on targets that
+     support it.  If the toolchain and architecture support it, static
+     executables are built as static PIE and the resulting glibc can be
+     used with the GCC option, -static-pie, which is available with GCC
+     8 or above, to create static PIE.
+
+‘--enable-cet’
+‘--enable-cet=permissive’
+     Enable Intel Control-flow Enforcement Technology (CET) support.
+     When the GNU C Library is built with ‘--enable-cet’ or
+     ‘--enable-cet=permissive’, the resulting library is protected with
+     indirect branch tracking (IBT) and shadow stack (SHSTK).  When CET
+     is enabled, the GNU C Library is compatible with all existing
+     executables and shared libraries.  This feature is currently
+     supported on i386, x86_64 and x32 with GCC 8 and binutils 2.29 or
+     later.  Note that when CET is enabled, the GNU C Library requires
+     CPUs capable of multi-byte NOPs, like x86-64 processors as well as
+     Intel Pentium Pro or newer.  With ‘--enable-cet’, it is an error to
+     dlopen a non CET enabled shared library in CET enabled application.
+     With ‘--enable-cet=permissive’, CET is disabled when dlopening a
+     non CET enabled shared library in CET enabled application.
+
+     NOTE: ‘--enable-cet’ has been tested for i686, x86_64 and x32 on
+     non-CET processors.  ‘--enable-cet’ has been tested for i686,
+     x86_64 and x32 on CET processors.
+
+‘--enable-memory-tagging’
+     Enable memory tagging support if the architecture supports it.
+     When the GNU C Library is built with this option then the resulting
+     library will be able to control the use of tagged memory when
+     hardware support is present by use of the tunable
+     ‘glibc.mem.tagging’.  This includes the generation of tagged memory
+     when using the ‘malloc’ APIs.
+
+     At present only AArch64 platforms with MTE provide this
+     functionality, although the library will still operate (without
+     memory tagging) on older versions of the architecture.
+
+     The default is to disable support for memory tagging.
+
+‘--disable-profile’
+     Don’t build libraries with profiling information.  You may want to
+     use this option if you don’t plan to do profiling.
+
+‘--enable-static-nss’
+     Compile static versions of the NSS (Name Service Switch) libraries.
+     This is not recommended because it defeats the purpose of NSS; a
+     program linked statically with the NSS libraries cannot be
+     dynamically reconfigured to use a different name database.
+
+‘--enable-hardcoded-path-in-tests’
+     By default, dynamic tests are linked to run with the installed C
+     library.  This option hardcodes the newly built C library path in
+     dynamic tests so that they can be invoked directly.
+
+‘--disable-timezone-tools’
+     By default, timezone related utilities (‘zic’, ‘zdump’, and
+     ‘tzselect’) are installed with the GNU C Library.  If you are
+     building these independently (e.g.  by using the ‘tzcode’ package),
+     then this option will allow disabling the install of these.
+
+     Note that you need to make sure the external tools are kept in sync
+     with the versions that the GNU C Library expects as the data
+     formats may change over time.  Consult the ‘timezone’ subdirectory
+     for more details.
+
+‘--enable-stack-protector’
+‘--enable-stack-protector=strong’
+‘--enable-stack-protector=all’
+     Compile the C library and all other parts of the glibc package
+     (including the threading and math libraries, NSS modules, and
+     transliteration modules) using the GCC ‘-fstack-protector’,
+     ‘-fstack-protector-strong’ or ‘-fstack-protector-all’ options to
+     detect stack overruns.  Only the dynamic linker and a small number
+     of routines called directly from assembler are excluded from this
+     protection.
+
+‘--enable-bind-now’
+     Disable lazy binding for installed shared objects and programs.
+     This provides additional security hardening because it enables full
+     RELRO and a read-only global offset table (GOT), at the cost of
+     slightly increased program load times.
+
+‘--enable-pt_chown’
+     The file ‘pt_chown’ is a helper binary for ‘grantpt’ (*note
+     Pseudo-Terminals: Allocation.) that is installed setuid root to fix
+     up pseudo-terminal ownership on GNU/Hurd.  It is not required on
+     GNU/Linux, and the GNU C Library will not use the installed
+     ‘pt_chown’ program when configured with ‘--enable-pt_chown’.
+
+‘--disable-werror’
+     By default, the GNU C Library is built with ‘-Werror’.  If you wish
+     to build without this option (for example, if building with a newer
+     version of GCC than this version of the GNU C Library was tested
+     with, so new warnings cause the build with ‘-Werror’ to fail), you
+     can configure with ‘--disable-werror’.
+
+‘--disable-mathvec’
+     By default for x86_64, the GNU C Library is built with the vector
+     math library.  Use this option to disable the vector math library.
+
+‘--enable-crypt’
+     Install the legacy passphrase-hashing library ‘libcrypt’ and the
+     header file ‘crypt.h’.  ‘unistd.h’ will declare the function
+     ‘crypt’ regardless of this option.  Using this option does not
+     change the set of programs that may need to be linked with
+     ‘-lcrypt’; it only means that the GNU C Library will provide that
+     library.
+
+     This option is for hackers and distributions who may not yet be
+     able to use libcrypt alternatives such as libxcrypt and need this
+     legacy implementation as a temporary workaround.  Note that
+     libcrypt may be removed in a future release.
+
+‘--disable-scv’
+     Disable using ‘scv’ instruction for syscalls.  All syscalls will
+     use ‘sc’ instead, even if the kernel supports ‘scv’.  PowerPC only.
+
+‘--build=BUILD-SYSTEM’
+‘--host=HOST-SYSTEM’
+     These options are for cross-compiling.  If you specify both options
+     and BUILD-SYSTEM is different from HOST-SYSTEM, ‘configure’ will
+     prepare to cross-compile the GNU C Library from BUILD-SYSTEM to be
+     used on HOST-SYSTEM.  You’ll probably need the ‘--with-headers’
+     option too, and you may have to override CONFIGURE’s selection of
+     the compiler and/or binutils.
+
+     If you only specify ‘--host’, ‘configure’ will prepare for a native
+     compile but use what you specify instead of guessing what your
+     system is.  This is most useful to change the CPU submodel.  For
+     example, if ‘configure’ guesses your machine as ‘i686-pc-linux-gnu’
+     but you want to compile a library for 586es, give
+     ‘--host=i586-pc-linux-gnu’ or just ‘--host=i586-linux’ and add the
+     appropriate compiler flags (‘-mcpu=i586’ will do the trick) to
+     ‘CC’.
+
+     If you specify just ‘--build’, ‘configure’ will get confused.
+
+‘--with-pkgversion=VERSION’
+     Specify a description, possibly including a build number or build
+     date, of the binaries being built, to be included in ‘--version’
+     output from programs installed with the GNU C Library.  For
+     example, ‘--with-pkgversion='FooBar GNU/Linux glibc build 123'’.
+     The default value is ‘GNU libc’.
+
+‘--with-bugurl=URL’
+     Specify the URL that users should visit if they wish to report a
+     bug, to be included in ‘--help’ output from programs installed with
+     the GNU C Library.  The default value refers to the main
+     bug-reporting information for the GNU C Library.
+
+‘--enable-fortify-source’
+‘--enable-fortify-source=LEVEL’
+     Use -D_FORTIFY_SOURCE=‘LEVEL’ to control hardening in the GNU C
+     Library.  If not provided, ‘LEVEL’ defaults to highest possible
+     value supported by the build compiler.
+
+     Default is to disable fortification.
+
+   To build the library and related programs, type ‘make’.  This will
+produce a lot of output, some of which may look like errors from ‘make’
+but aren’t.  Look for error messages from ‘make’ containing ‘***’.
+Those indicate that something is seriously wrong.
+
+   The compilation process can take a long time, depending on the
+configuration and the speed of your machine.  Some complex modules may
+take a very long time to compile, as much as several minutes on slower
+machines.  Do not panic if the compiler appears to hang.
+
+   If you want to run a parallel make, simply pass the ‘-j’ option with
+an appropriate numeric parameter to ‘make’.  You need a recent GNU
+‘make’ version, though.
+
+   To build and run test programs which exercise some of the library
+facilities, type ‘make check’.  If it does not complete successfully, do
+not use the built library, and report a bug after verifying that the
+problem is not already known.  *Note Reporting Bugs::, for instructions
+on reporting bugs.  Note that some of the tests assume they are not
+being run by ‘root’.  We recommend you compile and test the GNU C
+Library as an unprivileged user.
+
+   Before reporting bugs make sure there is no problem with your system.
+The tests (and later installation) use some pre-existing files of the
+system such as ‘/etc/passwd’, ‘/etc/nsswitch.conf’ and others.  These
+files must all contain correct and sensible content.
+
+   Normally, ‘make check’ will run all the tests before reporting all
+problems found and exiting with error status if any problems occurred.
+You can specify ‘stop-on-test-failure=y’ when running ‘make check’ to
+make the test run stop and exit with an error status immediately when a
+failure occurs.
+
+   To format the ‘GNU C Library Reference Manual’ for printing, type
+‘make dvi’.  You need a working TeX installation to do this.  The
+distribution builds the on-line formatted version of the manual, as Info
+files, as part of the build process.  You can build them manually with
+‘make info’.
+
+   The library has a number of special-purpose configuration parameters
+which you can find in ‘Makeconfig’.  These can be overwritten with the
+file ‘configparms’.  To change them, create a ‘configparms’ in your
+build directory and add values as appropriate for your system.  The file
+is included and parsed by ‘make’ and has to follow the conventions for
+makefiles.
+
+   It is easy to configure the GNU C Library for cross-compilation by
+setting a few variables in ‘configparms’.  Set ‘CC’ to the
+cross-compiler for the target you configured the library for; it is
+important to use this same ‘CC’ value when running ‘configure’, like
+this: ‘configure TARGET CC=TARGET-gcc’.  Set ‘BUILD_CC’ to the compiler
+to use for programs run on the build system as part of compiling the
+library.  You may need to set ‘AR’ to cross-compiling versions of ‘ar’
+if the native tools are not configured to work with object files for the
+target you configured for.  When cross-compiling the GNU C Library, it
+may be tested using ‘make check
+test-wrapper="SRCDIR/scripts/cross-test-ssh.sh HOSTNAME"’, where SRCDIR
+is the absolute directory name for the main source directory and
+HOSTNAME is the host name of a system that can run the newly built
+binaries of the GNU C Library.  The source and build directories must be
+visible at the same locations on both the build system and HOSTNAME.
+The ‘cross-test-ssh.sh’ script requires ‘flock’ from ‘util-linux’ to
+work when GLIBC_TEST_ALLOW_TIME_SETTING environment variable is set.
+
+   It is also possible to execute tests, which require setting the date
+on the target machine.  Following use cases are supported:
+   • ‘GLIBC_TEST_ALLOW_TIME_SETTING’ is set in the environment in which
+     eligible tests are executed and have the privilege to run
+     ‘clock_settime’.  In this case, nothing prevents those tests from
+     running in parallel, so the caller shall assure that those tests
+     are serialized or provide a proper wrapper script for them.
+
+   • The ‘cross-test-ssh.sh’ script is used and one passes the
+     ‘--allow-time-setting’ flag.  In this case, both sets
+     ‘GLIBC_TEST_ALLOW_TIME_SETTING’ and serialization of test execution
+     are assured automatically.
+
+   In general, when testing the GNU C Library, ‘test-wrapper’ may be set
+to the name and arguments of any program to run newly built binaries.
+This program must preserve the arguments to the binary being run, its
+working directory and the standard input, output and error file
+descriptors.  If ‘TEST-WRAPPER env’ will not work to run a program with
+environment variables set, then ‘test-wrapper-env’ must be set to a
+program that runs a newly built program with environment variable
+assignments in effect, those assignments being specified as ‘VAR=VALUE’
+before the name of the program to be run.  If multiple assignments to
+the same variable are specified, the last assignment specified must take
+precedence.  Similarly, if ‘TEST-WRAPPER env -i’ will not work to run a
+program with an environment completely empty of variables except those
+directly assigned, then ‘test-wrapper-env-only’ must be set; its use has
+the same syntax as ‘test-wrapper-env’, the only difference in its
+semantics being starting with an empty set of environment variables
+rather than the ambient set.
+
+   For AArch64 with SVE, when testing the GNU C Library, ‘test-wrapper’
+may be set to "SRCDIR/sysdeps/unix/sysv/linux/aarch64/vltest.py
+VECTOR-LENGTH" to change Vector Length.
+
+
+File: libc.info,  Node: Running make install,  Next: Tools for Compilation,  Prev: Configuring and compiling,  Up: Installation
+
+C.2 Installing the C Library
+============================
+
+To install the library and its header files, and the Info files of the
+manual, type ‘make install’.  This will build things, if necessary,
+before installing them; however, you should still compile everything
+first.  If you are installing the GNU C Library as your primary C
+library, we recommend that you shut the system down to single-user mode
+first, and reboot afterward.  This minimizes the risk of breaking things
+when the library changes out from underneath.
+
+   ‘make install’ will do the entire job of upgrading from a previous
+installation of the GNU C Library version 2.x.  There may sometimes be
+headers left behind from the previous installation, but those are
+generally harmless.  If you want to avoid leaving headers behind you can
+do things in the following order.
+
+   You must first build the library (‘make’), optionally check it (‘make
+check’), switch the include directories and then install (‘make
+install’).  The steps must be done in this order.  Not moving the
+directory before install will result in an unusable mixture of header
+files from both libraries, but configuring, building, and checking the
+library requires the ability to compile and run programs against the old
+library.  The new ‘/usr/include’, after switching the include
+directories and before installing the library should contain the Linux
+headers, but nothing else.  If you do this, you will need to restore any
+headers from libraries other than the GNU C Library yourself after
+installing the library.
+
+   You can install the GNU C Library somewhere other than where you
+configured it to go by setting the ‘DESTDIR’ GNU standard make variable
+on the command line for ‘make install’.  The value of this variable is
+prepended to all the paths for installation.  This is useful when
+setting up a chroot environment or preparing a binary distribution.  The
+directory should be specified with an absolute file name.  Installing
+with the ‘prefix’ and ‘exec_prefix’ GNU standard make variables set is
+not supported.
+
+   The GNU C Library includes a daemon called ‘nscd’, which you may or
+may not want to run.  ‘nscd’ caches name service lookups; it can
+dramatically improve performance with NIS+, and may help with DNS as
+well.
+
+   One auxiliary program, ‘/usr/libexec/pt_chown’, is installed setuid
+‘root’ if the ‘--enable-pt_chown’ configuration option is used.  This
+program is invoked by the ‘grantpt’ function; it sets the permissions on
+a pseudoterminal so it can be used by the calling process.  If you are
+using a Linux kernel with the ‘devpts’ filesystem enabled and mounted at
+‘/dev/pts’, you don’t need this program.
+
+   After installation you should configure the timezone and install
+locales for your system.  The time zone configuration ensures that your
+system time matches the time for your current timezone.  The locales
+ensure that the display of information on your system matches the
+expectations of your language and geographic region.
+
+   The GNU C Library is able to use two kinds of localization
+information sources, the first is a locale database named
+‘locale-archive’ which is generally installed as
+‘/usr/lib/locale/locale-archive’.  The locale archive has the benefit of
+taking up less space and being very fast to load, but only if you plan
+to install sixty or more locales.  If you plan to install one or two
+locales you can instead install individual locales into their self-named
+directories e.g. ‘/usr/lib/locale/en_US.utf8’.  For example to install
+the German locale using the character set for UTF-8 with name ‘de_DE’
+into the locale archive issue the command ‘localedef -i de_DE -f UTF-8
+de_DE’, and to install just the one locale issue the command ‘localedef
+--no-archive -i de_DE -f UTF-8 de_DE’.  To configure all locales that
+are supported by the GNU C Library, you can issue from your build
+directory the command ‘make localedata/install-locales’ to install all
+locales into the locale archive or ‘make
+localedata/install-locale-files’ to install all locales as files in the
+default configured locale installation directory (derived from
+‘--prefix’ or ‘--localedir’).  To install into an alternative system
+root use ‘DESTDIR’ e.g. ‘make localedata/install-locale-files
+DESTDIR=/opt/glibc’, but note that this does not change the configured
+prefix.
+
+   To configure the locally used timezone, set the ‘TZ’ environment
+variable.  The script ‘tzselect’ helps you to select the right value.
+As an example, for Germany, ‘tzselect’ would tell you to use
+‘TZ='Europe/Berlin'’.  For a system wide installation (the given paths
+are for an installation with ‘--prefix=/usr’), link the timezone file
+which is in ‘/usr/share/zoneinfo’ to the file ‘/etc/localtime’.  For
+Germany, you might execute ‘ln -s /usr/share/zoneinfo/Europe/Berlin
+/etc/localtime’.
+
+
+File: libc.info,  Node: Tools for Compilation,  Next: Linux,  Prev: Running make install,  Up: Installation
+
+C.3 Recommended Tools for Compilation
+=====================================
+
+We recommend installing the following GNU tools before attempting to
+build the GNU C Library:
+
+   • GNU ‘make’ 4.0 or newer
+
+     As of release time, GNU ‘make’ 4.4 is the newest verified to work
+     to build the GNU C Library.
+
+   • GCC 6.2 or newer
+
+     GCC 6.2 or higher is required.  In general it is recommended to use
+     the newest version of the compiler that is known to work for
+     building the GNU C Library, as newer compilers usually produce
+     better code.  As of release time, GCC 13.2 is the newest compiler
+     verified to work to build the GNU C Library.
+
+     For PowerPC 64-bits little-endian (powerpc64le), a GCC version with
+     support for ‘-mno-gnu-attribute’, ‘-mabi=ieeelongdouble’, and
+     ‘-mabi=ibmlondouble’ is required.  Likewise, the compiler must also
+     support passing ‘-mlong-double-128’ with the preceding options.  As
+     of release, this implies GCC 7.4 and newer (excepting GCC 7.5.0,
+     see GCC PR94200).  These additional features are required for
+     building the GNU C Library with support for IEEE long double.
+
+     For ARC architecture builds, GCC 8.3 or higher is needed.
+
+     For s390x architecture builds, GCC 7.1 or higher is needed (See gcc
+     Bug 98269).
+
+     For AArch64 architecture builds with mathvec enabled, GCC 10 or
+     higher is needed due to dependency on arm_sve.h.
+
+     For multi-arch support it is recommended to use a GCC which has
+     been built with support for GNU indirect functions.  This ensures
+     that correct debugging information is generated for functions
+     selected by IFUNC resolvers.  This support can either be enabled by
+     configuring GCC with ‘--enable-gnu-indirect-function’, or by
+     enabling it by default by setting ‘default_gnu_indirect_function’
+     variable for a particular architecture in the GCC source file
+     ‘gcc/config.gcc’.
+
+     You can use whatever compiler you like to compile programs that use
+     the GNU C Library.
+
+     Check the FAQ for any special compiler issues on particular
+     platforms.
+
+   • GNU ‘binutils’ 2.25 or later
+
+     You must use GNU ‘binutils’ (as and ld) to build the GNU C Library.
+     No other assembler or linker has the necessary functionality at the
+     moment.  As of release time, GNU ‘binutils’ 2.41 is the newest
+     verified to work to build the GNU C Library.
+
+     For PowerPC 64-bits little-endian (powerpc64le), ‘objcopy’ is
+     required to support ‘--update-section’.  This option requires
+     binutils 2.26 or newer.
+
+     ARC architecture needs ‘binutils’ 2.32 or higher for TLS related
+     fixes.
+
+   • GNU ‘texinfo’ 4.7 or later
+
+     To correctly translate and install the Texinfo documentation you
+     need this version of the ‘texinfo’ package.  Earlier versions do
+     not understand all the tags used in the document, and the
+     installation mechanism for the info files is not present or works
+     differently.  As of release time, ‘texinfo’ 7.0.3 is the newest
+     verified to work to build the GNU C Library.
+
+   • GNU ‘awk’ 3.1.2, or higher
+
+     ‘awk’ is used in several places to generate files.  Some ‘gawk’
+     extensions are used, including the ‘asorti’ function, which was
+     introduced in version 3.1.2 of ‘gawk’.  As of release time, ‘gawk’
+     version 5.2.2 is the newest verified to work to build the GNU C
+     Library.
+
+   • GNU ‘bison’ 2.7 or later
+
+     ‘bison’ is used to generate the ‘yacc’ parser code in the ‘intl’
+     subdirectory.  As of release time, ‘bison’ version 3.8.2 is the
+     newest verified to work to build the GNU C Library.
+
+   • Perl 5
+
+     Perl is not required, but if present it is used in some tests and
+     the ‘mtrace’ program, to build the GNU C Library manual.  As of
+     release time ‘perl’ version 5.38.0 is the newest verified to work
+     to build the GNU C Library.
+
+   • GNU ‘sed’ 3.02 or newer
+
+     ‘Sed’ is used in several places to generate files.  Most scripts
+     work with any version of ‘sed’.  As of release time, ‘sed’ version
+     4.9 is the newest verified to work to build the GNU C Library.
+
+   • Python 3.4 or later
+
+     Python is required to build the GNU C Library.  As of release time,
+     Python 3.11 is the newest verified to work for building and testing
+     the GNU C Library.
+
+   • PExpect 4.0
+
+     The pretty printer tests drive GDB through test programs and
+     compare its output to the printers’.  PExpect is used to capture
+     the output of GDB, and should be compatible with the Python version
+     in your system.  As of release time PExpect 4.8.0 is the newest
+     verified to work to test the pretty printers.
+
+   • GDB 7.8 or later with support for Python 2.7/3.4 or later
+
+     GDB itself needs to be configured with Python support in order to
+     use the pretty printers.  Notice that your system having Python
+     available doesn’t imply that GDB supports it, nor that your
+     system’s Python and GDB’s have the same version.  As of release
+     time GNU ‘debugger’ 13.2 is the newest verified to work to test the
+     pretty printers.
+
+     Unless Python, PExpect and GDB with Python support are present, the
+     printer tests will report themselves as ‘UNSUPPORTED’.  Notice that
+     some of the printer tests require the GNU C Library to be compiled
+     with debugging symbols.
+
+If you change any of the ‘configure.ac’ files you will also need
+
+   • GNU ‘autoconf’ 2.71 (exactly)
+
+and if you change any of the message translation files you will need
+
+   • GNU ‘gettext’ 0.10.36 or later
+
+     As of release time, GNU ‘gettext’ version 0.21.1 is the newest
+     version verified to work to build the GNU C Library.
+
+You may also need these packages if you upgrade your source tree using
+patches, although we try to avoid this.
+
+
+File: libc.info,  Node: Linux,  Next: Reporting Bugs,  Prev: Tools for Compilation,  Up: Installation
+
+C.4 Specific advice for GNU/Linux systems
+=========================================
+
+If you are installing the GNU C Library on GNU/Linux systems, you need
+to have the header files from a 3.2 or newer kernel around for
+reference.  (For the ia64 architecture, you need version 3.2.18 or newer
+because this is the first version with support for the ‘accept4’ system
+call.)  These headers must be installed using ‘make headers_install’;
+the headers present in the kernel source directory are not suitable for
+direct use by the GNU C Library.  You do not need to use that kernel,
+just have its headers installed where the GNU C Library can access them,
+referred to here as INSTALL-DIRECTORY.  The easiest way to do this is to
+unpack it in a directory such as ‘/usr/src/linux-VERSION’.  In that
+directory, run ‘make headers_install
+INSTALL_HDR_PATH=INSTALL-DIRECTORY’.  Finally, configure the GNU C
+Library with the option ‘--with-headers=INSTALL-DIRECTORY/include’.  Use
+the most recent kernel you can get your hands on.  (If you are
+cross-compiling the GNU C Library, you need to specify
+‘ARCH=ARCHITECTURE’ in the ‘make headers_install’ command, where
+ARCHITECTURE is the architecture name used by the Linux kernel, such as
+‘x86’ or ‘powerpc’.)
+
+   After installing the GNU C Library, you may need to remove or rename
+directories such as ‘/usr/include/linux’ and ‘/usr/include/asm’, and
+replace them with copies of directories such as ‘linux’ and ‘asm’ from
+‘INSTALL-DIRECTORY/include’.  All directories present in
+‘INSTALL-DIRECTORY/include’ should be copied, except that the GNU C
+Library provides its own version of ‘/usr/include/scsi’; the files
+provided by the kernel should be copied without replacing those provided
+by the GNU C Library.  The ‘linux’, ‘asm’ and ‘asm-generic’ directories
+are required to compile programs using the GNU C Library; the other
+directories describe interfaces to the kernel but are not required if
+not compiling programs using those interfaces.  You do not need to copy
+kernel headers if you did not specify an alternate kernel header source
+using ‘--with-headers’.
+
+   The Filesystem Hierarchy Standard for GNU/Linux systems expects some
+components of the GNU C Library installation to be in ‘/lib’ and some in
+‘/usr/lib’.  This is handled automatically if you configure the GNU C
+Library with ‘--prefix=/usr’.  If you set some other prefix or allow it
+to default to ‘/usr/local’, then all the components are installed there.
+
+   As of release time, Linux version 6.1.5 is the newest stable version
+verified to work to build the GNU C Library.
+
+
+File: libc.info,  Node: Reporting Bugs,  Prev: Linux,  Up: Installation
+
+C.5 Reporting Bugs
+==================
+
+There are probably bugs in the GNU C Library.  There are certainly
+errors and omissions in this manual.  If you report them, they will get
+fixed.  If you don’t, no one will ever know about them and they will
+remain unfixed for all eternity, if not longer.
+
+   It is a good idea to verify that the problem has not already been
+reported.  Bugs are documented in two places: The file ‘BUGS’ describes
+a number of well known bugs and the central GNU C Library bug tracking
+system has a WWW interface at <https://sourceware.org/bugzilla/>.  The
+WWW interface gives you access to open and closed reports.  A closed
+report normally includes a patch or a hint on solving the problem.
+
+   To report a bug, first you must find it.  With any luck, this will be
+the hard part.  Once you’ve found a bug, make sure it’s really a bug.  A
+good way to do this is to see if the GNU C Library behaves the same way
+some other C library does.  If so, probably you are wrong and the
+libraries are right (but not necessarily).  If not, one of the libraries
+is probably wrong.  It might not be the GNU C Library.  Many historical
+Unix C libraries permit things that we don’t, such as closing a file
+twice.
+
+   If you think you have found some way in which the GNU C Library does
+not conform to the ISO and POSIX standards (*note Standards and
+Portability::), that is definitely a bug.  Report it!
+
+   Once you’re sure you’ve found a bug, try to narrow it down to the
+smallest test case that reproduces the problem.  In the case of a C
+library, you really only need to narrow it down to one library function
+call, if possible.  This should not be too difficult.
+
+   The final step when you have a simple test case is to report the bug.
+Do this at <https://www.gnu.org/software/libc/bugs.html>.
+
+   If you are not sure how a function should behave, and this manual
+doesn’t tell you, that’s a bug in the manual.  Report that too!  If the
+function’s behavior disagrees with the manual, then either the library
+or the manual has a bug, so report the disagreement.  If you find any
+errors or omissions in this manual, please report them to the bug
+database.  If you refer to specific sections of the manual, please
+include the section names for easier identification.
+
+
+File: libc.info,  Node: Maintenance,  Next: Platform,  Prev: Installation,  Up: Top
+
+Appendix D Library Maintenance
+******************************
+
+* Menu:
+
+* Source Layout::         How to add new functions or header files
+                             to the GNU C Library.
+* Source Fortification::  Fortification of function calls.
+* Symbol handling::       How to handle symbols in the GNU C Library.
+* Porting::               How to port the GNU C Library to
+                             a new machine or operating system.
+
+
+File: libc.info,  Node: Source Layout,  Next: Source Fortification,  Up: Maintenance
+
+D.1 Adding New Functions
+========================
+
+The process of building the library is driven by the makefiles, which
+make heavy use of special features of GNU ‘make’.  The makefiles are
+very complex, and you probably don’t want to try to understand them.
+But what they do is fairly straightforward, and only requires that you
+define a few variables in the right places.
+
+   The library sources are divided into subdirectories, grouped by
+topic.
+
+   The ‘string’ subdirectory has all the string-manipulation functions,
+‘math’ has all the mathematical functions, etc.
+
+   Each subdirectory contains a simple makefile, called ‘Makefile’,
+which defines a few ‘make’ variables and then includes the global
+makefile ‘Rules’ with a line like:
+
+     include ../Rules
+
+The basic variables that a subdirectory makefile defines are:
+
+‘subdir’
+     The name of the subdirectory, for example ‘stdio’.  This variable
+     *must* be defined.
+
+‘headers’
+     The names of the header files in this section of the library, such
+     as ‘stdio.h’.
+
+‘routines’
+‘aux’
+     The names of the modules (source files) in this section of the
+     library.  These should be simple names, such as ‘strlen’ (rather
+     than complete file names, such as ‘strlen.c’).  Use ‘routines’ for
+     modules that define functions in the library, and ‘aux’ for
+     auxiliary modules containing things like data definitions.  But the
+     values of ‘routines’ and ‘aux’ are just concatenated, so there
+     really is no practical difference.
+
+‘tests’
+     The names of test programs for this section of the library.  These
+     should be simple names, such as ‘tester’ (rather than complete file
+     names, such as ‘tester.c’).  ‘make tests’ will build and run all
+     the test programs.  If a test program needs input, put the test
+     data in a file called ‘TEST-PROGRAM.input’; it will be given to the
+     test program on its standard input.  If a test program wants to be
+     run with arguments, put the arguments (all on a single line) in a
+     file called ‘TEST-PROGRAM.args’.  Test programs should exit with
+     zero status when the test passes, and nonzero status when the test
+     indicates a bug in the library or error in building.
+
+‘others’
+     The names of “other” programs associated with this section of the
+     library.  These are programs which are not tests per se, but are
+     other small programs included with the library.  They are built by
+     ‘make others’.
+
+‘install-lib’
+‘install-data’
+‘install’
+     Files to be installed by ‘make install’.  Files listed in
+     ‘install-lib’ are installed in the directory specified by ‘libdir’
+     in ‘configparms’ or ‘Makeconfig’ (*note Installation::).  Files
+     listed in ‘install-data’ are installed in the directory specified
+     by ‘datadir’ in ‘configparms’ or ‘Makeconfig’.  Files listed in
+     ‘install’ are installed in the directory specified by ‘bindir’ in
+     ‘configparms’ or ‘Makeconfig’.
+
+‘distribute’
+     Other files from this subdirectory which should be put into a
+     distribution tar file.  You need not list here the makefile itself
+     or the source and header files listed in the other standard
+     variables.  Only define ‘distribute’ if there are files used in an
+     unusual way that should go into the distribution.
+
+‘generated’
+     Files which are generated by ‘Makefile’ in this subdirectory.
+     These files will be removed by ‘make clean’, and they will never go
+     into a distribution.
+
+‘extra-objs’
+     Extra object files which are built by ‘Makefile’ in this
+     subdirectory.  This should be a list of file names like ‘foo.o’;
+     the files will actually be found in whatever directory object files
+     are being built in.  These files will be removed by ‘make clean’.
+     This variable is used for secondary object files needed to build
+     ‘others’ or ‘tests’.
+
+* Menu:
+
+* Platform: Adding Platform-specific.             Adding platform-specific
+                                         features.
+
+
+File: libc.info,  Node: Adding Platform-specific,  Up: Source Layout
+
+D.1.1 Platform-specific types, macros and functions
+---------------------------------------------------
+
+It’s sometimes necessary to provide nonstandard, platform-specific
+features to developers.  The C library is traditionally the lowest
+library layer, so it makes sense for it to provide these low-level
+features.  However, including these features in the C library may be a
+disadvantage if another package provides them as well as there will be
+two conflicting versions of them.  Also, the features won’t be available
+to projects that do not use the GNU C Library but use other GNU tools,
+like GCC.
+
+   The current guidelines are:
+   • If the header file provides features that only make sense on a
+     particular machine architecture and have nothing to do with an
+     operating system, then the features should ultimately be provided
+     as GCC built-in functions.  Until then, the GNU C Library may
+     provide them in the header file.  When the GCC built-in functions
+     become available, those provided in the header file should be made
+     conditionally available prior to the GCC version in which the
+     built-in function was made available.
+
+   • If the header file provides features that are specific to an
+     operating system, both GCC and the GNU C Library could provide it,
+     but the GNU C Library is preferred as it already has a lot of
+     information about the operating system.
+
+   • If the header file provides features that are specific to an
+     operating system but used by the GNU C Library, then the GNU C
+     Library should provide them.
+
+   The general solution for providing low-level features is to export
+them as follows:
+
+   • A nonstandard, low-level header file that defines macros and inline
+     functions should be called ‘sys/platform/NAME.h’.
+
+   • Each header file’s name should include the platform name, to avoid
+     users thinking there is anything in common between the different
+     header files for different platforms.  For example, a
+     ‘sys/platform/ARCH.h’ name such as ‘sys/platform/ppc.h’ is better
+     than ‘sys/platform.h’.
+
+   • A platform-specific header file provided by the GNU C Library
+     should coordinate with GCC such that compiler built-in versions of
+     the functions and macros are preferred if available.  This means
+     that user programs will only ever need to include
+     ‘sys/platform/ARCH.h’, keeping the same names of types, macros, and
+     functions for convenience and portability.
+
+   • Each included symbol must have the prefix ‘__ARCH_’, such as
+     ‘__ppc_get_timebase’.
+
+   The easiest way to provide a header file is to add it to the
+‘sysdep_headers’ variable.  For example, the combination of
+Linux-specific header files on PowerPC could be provided like this:
+
+     sysdep_headers += sys/platform/ppc.h
+
+   Then ensure that you have added a ‘sys/platform/ppc.h’ header file in
+the machine-specific directory, e.g.,
+‘sysdeps/powerpc/sys/platform/ppc.h’.
+
+
+File: libc.info,  Node: Source Fortification,  Next: Symbol handling,  Prev: Source Layout,  Up: Maintenance
+
+D.2 Fortification of function calls
+===================================
+
+This section contains implementation details of the GNU C Library and
+may not remain stable across releases.
+
+   The ‘_FORTIFY_SOURCE’ macro may be defined by users to control
+hardening of calls into some functions in the GNU C Library.  The
+definition should be at the top of the source file before any headers
+are included or at the pre-processor commandline using the ‘-D’ switch.
+The hardening primarily focuses on accesses to buffers passed to the
+functions but may also include checks for validity of other inputs to
+the functions.
+
+   When the ‘_FORTIFY_SOURCE’ macro is defined, it enables code that
+validates inputs passed to some functions in the GNU C Library to
+determine if they are safe.  If the compiler is unable to determine that
+the inputs to the function call are safe, the call may be replaced by a
+call to its hardened variant that does additional safety checks at
+runtime.  Some hardened variants need the size of the buffer to perform
+access validation and this is provided by the ‘__builtin_object_size’ or
+the ‘__builtin_dynamic_object_size’ builtin functions.
+‘_FORTIFY_SOURCE’ also enables additional compile time diagnostics, such
+as unchecked return values from some functions, to encourage developers
+to add error checking for those functions.
+
+   At runtime, if any of those safety checks fail, the program will
+terminate with a ‘SIGABRT’ signal.  ‘_FORTIFY_SOURCE’ may be defined to
+one of the following values:
+
+   • 1: This enables buffer bounds checking using the value returned by
+     the ‘__builtin_object_size’ compiler builtin function.  If the
+     function returns ‘(size_t) -1’, the function call is left
+     untouched.  Additionally, this level also enables validation of
+     flags to the ‘open’, ‘open64’, ‘openat’ and ‘openat64’ functions.
+
+   • 2: This behaves like 1, with the addition of some checks that may
+     trap code that is conforming but unsafe, e.g.  accepting ‘%n’ only
+     in read-only format strings.
+
+   • 3: This enables buffer bounds checking using the value returned by
+     the ‘__builtin_dynamic_object_size’ compiler builtin function.  If
+     the function returns ‘(size_t) -1’, the function call is left
+     untouched.  Fortification at this level may have a impact on
+     program performance if the function call that is fortified is
+     frequently encountered and the size expression returned by
+     ‘__builtin_dynamic_object_size’ is complex.
+
+   In general, the fortified variants of the function calls use the name
+of the function with a ‘__’ prefix and a ‘_chk’ suffix.  There are some
+exceptions, e.g.  the ‘printf’ family of functions where, depending on
+the architecture, one may also see fortified variants have the
+‘_chkieee128’ suffix or the ‘__nldbl___’ prefix to their names.
+
+   Another exception is the ‘open’ family of functions, where their
+fortified replacements have the ‘__’ prefix and a ‘_2’ suffix.  The
+‘FD_SET’, ‘FD_CLR’ and ‘FD_ISSET’ macros use the ‘__fdelt_chk’ function
+on fortification.
+
+   The following functions and macros are fortified in the GNU C
+Library:
+
+   • ‘asprintf’
+
+   • ‘confstr’
+
+   • ‘dprintf’
+
+   • ‘explicit_bzero’
+
+   • ‘FD_SET’
+
+   • ‘FD_CLR’
+
+   • ‘FD_ISSET’
+
+   • ‘fgets’
+
+   • ‘fgets_unlocked’
+
+   • ‘fgetws’
+
+   • ‘fgetws_unlocked’
+
+   • ‘fprintf’
+
+   • ‘fread’
+
+   • ‘fread_unlocked’
+
+   • ‘fwprintf’
+
+   • ‘getcwd’
+
+   • ‘getdomainname’
+
+   • ‘getgroups’
+
+   • ‘gethostname’
+
+   • ‘getlogin_r’
+
+   • ‘gets’
+
+   • ‘getwd’
+
+   • ‘longjmp’
+
+   • ‘mbsnrtowcs’
+
+   • ‘mbsrtowcs’
+
+   • ‘mbstowcs’
+
+   • ‘memcpy’
+
+   • ‘memmove’
+
+   • ‘mempcpy’
+
+   • ‘memset’
+
+   • ‘mq_open’
+
+   • ‘obstack_printf’
+
+   • ‘obstack_vprintf’
+
+   • ‘open’
+
+   • ‘open64’
+
+   • ‘openat’
+
+   • ‘openat64’
+
+   • ‘poll’
+
+   • ‘ppoll64’
+
+   • ‘ppoll’
+
+   • ‘pread64’
+
+   • ‘pread’
+
+   • ‘printf’
+
+   • ‘ptsname_r’
+
+   • ‘read’
+
+   • ‘readlinkat’
+
+   • ‘readlink’
+
+   • ‘realpath’
+
+   • ‘recv’
+
+   • ‘recvfrom’
+
+   • ‘snprintf’
+
+   • ‘sprintf’
+
+   • ‘stpcpy’
+
+   • ‘stpncpy’
+
+   • ‘strcat’
+
+   • ‘strcpy’
+
+   • ‘strlcat’
+
+   • ‘strlcpy’
+
+   • ‘strncat’
+
+   • ‘strncpy’
+
+   • ‘swprintf’
+
+   • ‘syslog’
+
+   • ‘ttyname_r’
+
+   • ‘vasprintf’
+
+   • ‘vdprintf’
+
+   • ‘vfprintf’
+
+   • ‘vfwprintf’
+
+   • ‘vprintf’
+
+   • ‘vsnprintf’
+
+   • ‘vsprintf’
+
+   • ‘vswprintf’
+
+   • ‘vsyslog’
+
+   • ‘vwprintf’
+
+   • ‘wcpcpy’
+
+   • ‘wcpncpy’
+
+   • ‘wcrtomb’
+
+   • ‘wcscat’
+
+   • ‘wcscpy’
+
+   • ‘wcslcat’
+
+   • ‘wcslcpy’
+
+   • ‘wcsncat’
+
+   • ‘wcsncpy’
+
+   • ‘wcsnrtombs’
+
+   • ‘wcsrtombs’
+
+   • ‘wcstombs’
+
+   • ‘wctomb’
+
+   • ‘wmemcpy’
+
+   • ‘wmemmove’
+
+   • ‘wmempcpy’
+
+   • ‘wmemset’
+
+   • ‘wprintf’
+
+
+File: libc.info,  Node: Symbol handling,  Next: Porting,  Prev: Source Fortification,  Up: Maintenance
+
+D.3 Symbol handling in the GNU C Library
+========================================
+
+* Menu:
+
+* 64-bit time symbol handling :: How to handle 64-bit time related
+                                    symbols in the GNU C Library.
+
+
+File: libc.info,  Node: 64-bit time symbol handling,  Up: Symbol handling
+
+D.3.1 64-bit time symbol handling in the GNU C Library
+------------------------------------------------------
+
+With respect to time handling, GNU C Library configurations fall in two
+classes depending on the value of ‘__TIMESIZE’:
+
+‘__TIMESIZE == 32’
+
+     These "dual-time" configurations have both 32-bit and 64-bit time
+     support.  32-bit time support provides type ‘time_t’ and cannot
+     handle dates beyond "Y2038".  64-bit time support provides type
+     ‘__time64_t’ and can handle dates beyond "Y2038".
+
+     In these configurations, time-related types have two declarations,
+     a 64-bit one, and a 32-bit one; and time-related functions
+     generally have two definitions: a 64-bit one, and a 32-bit one
+     which is a wrapper around the former.  Therefore, for every
+     ‘time_t’-related symbol, there is a corresponding
+     ‘__time64_t’-related symbol, the name of which is usually the
+     32-bit symbol’s name with ‘__’ (a double underscore) prepended and
+     ‘64’ appended.  For instance, the 64-bit-time counterpart of
+     ‘clock_gettime’ is ‘__clock_gettime64’.
+
+‘__TIMESIZE == 64’
+
+     These "single-time" configurations only have a 64-bit ‘time_t’ and
+     related functions, which can handle dates beyond 2038-01-19
+     03:14:07 (aka "Y2038").
+
+     In these configurations, time-related types only have a 64-bit
+     declaration; and time-related functions only have one 64-bit
+     definition.  However, for every ‘time_t’-related symbol, there is a
+     corresponding ‘__time64_t’-related macro, the name of which is
+     derived as in the dual-time configuration case, and which expands
+     to the symbol’s name.  For instance, the macro ‘__clock_gettime64’
+     expands to ‘clock_gettime’.
+
+     These macros are purely internal to the GNU C Library and exist
+     only so that a single definition of the 64-bit time functions can
+     be used on both single-time and dual-time configurations, and so
+     that glibc code can freely call the 64-bit functions internally in
+     all configurations.
+
+   Note: at this point, 64-bit time support in dual-time configurations
+is work-in-progress, so for these configurations, the public API only
+makes the 32-bit time support available.  In a later change, the public
+API will allow user code to choose the time size for a given compilation
+unit.
+
+   64-bit variants of time-related types or functions are defined for
+all configurations and use 64-bit-time symbol names (for dual-time
+configurations) or macros (for single-time configurations).
+
+   32-bit variants of time-related types or functions are defined only
+for dual-time configurations.
+
+   Here is an example with ‘localtime’:
+
+   Function ‘localtime’ is declared in ‘time/time.h’ as
+     extern struct tm *localtime (const time_t *__timer) __THROW;
+     libc_hidden_proto (localtime)
+
+   For single-time configurations, ‘__localtime64’ is a macro which
+evaluates to ‘localtime’; for dual-time configurations, ‘__localtime64’
+is a function similar to ‘localtime’ except it uses Y2038-proof types:
+     #if __TIMESIZE == 64
+     # define __localtime64 localtime
+     #else
+     extern struct tm *__localtime64 (const __time64_t *__timer) __THROW;
+     libc_hidden_proto (__localtime64)
+     #endif
+
+   (note: type ‘time_t’ is replaced with ‘__time64_t’ because ‘time_t’
+is not Y2038-proof, but ‘struct tm’ is not replaced because it is
+already Y2038-proof.)
+
+   The 64-bit-time implementation of ‘localtime’ is written as follows
+and is compiled for both dual-time and single-time configuration
+classes.
+
+     struct tm *
+     __localtime64 (const __time64_t *t)
+     {
+       return __tz_convert (*t, 1, &_tmbuf);
+     }
+     libc_hidden_def (__localtime64)
+
+   The 32-bit-time implementation is a wrapper and is only compiled for
+dual-time configurations:
+
+     #if __TIMESIZE != 64
+
+     struct tm *
+     localtime (const time_t *t)
+     {
+       __time64_t t64 = *t;
+       return __localtime64 (&t64);
+     }
+     libc_hidden_def (localtime)
+
+     #endif
+
+
+File: libc.info,  Node: Porting,  Prev: Symbol handling,  Up: Maintenance
+
+D.4 Porting the GNU C Library
+=============================
+
+The GNU C Library is written to be easily portable to a variety of
+machines and operating systems.  Machine- and operating system-dependent
+functions are well separated to make it easy to add implementations for
+new machines or operating systems.  This section describes the layout of
+the library source tree and explains the mechanisms used to select
+machine-dependent code to use.
+
+   All the machine-dependent and operating system-dependent files in the
+library are in the subdirectory ‘sysdeps’ under the top-level library
+source directory.  This directory contains a hierarchy of subdirectories
+(*note Hierarchy Conventions::).
+
+   Each subdirectory of ‘sysdeps’ contains source files for a particular
+machine or operating system, or for a class of machine or operating
+system (for example, systems by a particular vendor, or all machines
+that use IEEE 754 floating-point format).  A configuration specifies an
+ordered list of these subdirectories.  Each subdirectory implicitly
+appends its parent directory to the list.  For example, specifying the
+list ‘unix/bsd/vax’ is equivalent to specifying the list ‘unix/bsd/vax
+unix/bsd unix’.  A subdirectory can also specify that it implies other
+subdirectories which are not directly above it in the directory
+hierarchy.  If the file ‘Implies’ exists in a subdirectory, it lists
+other subdirectories of ‘sysdeps’ which are appended to the list,
+appearing after the subdirectory containing the ‘Implies’ file.  Lines
+in an ‘Implies’ file that begin with a ‘#’ character are ignored as
+comments.  For example, ‘unix/bsd/Implies’ contains:
+     # BSD has Internet-related things.
+     unix/inet
+and ‘unix/Implies’ contains:
+     posix
+
+So the final list is ‘unix/bsd/vax unix/bsd unix/inet unix posix’.
+
+   ‘sysdeps’ has a “special” subdirectory called ‘generic’.  It is
+always implicitly appended to the list of subdirectories, so you needn’t
+put it in an ‘Implies’ file, and you should not create any
+subdirectories under it intended to be new specific categories.
+‘generic’ serves two purposes.  First, the makefiles do not bother to
+look for a system-dependent version of a file that’s not in ‘generic’.
+This means that any system-dependent source file must have an analogue
+in ‘generic’, even if the routines defined by that file are not
+implemented on other platforms.  Second, the ‘generic’ version of a
+system-dependent file is used if the makefiles do not find a version
+specific to the system you’re compiling for.
+
+   If it is possible to implement the routines in a ‘generic’ file in
+machine-independent C, using only other machine-independent functions in
+the C library, then you should do so.  Otherwise, make them stubs.  A
+"stub" function is a function which cannot be implemented on a
+particular machine or operating system.  Stub functions always return an
+error, and set ‘errno’ to ‘ENOSYS’ (Function not implemented).  *Note
+Error Reporting::.  If you define a stub function, you must place the
+statement ‘stub_warning(FUNCTION)’, where FUNCTION is the name of your
+function, after its definition.  This causes the function to be listed
+in the installed ‘<gnu/stubs.h>’, and makes GNU ld warn when the
+function is used.
+
+   Some rare functions are only useful on specific systems and aren’t
+defined at all on others; these do not appear anywhere in the
+system-independent source code or makefiles (including the ‘generic’
+directory), only in the system-dependent ‘Makefile’ in the specific
+system’s subdirectory.
+
+   If you come across a file that is in one of the main source
+directories (‘string’, ‘stdio’, etc.), and you want to write a machine-
+or operating system-dependent version of it, move the file into
+‘sysdeps/generic’ and write your new implementation in the appropriate
+system-specific subdirectory.  Note that if a file is to be
+system-dependent, it *must not* appear in one of the main source
+directories.
+
+   There are a few special files that may exist in each subdirectory of
+‘sysdeps’:
+
+‘Makefile’
+
+     A makefile for this machine or operating system, or class of
+     machine or operating system.  This file is included by the library
+     makefile ‘Makerules’, which is used by the top-level makefile and
+     the subdirectory makefiles.  It can change the variables set in the
+     including makefile or add new rules.  It can use GNU ‘make’
+     conditional directives based on the variable ‘subdir’ (see above)
+     to select different sets of variables and rules for different
+     sections of the library.  It can also set the ‘make’ variable
+     ‘sysdep-routines’, to specify extra modules to be included in the
+     library.  You should use ‘sysdep-routines’ rather than adding
+     modules to ‘routines’ because the latter is used in determining
+     what to distribute for each subdirectory of the main source tree.
+
+     Each makefile in a subdirectory in the ordered list of
+     subdirectories to be searched is included in order.  Since several
+     system-dependent makefiles may be included, each should append to
+     ‘sysdep-routines’ rather than simply setting it:
+
+          sysdep-routines := $(sysdep-routines) foo bar
+
+‘Subdirs’
+
+     This file contains the names of new whole subdirectories under the
+     top-level library source tree that should be included for this
+     system.  These subdirectories are treated just like the
+     system-independent subdirectories in the library source tree, such
+     as ‘stdio’ and ‘math’.
+
+     Use this when there are completely new sets of functions and header
+     files that should go into the library for the system this
+     subdirectory of ‘sysdeps’ implements.  For example,
+     ‘sysdeps/unix/inet/Subdirs’ contains ‘inet’; the ‘inet’ directory
+     contains various network-oriented operations which only make sense
+     to put in the library on systems that support the Internet.
+
+‘configure’
+
+     This file is a shell script fragment to be run at configuration
+     time.  The top-level ‘configure’ script uses the shell ‘.’ command
+     to read the ‘configure’ file in each system-dependent directory
+     chosen, in order.  The ‘configure’ files are often generated from
+     ‘configure.ac’ files using Autoconf.
+
+     A system-dependent ‘configure’ script will usually add things to
+     the shell variables ‘DEFS’ and ‘config_vars’; see the top-level
+     ‘configure’ script for details.  The script can check for ‘--with-PACKAGE’
+     options that were passed to the top-level ‘configure’.  For an
+     option ‘--with-PACKAGE=VALUE’ ‘configure’ sets the shell variable ‘with_PACKAGE’
+     (with any dashes in PACKAGE converted to underscores) to VALUE; if
+     the option is just ‘--with-PACKAGE’ (no argument), then it sets ‘with_PACKAGE’
+     to ‘yes’.
+
+‘configure.ac’
+
+     This file is an Autoconf input fragment to be processed into the
+     file ‘configure’ in this subdirectory.  *Note
+     (autoconf.info)Introduction::, for a description of Autoconf.  You
+     should write either ‘configure’ or ‘configure.ac’, but not both.
+     The first line of ‘configure.ac’ should invoke the ‘m4’ macro
+     ‘GLIBC_PROVIDES’.  This macro does several ‘AC_PROVIDE’ calls for
+     Autoconf macros which are used by the top-level ‘configure’ script;
+     without this, those macros might be invoked again unnecessarily by
+     Autoconf.
+
+   That is the general system for how system-dependencies are isolated.
+
+* Menu:
+
+* Hierarchy Conventions::       The layout of the ‘sysdeps’ hierarchy.
+* Porting to Unix::             Porting the library to an average
+                                   Unix-like system.
+
+
+File: libc.info,  Node: Hierarchy Conventions,  Next: Porting to Unix,  Up: Porting
+
+D.4.1 Layout of the ‘sysdeps’ Directory Hierarchy
+-------------------------------------------------
+
+A GNU configuration name has three parts: the CPU type, the
+manufacturer’s name, and the operating system.  ‘configure’ uses these
+to pick the list of system-dependent directories to look for.  If the
+‘--nfp’ option is _not_ passed to ‘configure’, the directory
+‘MACHINE/fpu’ is also used.  The operating system often has a "base
+operating system"; for example, if the operating system is ‘Linux’, the
+base operating system is ‘unix/sysv’.  The algorithm used to pick the
+list of directories is simple: ‘configure’ makes a list of the base
+operating system, manufacturer, CPU type, and operating system, in that
+order.  It then concatenates all these together with slashes in between,
+to produce a directory name; for example, the configuration ‘i686-linux-gnu’
+results in ‘unix/sysv/linux/i386/i686’.  ‘configure’ then tries removing
+each element of the list in turn, so ‘unix/sysv/linux’ and ‘unix/sysv’
+are also tried, among others.  Since the precise version number of the
+operating system is often not important, and it would be very
+inconvenient, for example, to have identical ‘irix6.2’ and ‘irix6.3’
+directories, ‘configure’ tries successively less specific operating
+system names by removing trailing suffixes starting with a period.
+
+   As an example, here is the complete list of directories that would be
+tried for the configuration ‘i686-linux-gnu’:
+
+     sysdeps/i386/elf
+     sysdeps/unix/sysv/linux/i386
+     sysdeps/unix/sysv/linux
+     sysdeps/gnu
+     sysdeps/unix/common
+     sysdeps/unix/mman
+     sysdeps/unix/inet
+     sysdeps/unix/sysv/i386/i686
+     sysdeps/unix/sysv/i386
+     sysdeps/unix/sysv
+     sysdeps/unix/i386
+     sysdeps/unix
+     sysdeps/posix
+     sysdeps/i386/i686
+     sysdeps/i386/i486
+     sysdeps/libm-i387/i686
+     sysdeps/i386/fpu
+     sysdeps/libm-i387
+     sysdeps/i386
+     sysdeps/wordsize-32
+     sysdeps/ieee754
+     sysdeps/libm-ieee754
+     sysdeps/generic
+
+   Different machine architectures are conventionally subdirectories at
+the top level of the ‘sysdeps’ directory tree.  For example, ‘sysdeps/sparc’
+and ‘sysdeps/m68k’.  These contain files specific to those machine
+architectures, but not specific to any particular operating system.
+There might be subdirectories for specializations of those
+architectures, such as ‘sysdeps/m68k/68020’.  Code which is specific to
+the floating-point coprocessor used with a particular machine should go
+in ‘sysdeps/MACHINE/fpu’.
+
+   There are a few directories at the top level of the ‘sysdeps’
+hierarchy that are not for particular machine architectures.
+
+‘generic’
+     As described above (*note Porting::), this is the subdirectory that
+     every configuration implicitly uses after all others.
+
+‘ieee754’
+     This directory is for code using the IEEE 754 floating-point
+     format, where the C type ‘float’ is IEEE 754 single-precision
+     format, and ‘double’ is IEEE 754 double-precision format.  Usually
+     this directory is referred to in the ‘Implies’ file in a machine
+     architecture-specific directory, such as ‘m68k/Implies’.
+
+‘libm-ieee754’
+     This directory contains an implementation of a mathematical library
+     usable on platforms which use IEEE 754 conformant floating-point
+     arithmetic.
+
+‘libm-i387’
+     This is a special case.  Ideally the code should be in
+     ‘sysdeps/i386/fpu’ but for various reasons it is kept aside.
+
+‘posix’
+     This directory contains implementations of things in the library in
+     terms of POSIX.1 functions.  This includes some of the POSIX.1
+     functions themselves.  Of course, POSIX.1 cannot be completely
+     implemented in terms of itself, so a configuration using just
+     ‘posix’ cannot be complete.
+
+‘unix’
+     This is the directory for Unix-like things.  *Note Porting to
+     Unix::.  ‘unix’ implies ‘posix’.  There are some special-purpose
+     subdirectories of ‘unix’:
+
+     ‘unix/common’
+          This directory is for things common to both BSD and System V
+          release 4.  Both ‘unix/bsd’ and ‘unix/sysv/sysv4’ imply
+          ‘unix/common’.
+
+     ‘unix/inet’
+          This directory is for ‘socket’ and related functions on Unix
+          systems.  ‘unix/inet/Subdirs’ enables the ‘inet’ top-level
+          subdirectory.  ‘unix/common’ implies ‘unix/inet’.
+
+‘mach’
+     This is the directory for things based on the Mach microkernel from
+     CMU (including GNU/Hurd systems).  Other basic operating systems
+     (VMS, for example) would have their own directories at the top
+     level of the ‘sysdeps’ hierarchy, parallel to ‘unix’ and ‘mach’.
+
+
+File: libc.info,  Node: Porting to Unix,  Prev: Hierarchy Conventions,  Up: Porting
+
+D.4.2 Porting the GNU C Library to Unix Systems
+-----------------------------------------------
+
+Most Unix systems are fundamentally very similar.  There are variations
+between different machines, and variations in what facilities are
+provided by the kernel.  But the interface to the operating system
+facilities is, for the most part, pretty uniform and simple.
+
+   The code for Unix systems is in the directory ‘unix’, at the top
+level of the ‘sysdeps’ hierarchy.  This directory contains
+subdirectories (and subdirectory trees) for various Unix variants.
+
+   The functions which are system calls in most Unix systems are
+implemented in assembly code, which is generated automatically from
+specifications in files named ‘syscalls.list’.  There are several such
+files, one in ‘sysdeps/unix’ and others in its subdirectories.  Some
+special system calls are implemented in files that are named with a
+suffix of ‘.S’; for example, ‘_exit.S’.  Files ending in ‘.S’ are run
+through the C preprocessor before being fed to the assembler.
+
+   These files all use a set of macros that should be defined in
+‘sysdep.h’.  The ‘sysdep.h’ file in ‘sysdeps/unix’ partially defines
+them; a ‘sysdep.h’ file in another directory must finish defining them
+for the particular machine and operating system variant.  See
+‘sysdeps/unix/sysdep.h’ and the machine-specific ‘sysdep.h’
+implementations to see what these macros are and what they should do.
+
+   The system-specific makefile for the ‘unix’ directory
+(‘sysdeps/unix/Makefile’) gives rules to generate several files from the
+Unix system you are building the library on (which is assumed to be the
+target system you are building the library _for_).  All the generated
+files are put in the directory where the object files are kept; they
+should not affect the source tree itself.  The files generated are
+‘ioctls.h’, ‘errnos.h’, ‘sys/param.h’, and ‘errlist.c’ (for the ‘stdio’
+section of the library).
+

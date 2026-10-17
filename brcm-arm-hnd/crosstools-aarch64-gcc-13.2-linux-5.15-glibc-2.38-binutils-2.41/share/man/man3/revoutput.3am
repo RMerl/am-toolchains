@@ -1,0 +1,77 @@
+.TH REVOUTPUT 3am "Feb 21 2018" "Free Software Foundation" "GNU Awk Extension Modules"
+.SH NAME
+revoutput \- Reverse output strings sample extension
+.SH SYNOPSIS
+.ft CW
+@load "revoutput"
+.sp
+BEGIN { REVOUT = 1 }    # Reverse all output strings
+.ft R
+.SH DESCRIPTION
+The
+.I revoutput
+extension
+adds a simple output wrapper that reverses the characters in each output
+line.
+It's main purpose is to show how to write an output wrapper, although
+it may be mildly amusing for the unwary.
+.\" .SH BUGS
+.SH EXAMPLE
+.ft CW
+.nf
+@load "revoutput"
+
+BEGIN {
+    REVOUT = 1
+    print "hello, world" > "/dev/stdout"
+}
+.fi
+.ft R
+.PP
+The output from this program is:
+.PP
+.ft CW
+.nf
+dlrow ,olleh
+.fi
+.ft R
+.SH BUGS
+This extension does not affect the default standard output.
+.SH "SEE ALSO"
+.IR "GAWK: Effective AWK Programming" ,
+.IR filefuncs (3am),
+.IR fnmatch (3am),
+.IR fork (3am),
+.IR inplace (3am),
+.IR ordchr (3am),
+.IR readdir (3am),
+.IR readfile (3am),
+.IR rwarray (3am),
+.IR time (3am).
+.SH AUTHOR
+Arnold Robbins,
+.BR arnold@skeeve.com .
+.SH COPYING PERMISSIONS
+Copyright \(co 2012, 2013, 2018,
+Free Software Foundation, Inc.
+.PP
+Permission is granted to make and distribute verbatim copies of
+this manual page provided the copyright notice and this permission
+notice are preserved on all copies.
+.ig
+Permission is granted to process this file through troff and print the
+results, provided the printed document carries copying permission
+notice identical to this one except for the removal of this paragraph
+(this paragraph not being relevant to the printed manual page).
+..
+.PP
+Permission is granted to copy and distribute modified versions of this
+manual page under the conditions for verbatim copying, provided that
+the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+.PP
+Permission is granted to copy and distribute translations of this
+manual page into another language, under the above conditions for
+modified versions, except that this permission notice may be stated in
+a translation approved by the Foundation.
+.\" vim: set filetype=nroff :

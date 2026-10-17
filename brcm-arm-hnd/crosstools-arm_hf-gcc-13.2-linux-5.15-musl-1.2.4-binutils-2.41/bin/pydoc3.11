@@ -1,0 +1,5 @@
+#!/auto/toolbuild/bintools//crosstools-arm_hf-gcc-13.2-linux-5.15-musl-1.2.4-binutils-2.41/bin/python3.11
+
+import pydoc
+if __name__ == '__main__':
+    pydoc.cli()

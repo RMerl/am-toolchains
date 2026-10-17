@@ -1,0 +1,2 @@
+add-auto-load-safe-path /auto/toolbuild/bintools//crosstools-arm_hf-gcc-13.2-linux-5.15-glibc-2.38-binutils-2.41/arm-buildroot-linux-gnueabihf/sysroot
+set sysroot /auto/toolbuild/bintools//crosstools-arm_hf-gcc-13.2-linux-5.15-glibc-2.38-binutils-2.41/arm-buildroot-linux-gnueabihf/sysroot

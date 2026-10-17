@@ -1,0 +1,4 @@
+/* GNU ld script
+*/
+OUTPUT_FORMAT(elf64-littleaarch64)
+GROUP ( /lib64/libm.so.6  AS_NEEDED ( /lib64/libmvec.so.1 ) )
